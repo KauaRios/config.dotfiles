@@ -1,5 +1,9 @@
 # ONI — Fedora / Arch
 
+![ONI — wallpaper de samurai em vermelho, preto e azul gelo](wallpapers/cool-japanese-samurai-backiee-4K.jpg)
+
+*Wallpaper que inspira a paleta do tema; não é uma captura da sessão Hyprland.*
+
 Requer Hyprland 0.55 ou superior, com configuração exclusivamente Lua.
 
 Tema baseado no samurai do wallpaper: vermelho, carvão e azul gelo. Waybar em estilo HUD com setores numerados, CPU/RAM e bateria como HP; os valores são métricas reais.
