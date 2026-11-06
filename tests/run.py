@@ -2,6 +2,7 @@
 """Executa a suíte de qualquer pasta, com resumo em português."""
 from pathlib import Path
 import argparse
+import os
 import sys
 import time
 import unittest
@@ -16,6 +17,7 @@ GROUPS = {
     'ScreenshotTests': 'Captura de tela e área de transferência',
     'HyprlandSessionTests': 'Sessão Hyprland',
     'HyprlandApiTests': 'API real do Hyprland (configuração isolada)',
+    'GraphicalTests': 'Interação gráfica em sessão isolada',
 }
 
 
@@ -34,7 +36,11 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--strict', action='store_true',
                         help='retorna erro também se houver testes ignorados ou falhas esperadas')
+    parser.add_argument('--gui', action='store_true',
+                        help='abre sessões Hyprland em janela para testes gráficos isolados')
     args = parser.parse_args(argv)
+    if args.gui:
+        os.environ['DOTFILES_TEST_GUI'] = '1'
     started = time.monotonic()
     suite = unittest.defaultTestLoader.discover(str(Path(__file__).resolve().parent))
     result = Result()
@@ -74,7 +80,7 @@ def main(argv=None):
     if args.strict and (result.skipped or result.expectedFailures):
         print('Modo estrito: validação incompleta impede aprovação.')
     print(f'{result.testsRun} testes em {time.monotonic() - started:.2f}s.')
-    print('Aparência e interação gráfica não são testadas aqui.\n')
+    print('Comparação visual de screenshots não é feita. Interação gráfica requer --gui.\n')
     return 0 if successful else 1
 
 

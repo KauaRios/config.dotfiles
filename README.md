@@ -86,7 +86,7 @@ Requer Python 3, Bash e utilitários básicos de Linux. Para conferir a sintaxe 
 
 A suíte verifica sintaxe Bash/Lua, JSON da Waybar, referências dos módulos, links simbólicos, backups, preservação do KDE, reinstalação, mudança do nome da pasta, simulação sem escrita e entradas inválidas. Também testa captura cancelada, falhas de captura/clipboard e controle de volume com ferramentas simuladas. Quando PyGObject e GTK 3 estão disponíveis, valida o CSS da Waybar sem iniciar a barra.
 
-Os testes de instalação usam diretórios temporários e uma cópia do instalador. Não instalam pacotes, não acessam a `.config` real e não capturam sua tela. Aparência dos temas, disponibilidade dos pacotes e compatibilidade dos monitores continuam dependendo do sistema e da sessão gráfica reais.
+Os testes de instalação usam diretórios temporários e uma cópia do instalador. Não instalam pacotes, não acessam a `.config` real e não capturam sua tela. A suíte também oferece testes gráficos opcionais em uma sessão Hyprland aninhada. Aparência dos temas, disponibilidade dos pacotes e compatibilidade dos monitores físicos continuam exigindo conferência no sistema real.
 
 Quando disponíveis, a suíte também verifica a leitura do tema pelo Rofi e consulta `hyprctl configerrors` na sessão Hyprland ativa. A consulta verifica a configuração carregada na sessão, que pode ser diferente da configuração deste repositório; sem acesso à sessão, o teste é ignorado.
 
@@ -124,3 +124,9 @@ python3 -B -m unittest discover -s tests -p test_hyprland_api.py -v
 ```
 
 Sem Hyprland ou sem suporte a `--verify-config`, o grupo é informado como ignorado; `--strict` retorna erro nesses casos. Falhas ao executar o verificador ou configurações rejeitadas fazem os testes falharem. A consulta separada a `hyprctl configerrors` continua conferindo apenas a sessão ativa.
+
+### Integração gráfica
+
+`python3 tests/run.py --gui --strict` abre sessões Hyprland isoladas dentro de janelas Wayland e testa foco, flutuação, fullscreen e mudança de workspace via IPC. Também inicia a Waybar com o config/CSS do repositório, verifica a layer e a reserva de espaço e confirma a rejeição de CSS inválido. Requer uma sessão Wayland acessível, `dbus-run-session`, GTK 3/PyGObject, Hyprland e Waybar.
+
+O autostart e o perfil dos monitores físicos são desativados apenas nas cópias temporárias. Os testes não pressionam teclas físicas nem avaliam beleza ou comparam screenshots. Consulte [tests/README.md](tests/README.md) para a cobertura de **cada arquivo**, dependências, isolamento e limites.
