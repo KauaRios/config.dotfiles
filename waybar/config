@@ -1,0 +1,112 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "margin-top": 8,
+  "margin-left": 10,
+  "margin-bottom": 0,
+  "margin-right": 10,
+  "spacing": 4,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "wireplumber",
+    "network",
+    "battery",
+    "tray",
+    "custom/lock"
+  ],
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{name}",
+    "format-icons": {
+      "1": "\u03bc",
+      "2": "\u03c0",
+      "3": "\u03c3",
+      "4": "\u03c4",
+      "5": "\u03bb",
+      "6": "\u03b1",
+      "7": "\u03b2",
+      "8": "\u03b3",
+      "9": "\u03b4",
+      "10": "\u03b6"
+    },
+    "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
+    "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "clock": {
+    "format": "{:%H:%M  /  %d.%m}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "CPU {usage}%",
+    "max-length": 10
+  },
+  "memory": {
+    "interval": 10,
+    "format": "RAM {percentage}%"
+  },
+  "wireplumber": {
+    "format": "VOL {volume}%",
+    "format-muted": "MUTE",
+    "format-icons": [
+      "\uf026",
+      "\uf027",
+      "\uf028"
+    ]
+  },
+  "network": {
+    "format-wifi": "NET {signalStrength}%",
+    "format-ethernet": "LINK",
+    "format-disconnected": "OFFLINE",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signaldBm}dBm)",
+    "max-length": 20
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "HP {capacity}%",
+    "format-charging": "HP +{capacity}%",
+    "format-plugged": "HP MAX",
+    "format-icons": [
+      "\uf244",
+      "\uf243",
+      "\uf242",
+      "\uf241",
+      "\uf240"
+    ]
+  },
+  "tray": {
+    "spacing": 8
+  },
+  "custom/launcher": {
+    "format": "\u25c8 ONI / HQ",
+    "on-click": "rofi -show drun",
+    "tooltip": false
+  },
+  "custom/lock": {
+    "format": "\u23e3 LOCK",
+    "on-click": "hyprlock"
+  }
+}

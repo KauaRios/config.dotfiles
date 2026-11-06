@@ -1,0 +1,2 @@
+configuration { modi: "drun,run"; show-icons: true; font: "DejaVu Sans Mono 12"; }
+@theme "oni"

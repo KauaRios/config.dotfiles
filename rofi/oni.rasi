@@ -1,0 +1,11 @@
+* { bg: #10141ff5; fg: #b9cedd; accent: #ff334f; background-color: transparent; text-color: @fg; }
+window { width: 620px; background-color: @bg; border: 2px; border-color: @accent; border-radius: 10px; }
+mainbox { padding: 24px; spacing: 18px; }
+inputbar { children: [prompt, entry]; spacing: 14px; }
+prompt { text-color: @accent; }
+entry { placeholder: "BUSCAR / INICIAR MISSAO"; }
+listview { lines: 7; spacing: 6px; }
+element { padding: 12px; border-radius: 4px; }
+element selected.normal { background-color: @accent; text-color: #10141f; }
+element-text { text-color: inherit; }
+element-icon { size: 24px; margin: 0 10px 0 0; }
