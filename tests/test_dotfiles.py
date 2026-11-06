@@ -13,6 +13,15 @@ FOLDERS = ('hypr', 'waybar', 'rofi', 'wofi', 'mako', 'wallpapers', 'qt6ct')
 
 
 class ConfigTests(unittest.TestCase):
+    def test_waybar_css_parses(self):
+        try:
+            import gi
+            gi.require_version('Gtk', '3.0')
+            from gi.repository import Gtk
+        except (ImportError, ValueError):
+            self.skipTest('Instale PyGObject e GTK 3 para verificar o CSS da Waybar.')
+        Gtk.CssProvider().load_from_path(str(ROOT / 'waybar/style.css'))
+
     def test_empty_xdg_config_uses_home(self):
         lua = shutil.which('lua')
         if not lua:
@@ -231,8 +240,8 @@ class ScreenshotTests(unittest.TestCase):
         # Doubles substituem as três ferramentas: não capturam tela nem acessam clipboard.
         commands = {
             'slurp': '[[ $TEST_MODE != cancel ]] || exit 1\n[[ $TEST_MODE != empty ]] || exit 0\necho "0,0 100x100"',
-            'grim': '[[ $TEST_MODE != fail ]] || exit 1\nprintf PNG > "$3"',
-            'wl-copy': 'cat > "$TEST_CLIPBOARD"',
+            'grim': '[[ $TEST_MODE != fail ]] || exit 1\n[[ $1 = -g && $2 = "0,0 100x100" ]]\nprintf PNG > "$3"',
+            'wl-copy': '[[ $TEST_MODE != copy-fail ]] || exit 1\n[[ $1 = --type && $2 = image/png ]]\ncat > "$TEST_CLIPBOARD"',
         }
         for name, body in commands.items():
             script = self.bin / name
@@ -262,6 +271,11 @@ class ScreenshotTests(unittest.TestCase):
     def test_success_copies_image_and_cleans_file(self):
         self.assertEqual(self.capture('success').returncode, 0)
         self.assertEqual(self.clipboard.read_text(), 'PNG')
+        self.assertEqual(list(self.captures.iterdir()), [])
+
+    def test_clipboard_failure_cleans_capture_and_reports_error(self):
+        self.assertNotEqual(self.capture('copy-fail').returncode, 0)
+        self.assertEqual(self.clipboard.read_text(), 'previous')
         self.assertEqual(list(self.captures.iterdir()), [])
 
 

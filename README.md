@@ -84,7 +84,7 @@ O resumo aparece em português. Se já estiver dentro de `tests`, execute `pytho
 
 Requer Python 3, Bash e utilitários básicos de Linux. Para conferir a sintaxe Lua, instale também `lua` (com `luac`); sem ele, esse teste aparece como `skipped`, não como aprovado.
 
-A suíte verifica sintaxe Bash/Lua, JSON da Waybar, referências dos módulos, links simbólicos, backups, preservação do KDE, reinstalação, mudança do nome da pasta, simulação sem escrita e entradas inválidas. Também testa captura cancelada, falha e sucesso usando ferramentas simuladas.
+A suíte verifica sintaxe Bash/Lua, JSON da Waybar, referências dos módulos, links simbólicos, backups, preservação do KDE, reinstalação, mudança do nome da pasta, simulação sem escrita e entradas inválidas. Também testa captura cancelada, falhas de captura/clipboard e controle de volume com ferramentas simuladas. Quando PyGObject e GTK 3 estão disponíveis, valida o CSS da Waybar sem iniciar a barra.
 
 Os testes de instalação usam diretórios temporários e uma cópia do instalador. Não instalam pacotes, não acessam a `.config` real e não capturam sua tela. Não validam a API real do Hyprland, aparência dos temas, disponibilidade dos pacotes nem compatibilidade dos monitores; essas verificações continuam dependendo do sistema e da sessão gráfica reais.
 
@@ -104,3 +104,9 @@ O Super+H abre a lista de atalhos no Kitty, usando `hypr/scripts/cheat_sheet.lua
 Pressione Enter para fechar.
 
 A Waybar consulta a temperatura da CPU AMD pelo sensor `k10temp` (Tctl). O caminho do dispositivo em `temperature.hwmon-path-abs` deve ser ajustado em outros computadores. Clicar no indicador de rede abre `kcmshell6 kcm_networkmanagement`, disponível com as configurações de rede do KDE neste sistema.
+
+### Validação estrita
+
+`python3 tests/run.py --strict` retorna erro se qualquer teste for ignorado ou tiver falha esperada. O modo normal também lista essas limitações, mas só retorna erro para falhas, erros e sucessos inesperados. O relatório inclui tempo total e grupos de volume, atalhos e funcionamento do próprio executor.
+
+Os testes de volume substituem `wpctl` e `notify-send`: conferem os comandos, o limite de 100%, porcentagem, mudo e falhas sem alterar o áudio real. Os testes do executor usam suítes temporárias para verificar falhas de importação, subtestes, resultados inesperados e códigos de saída.

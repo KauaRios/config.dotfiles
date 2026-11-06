@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -euo pipefail
+[[ $# -eq 1 ]] || { echo 'Uso: volume.sh {up|down|toggle}' >&2; exit 1; }
 
 # Executa a ação recebida (aumentar, diminuir ou mutar) limitando a 100% (1.0)
 case "$1" in
@@ -11,6 +13,7 @@ case "$1" in
     toggle)
         wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
         ;;
+    *) echo 'Uso: volume.sh {up|down|toggle}' >&2; exit 1 ;;
 esac
 
 # Captura o estado atual do áudio no sistema

@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 """Executa a suíte de qualquer pasta, com resumo em português."""
 from pathlib import Path
+import argparse
 import sys
+import time
 import unittest
 
 sys.dont_write_bytecode = True
 GROUPS = {
+    'CheatsheetTests': 'Ajuda e atalhos',
+    'VolumeTests': 'Volume e notificações',
+    'RunnerTests': 'Relatório e código de saída da suíte',
     'ConfigTests': 'Configurações e sintaxe',
     'InstallTests': 'Links, backups e preservação do KDE',
     'ScreenshotTests': 'Captura de tela e área de transferência',
@@ -24,7 +29,12 @@ class Result(unittest.TestResult):
         self.groups.setdefault(key, []).append(test)
 
 
-def main():
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--strict', action='store_true',
+                        help='retorna erro também se houver testes ignorados ou falhas esperadas')
+    args = parser.parse_args(argv)
+    started = time.monotonic()
     suite = unittest.defaultTestLoader.discover(str(Path(__file__).resolve().parent))
     result = Result()
     suite.run(result)
@@ -54,12 +64,17 @@ def main():
         print(f'\nDetalhes da falha: {test.id()}\n{traceback}')
     for test in result.unexpectedSuccesses:
         print(f'\nResultado inesperado: {test.id()} passou, embora estivesse marcado como falha esperada.')
+    successful = result.wasSuccessful() and not (
+        args.strict and (result.skipped or result.expectedFailures))
     if result.wasSuccessful():
         print('\nNenhuma falha nos testes executados.')
     else:
         print('\nHá falhas que precisam ser corrigidas.')
+    if args.strict and (result.skipped or result.expectedFailures):
+        print('Modo estrito: validação incompleta impede aprovação.')
+    print(f'{result.testsRun} testes em {time.monotonic() - started:.2f}s.')
     print('Aparência e interação gráfica não são testadas aqui.\n')
-    return 0 if result.wasSuccessful() else 1
+    return 0 if successful else 1
 
 
 if __name__ == '__main__':
