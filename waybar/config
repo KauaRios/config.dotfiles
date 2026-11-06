@@ -1,44 +1,30 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 38,
-  "margin-top": 8,
+  "height": 26,
+  "margin-top": 6,
   "margin-left": 10,
   "margin-bottom": 0,
   "margin-right": 10,
-  "spacing": 0,
+  "spacing": 5,
   "modules-left": [
-    "custom/launcher",
     "hyprland/workspaces"
   ],
-  "modules-center": [
-    "clock"
-  ],
+  "modules-center": [],
   "modules-right": [
-    "cpu",
-    "memory",
+    "tray",
     "wireplumber",
     "network",
+    "cpu",
+    "memory",
     "power-profiles-daemon",
     "battery",
-    "tray",
+    "clock",
     "custom/lock"
   ],
   "hyprland/workspaces": {
     "all-outputs": true,
     "format": "{name}",
-    "format-icons": {
-      "1": "μ",
-      "2": "π",
-      "3": "σ",
-      "4": "τ",
-      "5": "λ",
-      "6": "α",
-      "7": "β",
-      "8": "γ",
-      "9": "δ",
-      "10": "ζ"
-    },
     "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
     "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
     "sort-by-number": true,
@@ -53,70 +39,71 @@
     }
   },
   "clock": {
-    "format": "{:%H:%M  /  %d.%m}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "format": "{:%a %d %b  ·  %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "▦  {:%d.%m.%Y}"
   },
   "cpu": {
     "interval": 2,
-    "format": "CPU {usage}%",
-    "max-length": 10
+    "format": "{usage}% ⚙",
+    "max-length": 10,
+    "tooltip-format": "Processador: {usage}%"
   },
   "memory": {
     "interval": 10,
-    "format": "RAM {used:.1f}G",
+    "format": "{used:.1f}G ▤",
     "tooltip-format": "Memória: {used:.1f} / {total:.1f} GiB"
   },
   "wireplumber": {
-    "format": "VOL {volume}%",
-    "format-muted": "MUTE",
+    "format": "{volume}% {icon}",
+    "format-muted": "♩  —",
     "format-icons": [
-      "",
-      "",
-      ""
-    ]
+      "♩",
+      "♪",
+      "♫"
+    ],
+    "tooltip-format": "Volume: {volume}%"
   },
   "network": {
-    "format-wifi": "NET {signalStrength}%",
-    "format-ethernet": "LINK",
-    "format-disconnected": "OFFLINE",
+    "format-wifi": "⌁ {essid}",
+    "format-ethernet": "⇆ {ifname}",
+    "format-disconnected": "⊘",
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} ({signaldBm}dBm)",
-    "max-length": 20
+    "max-length": 20,
+    "tooltip-format-disconnected": "Sem conexão"
   },
   "battery": {
     "states": {
       "warning": 30,
       "critical": 15
     },
-    "format": "BAT {capacity}%",
-    "format-charging": "BAT +{capacity}%",
-    "format-plugged": "BAT {capacity}%",
+    "format": "{capacity}% {icon}",
+    "format-charging": "ϟ  {capacity}%",
+    "format-plugged": "ϟ  {capacity}%",
     "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "▱",
+      "▱",
+      "▰",
+      "▰",
+      "▰"
     ]
   },
   "tray": {
-    "spacing": 8
-  },
-  "custom/launcher": {
-    "format": "◆  MENU",
-    "on-click": "rofi -show drun",
-    "tooltip": false
+    "spacing": 8,
+    "icon-size": 14
   },
   "custom/lock": {
-    "format": "BLOQUEAR",
-    "on-click": "hyprlock"
+    "format": "⏻",
+    "on-click": "hyprlock",
+    "tooltip-format": "Bloquear a sessão"
   },
   "power-profiles-daemon": {
     "format": "{icon}",
     "format-icons": {
-      "power-saver": "ECO",
-      "balanced": "NORMAL",
-      "performance": "TURBO"
+      "power-saver": "♧",
+      "balanced": "◐",
+      "performance": "ϟ"
     },
     "tooltip-format": "Energia: {profile}\nClique para trocar o perfil"
   }

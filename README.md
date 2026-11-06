@@ -6,7 +6,7 @@
 
 Requer Hyprland 0.55 ou superior, com configuração exclusivamente Lua.
 
-Tema baseado no samurai do wallpaper: vermelho, carvão e azul gelo. Waybar em estilo HUD com setores numerados, CPU/RAM e bateria como HP; os valores são métricas reais.
+Tema baseado no samurai do wallpaper: vermelho, carvão e azul gelo. Waybar fina e transparente, com indicadores em pequenos blocos escuros, ícones Unicode e tons de azul e lilás; os valores são métricas reais. O relógio alterna entre hora e data ao clicar. Os ícones usam DejaVu Sans e Noto Sans Symbols 2 quando disponível, sem depender de Nerd Fonts.
 
 ## Instalar
 
