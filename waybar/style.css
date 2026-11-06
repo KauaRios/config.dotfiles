@@ -1,0 +1,14 @@
+@define-color red #ff334f;
+@define-color ice #b9cedd;
+* { font-family: "DejaVu Sans Mono", monospace; font-size: 12px; font-weight: bold; min-height: 0; }
+window#waybar { background: rgba(12,16,24,0.94); color: @ice; border: 1px solid #57303e; border-bottom: 3px solid @red; border-radius: 8px; }
+#workspaces button { color: #8494a8; background: #1a202d; border-radius: 4px; margin: 5px 3px; padding: 0 10px; }
+#workspaces button.active { background: @red; color: #100e16; }
+#workspaces button.urgent { background: #e6b878; color: #15121a; }
+#custom-launcher { color: @red; padding: 0 14px; }
+#clock { color: #f4e6e9; border-bottom: 2px solid #e6b878; padding: 0 12px; }
+#cpu, #memory, #wireplumber, #network, #battery, #tray, #custom-lock { background: #202331; border-radius: 4px; margin: 5px 3px; padding: 0 8px; }
+#battery { color: #b8d6c6; }
+#battery.warning { color: #e6b878; }
+#battery.critical, #custom-lock { color: @red; }
+tooltip { background: #141824; border: 1px solid @red; }
