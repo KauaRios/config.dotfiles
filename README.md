@@ -1,6 +1,6 @@
 # ONI — Fedora / Arch
 
-![ONI — wallpaper de samurai em vermelho, preto e azul gelo](wallpapers/cool-japanese-samurai-backiee-4K.jpg)
+![ONI — wallpaper de samurai em vermelho, preto e azul gelo](wallpapers/visual.png)
 
 *Wallpaper que inspira a paleta do tema; não é uma captura da sessão Hyprland.*
 
