@@ -91,3 +91,9 @@ Os testes de instalação usam diretórios temporários e uma cópia do instalad
 Quando disponíveis, a suíte também verifica a leitura do tema pelo Rofi e consulta `hyprctl configerrors` na sessão Hyprland ativa. A consulta verifica a configuração carregada na sessão, que pode ser diferente da configuração deste repositório; sem acesso à sessão, o teste é ignorado.
 
 A Waybar mostra a RAM usada em GiB. O botão de energia alterna os perfis disponíveis do `power-profiles-daemon`; o serviço precisa estar ativo e os perfis disponíveis dependem do equipamento.
+
+### Recuperação dos componentes da sessão
+
+Waybar, mako e swaybg são iniciados por supervisores com locks por instância Hyprland. Se um componente encerrar enquanto a sessão estiver acessível, ele será iniciado novamente após três segundos. Logs ficam em `${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles/`. Isso não corrige uma queda do compositor nem detecta um aplicativo que continue rodando, mas pare de desenhar.
+
+Ao migrar da inicialização antiga, saia e entre novamente na sessão para evitar manter processos antigos fora dos supervisores. Depois disso, recarregar a configuração não duplica os componentes supervisionados.
