@@ -44,6 +44,18 @@ class RunnerTests(unittest.TestCase):
         self.assertIn('[FALHOU] Sample: 0/1 passaram', result.stdout)
         self.assertIn('falha simulada', result.stdout)
 
+    def test_class_dependency_skip_is_reported(self):
+        body = '''class Sample(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls): raise unittest.SkipTest('Hyprland ausente')
+    def test_api(self): pass
+'''
+        for args, code in (((), 0), (('--strict',), 1)):
+            with self.subTest(args=args):
+                result = self.run_suite(body, *args)
+                self.assertEqual(result.returncode, code, result.stderr)
+                self.assertIn('Hyprland ausente', result.stdout)
+
     def test_import_error_is_reported_as_failure(self):
         result = self.run_suite("raise RuntimeError('erro ao carregar')\n")
         self.assertEqual(result.returncode, 1)

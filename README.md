@@ -70,7 +70,7 @@ O Dolphin pode usar um esquema próprio, independente da paleta do qt6ct. Se abr
 
 ## Verificação na sessão gráfica
 
-Depois de instalar e entrar no Hyprland, execute `hyprctl configerrors` e `hyprctl monitors all`. Confira fullscreen (Super+Shift+Space), terminal flutuante (Super+Shift+Q), ajuda (Super+H), scroll dos workspaces e captura (Super+I). Este repositório foi revisado estaticamente; não houve execução de Hyprland, Waybar, Rofi ou Hyprlock no ambiente de revisão. A versão dos pacotes da sua distribuição e os modos suportados pelos monitores precisam ser conferidos no sistema real.
+Depois de instalar e entrar no Hyprland, execute `hyprctl configerrors` e `hyprctl monitors all`. Confira fullscreen (Super+Shift+Space), terminal flutuante (Super+Shift+Q), ajuda (Super+H), scroll dos workspaces e captura (Super+I). A suíte valida a configuração com o verificador do Hyprland; aparência e comportamento durante uma sessão precisam ser conferidos manualmente. A versão dos pacotes da sua distribuição e os modos suportados pelos monitores precisam ser conferidos no sistema real.
 
 ## Testes automatizados
 
@@ -86,7 +86,7 @@ Requer Python 3, Bash e utilitários básicos de Linux. Para conferir a sintaxe 
 
 A suíte verifica sintaxe Bash/Lua, JSON da Waybar, referências dos módulos, links simbólicos, backups, preservação do KDE, reinstalação, mudança do nome da pasta, simulação sem escrita e entradas inválidas. Também testa captura cancelada, falhas de captura/clipboard e controle de volume com ferramentas simuladas. Quando PyGObject e GTK 3 estão disponíveis, valida o CSS da Waybar sem iniciar a barra.
 
-Os testes de instalação usam diretórios temporários e uma cópia do instalador. Não instalam pacotes, não acessam a `.config` real e não capturam sua tela. Não validam a API real do Hyprland, aparência dos temas, disponibilidade dos pacotes nem compatibilidade dos monitores; essas verificações continuam dependendo do sistema e da sessão gráfica reais.
+Os testes de instalação usam diretórios temporários e uma cópia do instalador. Não instalam pacotes, não acessam a `.config` real e não capturam sua tela. Aparência dos temas, disponibilidade dos pacotes e compatibilidade dos monitores continuam dependendo do sistema e da sessão gráfica reais.
 
 Quando disponíveis, a suíte também verifica a leitura do tema pelo Rofi e consulta `hyprctl configerrors` na sessão Hyprland ativa. A consulta verifica a configuração carregada na sessão, que pode ser diferente da configuração deste repositório; sem acesso à sessão, o teste é ignorado.
 
@@ -110,3 +110,17 @@ A Waybar consulta a temperatura da CPU AMD pelo sensor `k10temp` (Tctl). O camin
 `python3 tests/run.py --strict` retorna erro se qualquer teste for ignorado ou tiver falha esperada. O modo normal também lista essas limitações, mas só retorna erro para falhas, erros e sucessos inesperados. O relatório inclui tempo total e grupos de volume, atalhos e funcionamento do próprio executor.
 
 Os testes de volume substituem `wpctl` e `notify-send`: conferem os comandos, o limite de 100%, porcentagem, mudo e falhas sem alterar o áudio real. Os testes do executor usam suítes temporárias para verificar falhas de importação, subtestes, resultados inesperados e códigos de saída.
+
+### Validação da API real do Hyprland
+
+`tests/test_hyprland_api.py` executa o binário instalado com `Hyprland --verify-config --config <cópia temporária>/hyprland.lua`. A configuração base é copiada para um diretório temporário, sem `local.lua` pessoal. HOME e diretórios XDG são isolados; as variáveis de conexão com a sessão gráfica e D-Bus são removidas. O comando tem limite de 20 segundos e não inicia o compositor nem dispara o evento de autostart.
+
+Três testes verificam a aceitação da configuração base, a rejeição de uma opção inexistente e a rejeição de uma chamada Lua inexistente. A validação usa a versão instalada (verificada com Hyprland 0.57.1), sem garantir compatibilidade com outras versões ou o comportamento de janelas, atalhos e monitores em execução.
+
+Para rodar somente esses testes:
+
+```bash
+python3 -B -m unittest discover -s tests -p test_hyprland_api.py -v
+```
+
+Sem Hyprland ou sem suporte a `--verify-config`, o grupo é informado como ignorado; `--strict` retorna erro nesses casos. Falhas ao executar o verificador ou configurações rejeitadas fazem os testes falharem. A consulta separada a `hyprctl configerrors` continua conferindo apenas a sessão ativa.

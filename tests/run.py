@@ -15,6 +15,7 @@ GROUPS = {
     'InstallTests': 'Links, backups e preservação do KDE',
     'ScreenshotTests': 'Captura de tela e área de transferência',
     'HyprlandSessionTests': 'Sessão Hyprland',
+    'HyprlandApiTests': 'API real do Hyprland (configuração isolada)',
 }
 
 
@@ -58,7 +59,7 @@ def main(argv=None):
             detail += f'; {known} falha(s) esperada(s)'
         print(f'[{status}] {GROUPS.get(key, key)}: {detail}')
     for test, reason in result.skipped:
-        label = 'Sintaxe Lua' if test._testMethodName == 'test_lua_syntax' else test.id()
+        label = 'Sintaxe Lua' if getattr(test, '_testMethodName', '') == 'test_lua_syntax' else test.id()
         print(f'\nNão verificado — {label}: {reason}')
     for test, traceback in result.failures + result.errors:
         print(f'\nDetalhes da falha: {test.id()}\n{traceback}')
