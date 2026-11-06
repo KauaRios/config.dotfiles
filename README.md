@@ -19,7 +19,7 @@ cd ~/dotfiles
 
 O instalador de dependências solicita sudo e a confirmação do gerenciador. Instala o próprio Hyprland. Suporta Fedora tradicional e EndeavourOS, Arch, Manjaro, Garuda e outras distribuições que declarem ID_LIKE=arch com os pacotes disponíveis nos repositórios oficiais. No Fedora habilita o COPR comunitário nett00n/hyprland mediante confirmação do DNF; no Arch/EndeavourOS usa pacman e não usa AUR nem troca o gerenciador de login. Fedora Atomic não é suportado automaticamente.
 
-O instalador dos links roda SEM sudo. Vincula somente hypr, waybar, rofi, wofi, mako e wallpapers dentro de `${XDG_CONFIG_HOME:-$HOME/.config}`. Não substitui a .config inteira. Configurações existentes dessas pastas são movidas para `.config/dot-backup.XXXXXXXX`; configurações do KDE permanecem no lugar. Pode executar novamente sem duplicar links. Não mova a pasta DOT depois da instalação.
+O instalador dos links roda SEM sudo. Vincula somente hypr, waybar, rofi, wofi, mako, wallpapers e qt6ct dentro de `${XDG_CONFIG_HOME:-$HOME/.config}`. Não substitui a .config inteira. Configurações existentes dessas pastas são movidas para `.config/dot-backup.XXXXXXXX`; configurações do KDE permanecem no lugar. Pode executar novamente sem duplicar links. Não mova a pasta DOT depois da instalação.
 
 Saia da sessão e escolha Hyprland no login. O wallpaper é iniciado com swaybg em todos os monitores. Arquivos legados inativos estão em archive/ e não são vinculados à .config.
 
@@ -65,3 +65,7 @@ A revisão inclui qt6ct na lista de pastas vinculadas, com backup da configuraç
 | `autostart.lua` | Inicialização da sessão |
 
 `hypr/local.lua` continua opcional e é carregado por último para ajustes pessoais. A configuração original dos monitores foi restaurada; confira os modos no hardware real com `hyprctl monitors all`. O ajuste de posição `1921x0` preserva o workaround original; pode ser mudado para `1920x0` caso já não seja necessário.
+
+## Verificação na sessão gráfica
+
+Depois de instalar e entrar no Hyprland, execute `hyprctl configerrors` e `hyprctl monitors all`. Confira fullscreen (Super+Shift+Space), terminal flutuante (Super+Shift+Q), ajuda (Super+H), scroll dos workspaces e captura (Super+I). Este repositório foi revisado estaticamente; não houve execução de Hyprland, Waybar, Rofi ou Hyprlock no ambiente de revisão. A versão dos pacotes da sua distribuição e os modos suportados pelos monitores precisam ser conferidos no sistema real.

@@ -4,6 +4,12 @@ set -euo pipefail
 root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 config=${XDG_CONFIG_HOME:-$HOME/.config}
 [[ $config = /* ]] || { echo 'XDG_CONFIG_HOME precisa ser absoluto.' >&2; exit 1; }
+# Evita mover a própria origem para o backup e criar um link circular.
+config=$(realpath -m -- "$config")
+case "$root/" in "$config/"*)
+    echo 'Mantenha o repositório fora da pasta de destino .config.' >&2
+    exit 1
+esac
 mode=${1:-}
 [[ -z $mode || $mode = --dry-run ]] || { echo 'Uso: ./install.sh [--dry-run]'; exit 1; }
 folders=(hypr waybar rofi wofi mako wallpapers qt6ct)

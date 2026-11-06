@@ -9,21 +9,21 @@ local mainMod = "SUPER"
 -- Programas básicos
 hl.bind(mainMod .. " + Q",           hl.dsp.exec_cmd(programs.terminal))
 hl.bind(mainMod .. " + C",           hl.dsp.window.close())
-hl.bind(mainMod .. " + M",           hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"))
+hl.bind(mainMod .. " + M",           hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E",           hl.dsp.exec_cmd(programs.fileManager))
 hl.bind(mainMod .. " + V",           hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R",           hl.dsp.exec_cmd(programs.menu))
 hl.bind(mainMod .. " + P",           hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J",           hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + B",           hl.dsp.exec_cmd(programs.firefox))
-hl.bind(mainMod .. " + SHIFT+ Q",    hl.dsp.exec_cmd("[float; center; size 800 600] kitty"))
+hl.bind(mainMod .. " + SHIFT + Q",    hl.dsp.exec_cmd(programs.terminal, { float = true, center = true, size = {800, 600} }))
 
 -- O ATALHO QUE CHAMA O cheat_sheet
-hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("[float; center; size 800 600] kitty -e lua \"${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/cheat_sheet.lua\""))
+hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("kitty -e lua \"${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/cheat_sheet.lua\"", { float = true, center = true, size = {800, 600} }))
 
 
-hl.bind(mainMod .. " + L",           hl.dsp.exec_cmd("pkill waybar; waybar"))
-hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.fullscreen(0))
+hl.bind(mainMod .. " + L",           hl.dsp.exec_cmd("pkill -u \"$USER\" -x waybar; waybar"))
+hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 
 -- Foco com setas
 hl.bind(mainMod .. " + left",        hl.dsp.focus({ direction = "left" }))

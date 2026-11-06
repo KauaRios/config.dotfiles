@@ -30,7 +30,8 @@ case "$family" in
 esac
 version=$(Hyprland --version)
 printf '%s\n' "$version"
-number=$(printf '%s\n' "$version" | sed -nE 's/.*v?([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' | head -n1)
+number=
+if [[ $version =~ ([0-9]+\.[0-9]+\.[0-9]+) ]]; then number=${BASH_REMATCH[1]}; fi
 if [[ -z $number || $(printf '%s\n' 0.55.0 "$number" | sort -V | head -n1) != 0.55.0 ]]; then
     echo 'Estas dotfiles exigem Hyprland >= 0.55. Confira a versão do repositório.' >&2
     exit 1
