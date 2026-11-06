@@ -51,11 +51,6 @@
       ]
     }
   },
-  "hyprland/window": {
-    "format": "{}",
-    "max-length": 35,
-    "separate-outputs": true
-  },
   "clock": {
     "format": "{:%H:%M  /  %d.%m}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
@@ -68,15 +63,6 @@
   "memory": {
     "interval": 10,
     "format": "RAM {percentage}%"
-  },
-  "temperature": {
-    "critical-threshold": 80,
-    "format": "{icon} {temperatureC}\u00b0C",
-    "format-icons": [
-      "\uf76b",
-      "\uf2c9",
-      "\uf769"
-    ]
   },
   "wireplumber": {
     "format": "VOL {volume}%",
@@ -91,8 +77,8 @@
     "format-wifi": "NET {signalStrength}%",
     "format-ethernet": "LINK",
     "format-disconnected": "OFFLINE",
-    "tooltip-format": "{ifname} via {gwaddr} \udb80\ude97",
-    "tooltip-format-wifi": "{essid} ({signaldBm}dBm) \uf1eb",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signaldBm}dBm)",
     "max-length": 20
   },
   "battery": {
@@ -113,11 +99,6 @@
   },
   "tray": {
     "spacing": 8
-  },
-  "custom/power": {
-    "format": " \u23fb",
-    "tooltip": false,
-    "on-click": "wlogout"
   },
   "custom/launcher": {
     "format": "\u25c8 ONI / HQ",

@@ -2,27 +2,37 @@
 set -euo pipefail
 source /etc/os-release
 family=" ${ID:-} ${ID_LIKE:-} "
-common=(hyprland waybar rofi kitty dolphin firefox mako swaybg hyprlock grim slurp wl-clipboard brightnessctl playerctl wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk)
+common=(hyprland waybar rofi kitty dolphin firefox mako swaybg hyprlock grim slurp wl-clipboard brightnessctl playerctl wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent wofi qt6ct gsettings-desktop-schemas)
 run=()
 if (( EUID != 0 )); then run=(sudo); fi
 case "$family" in
-    *arch*)
+    *" arch "*|*" endeavouros "*|*" manjaro "*|*" garuda "*)
         command -v pacman >/dev/null
-        "${run[@]}" pacman -Syu --needed "${common[@]}" pipewire pipewire-pulse ttf-dejavu lua
+        "${run[@]}" pacman -Syu --needed "${common[@]}" pipewire pipewire-pulse ttf-dejavu lua libnotify procps-ng
         ;;
-    *fedora*)
+    *" fedora "*)
         if [[ -e /run/ostree-booted ]]; then
             echo 'Fedora Atomic detectado: este instalador atende Fedora tradicional com DNF.' >&2
             exit 1
         fi
         command -v dnf >/dev/null
+        echo 'Fedora: habilitando o repositório comunitário COPR nett00n/hyprland.'
+        echo 'O DNF pedirá confirmação antes de habilitar e instalar.'
+        "${run[@]}" dnf install 'dnf-command(copr)'
+        "${run[@]}" dnf copr enable nett00n/hyprland
         # Fedora pode fornecer o launcher Wayland em um pacote separado.
         if dnf -q list --available rofi-wayland >/dev/null 2>&1 || rpm -q rofi-wayland >/dev/null 2>&1; then
             common[2]=rofi-wayland
         fi
-        "${run[@]}" dnf install "${common[@]}" pipewire pipewire-pulseaudio dejavu-sans-mono-fonts lua
+        "${run[@]}" dnf install "${common[@]}" pipewire pipewire-pulseaudio dejavu-sans-mono-fonts lua libnotify procps-ng
         ;;
     *) echo "Distribuição não suportada: ${ID:-desconhecida}. Use Fedora ou família Arch." >&2; exit 1 ;;
 esac
-Hyprland --version
+version=$(Hyprland --version)
+printf '%s\n' "$version"
+number=$(printf '%s\n' "$version" | sed -nE 's/.*v?([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' | head -n1)
+if [[ -z $number || $(printf '%s\n' 0.55.0 "$number" | sort -V | head -n1) != 0.55.0 ]]; then
+    echo 'Estas dotfiles exigem Hyprland >= 0.55. Confira a versão do repositório.' >&2
+    exit 1
+fi
 echo 'Dependências instaladas. Execute ./install.sh sem sudo e escolha Hyprland na tela de login.'

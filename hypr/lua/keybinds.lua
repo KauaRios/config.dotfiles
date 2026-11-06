@@ -19,7 +19,7 @@ hl.bind(mainMod .. " + B",           hl.dsp.exec_cmd(programs.firefox))
 hl.bind(mainMod .. " + SHIFT+ Q",    hl.dsp.exec_cmd("[float; center; size 800 600] kitty"))
 
 -- O ATALHO QUE CHAMA O cheat_sheet
-hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("[float; center; size 800 600] kitty -e lua ~/.config/hypr/scripts/cheat_sheet.lua"))
+hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("[float; center; size 800 600] kitty -e lua \"${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/cheat_sheet.lua\""))
 
 
 hl.bind(mainMod .. " + L",           hl.dsp.exec_cmd("pkill waybar; waybar"))
@@ -50,9 +50,9 @@ hl.bind(mainMod .. " + mouse:272",  hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273",  hl.dsp.window.resize(), { mouse = true })
 
 -- Multimídia / teclas de laptop
-hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("~/.config/hypr/scripts/volume.sh up"),       { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("~/.config/hypr/scripts/volume.sh down"),     { locked = true, repeating = true })
-hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("~/.config/hypr/scripts/volume.sh toggle"),   { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("\"${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/volume.sh\" up"),       { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("\"${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/volume.sh\" down"),     { locked = true, repeating = true })
+hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("\"${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/volume.sh\" toggle"),   { locked = true, repeating = true })
 hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),             { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),             { locked = true, repeating = true })
@@ -62,5 +62,5 @@ hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),        { locked = t
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"),  { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"),  { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),    { locked = true })
-hl.bind("SUPER + I", hl.dsp.exec_cmd("bash ~/.config/hypr/scripts/screenshot.sh"))
+hl.bind("SUPER + I", hl.dsp.exec_cmd("bash \"${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/screenshot.sh\""))
 hl.bind("SUPER + Escape", hl.dsp.exec_cmd("hyprlock"))

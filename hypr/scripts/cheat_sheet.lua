@@ -4,7 +4,7 @@ local roxo    = "\27[35m"
 local amarelo = "\27[33m"
 local branco  = "\27[37m"
 local negrito = "\27[1m"
-local reset   = "\27[0m" 
+local reset   = "\27[0m"
 
 -- Base de dados completa com todos os meus comandos do keybinds.lua
 local atalhos = {
@@ -17,19 +17,16 @@ local atalhos = {
     { tecla = "SUPER + J",             acao = "Alternar Divisão (Split)" },
     { tecla = "SUPER + SHIFT + SPACE", acao = "Tela Cheia (Fullscreen)" },
     { tecla=  "SUPER + SHIFT + Q",        acao="Abrir Terminal Em Float"},
-    
+
     -- Aplicativos e Menus
     { tecla = "SUPER + E",             acao = "Gerenciador de Arquivos" },
     { tecla = "SUPER + R",             acao = "Menu de Aplicativos (Rofi)" },
-    { tecla = "SUPER + B",             acao = "Navegador Zen" },
+    { tecla = "SUPER + B",             acao = "Firefox" },
     { tecla = "SUPER + H",             acao = "Menu de Ajuda (Esta tela)" },
-    { tecla = "SUPER + T",             acao = "Script Sweeper Rofi" },
-    { tecla = "SUPER + W",             acao = "Listar Janelas Abertas" },
-    
+
     -- Sistema e Ferramentas
     { tecla = "SUPER + L",             acao = "Reiniciar Waybar" },
     { tecla = "SUPER + I",             acao = "Captura de Tela (Clipboard)" },
-    { tecla = "SUPER + SHIFT + P",     acao = "Reiniciar Hyprpaper" },
 
     -- Foco e Navegação
     { tecla = "SUPER + Setas",         acao = "Mudar Foco (Esq/Dir/Cima/Baixo)" },
