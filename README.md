@@ -2,7 +2,6 @@
 
 ![ONI — wallpaper de samurai em vermelho, preto e azul gelo](wallpapers/visual.png)
 
-*Wallpaper que inspira a paleta do tema; não é uma captura da sessão Hyprland.*
 
 Requer Hyprland 0.55 ou superior, com configuração exclusivamente Lua.
 
