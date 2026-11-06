@@ -18,7 +18,6 @@ hl.bind(mainMod .. " + J",           hl.dsp.layout("togglesplit"), { description
 hl.bind(mainMod .. " + B",           hl.dsp.exec_cmd(programs.firefox), { description = "Abrir Firefox" })
 hl.bind(mainMod .. " + SHIFT + Q",    hl.dsp.exec_cmd(programs.terminal, { float = true, center = true, size = {800, 600} }), { description = "Abrir terminal flutuante" })
 
--- Descrições são expostas por hyprctl binds; o launcher Rust será ativado após validar a compilação.
 hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("kitty -e lua \"${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/cheat_sheet.lua\"", { float = true, center = true, size = {800, 600} }), { description = "Consultar atalhos" })
 
 

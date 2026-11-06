@@ -92,8 +92,13 @@ Quando disponíveis, a suíte também verifica a leitura do tema pelo Rofi e con
 
 A Waybar mostra a RAM usada em GiB. O botão de energia alterna os perfis disponíveis do `power-profiles-daemon`; o serviço precisa estar ativo e os perfis disponíveis dependem do equipamento.
 
-### Recuperação dos componentes da sessão
+### Inicialização da sessão
 
-Waybar, mako e swaybg são iniciados por supervisores com locks por instância Hyprland. Se um componente encerrar enquanto a sessão estiver acessível, ele será iniciado novamente após três segundos. Logs ficam em `${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles/`. Isso não corrige uma queda do compositor nem detecta um aplicativo que continue rodando, mas pare de desenhar.
+Waybar, mako e swaybg são iniciados diretamente em `hypr/lua/autostart.lua`, no evento `hyprland.start`. A mesma configuração aplica as preferências de tema e inicia o agente de autenticação. Não há script intermediário nem supervisor de processos.
 
-Ao migrar da inicialização antiga, saia e entre novamente na sessão para evitar manter processos antigos fora dos supervisores. Depois disso, recarregar a configuração não duplica os componentes supervisionados.
+Saia e entre novamente na sessão para aplicar a mudança e encerrar os supervisores da versão anterior. O evento de início não é uma ação de retorno da suspensão; a causa da perda da conexão Wayland após suspender ainda precisa ser investigada.
+
+### Atalhos (Super+H)
+
+O Super+H abre a lista de atalhos no Kitty, usando `hypr/scripts/cheat_sheet.lua`.
+Pressione Enter para fechar.

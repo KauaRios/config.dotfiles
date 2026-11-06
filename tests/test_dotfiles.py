@@ -13,6 +13,34 @@ FOLDERS = ('hypr', 'waybar', 'rofi', 'wofi', 'mako', 'wallpapers', 'qt6ct')
 
 
 class ConfigTests(unittest.TestCase):
+    def test_autostart_waits_for_hyprland_start(self):
+        lua = shutil.which('lua')
+        if not lua:
+            self.skipTest('Instale lua para verificar o evento de inicialização.')
+        harness = '''
+local callback
+local commands = {}
+hl = {
+    on = function(event, fn)
+        assert(event == "hyprland.start")
+        callback = fn
+    end,
+    exec_cmd = function(command) table.insert(commands, command) end,
+}
+dofile(arg[1])
+assert(#commands == 0, "Aplicativos iniciados antes do evento")
+assert(callback, "Evento de inicialização ausente")
+callback()
+local bar, wallpaper = false, false
+for _, command in ipairs(commands) do
+    bar = bar or command == "waybar"
+    wallpaper = wallpaper or command:match("^swaybg ") ~= nil
+end
+assert(bar and wallpaper, "Barra ou wallpaper ausente")
+'''
+        subprocess.run([lua, '-', str(ROOT / 'hypr/lua/autostart.lua')],
+                       input=harness, text=True, capture_output=True, check=True, timeout=10)
+
     def test_rofi_theme_parses(self):
         if not shutil.which('rofi'):
             self.skipTest('Instale rofi para verificar o tema.')
