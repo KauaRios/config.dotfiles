@@ -47,6 +47,8 @@ GTK usa Adwaita escuro e Qt6 usa qt6ct/Fusion com paleta darker. A variável Qt 
 
 A revisão inclui qt6ct na lista de pastas vinculadas, com backup da configuração anterior. O tema darker é fornecido pelo pacote qt6ct.
 
+O Dolphin pode usar um esquema próprio, independente da paleta do qt6ct. Se abrir claro, selecione **Configurações → Esquema de cores → Breeze Dark** no Dolphin. A escolha é salva em `dolphinrc` e também pode afetar o Dolphin em outras sessões; o instalador não sobrescreve esse arquivo.
+
 ## Módulos do Hyprland
 
 | Arquivo em `hypr/lua` | Responsabilidade |
@@ -85,3 +87,7 @@ Requer Python 3, Bash e utilitários básicos de Linux. Para conferir a sintaxe 
 A suíte verifica sintaxe Bash/Lua, JSON da Waybar, referências dos módulos, links simbólicos, backups, preservação do KDE, reinstalação, mudança do nome da pasta, simulação sem escrita e entradas inválidas. Também testa captura cancelada, falha e sucesso usando ferramentas simuladas.
 
 Os testes de instalação usam diretórios temporários e uma cópia do instalador. Não instalam pacotes, não acessam a `.config` real e não capturam sua tela. Não validam a API real do Hyprland, aparência dos temas, disponibilidade dos pacotes nem compatibilidade dos monitores; essas verificações continuam dependendo do sistema e da sessão gráfica reais.
+
+Quando disponíveis, a suíte também verifica a leitura do tema pelo Rofi e consulta `hyprctl configerrors` na sessão Hyprland ativa. A consulta verifica a configuração carregada na sessão, que pode ser diferente da configuração deste repositório; sem acesso à sessão, o teste é ignorado.
+
+A Waybar mostra a RAM usada em GiB. O botão de energia alterna os perfis disponíveis do `power-profiles-daemon`; o serviço precisa estar ativo e os perfis disponíveis dependem do equipamento.

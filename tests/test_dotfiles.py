@@ -13,6 +13,12 @@ FOLDERS = ('hypr', 'waybar', 'rofi', 'wofi', 'mako', 'wallpapers', 'qt6ct')
 
 
 class ConfigTests(unittest.TestCase):
+    def test_rofi_theme_parses(self):
+        if not shutil.which('rofi'):
+            self.skipTest('Instale rofi para verificar o tema.')
+        subprocess.run(['rofi', '-dump-theme', '-config', str(ROOT / 'rofi/config.rasi')],
+                       check=True, capture_output=True, timeout=10)
+
     def test_bash_syntax(self):
         for script in ROOT.rglob('*.sh'):
             if '.git' not in script.parts:
@@ -38,6 +44,17 @@ class ConfigTests(unittest.TestCase):
         for script in (ROOT / 'hypr').rglob('*.lua'):
             with self.subTest(script=script.relative_to(ROOT)):
                 subprocess.run([compiler, '-p', str(script)], check=True, capture_output=True)
+
+
+class HyprlandSessionTests(unittest.TestCase):
+    def test_configerrors(self):
+        if not os.environ.get('HYPRLAND_INSTANCE_SIGNATURE') or not shutil.which('hyprctl'):
+            self.skipTest('Sessão Hyprland ou hyprctl indisponível.')
+        result = subprocess.run(['hyprctl', 'configerrors'], capture_output=True, text=True, timeout=10)
+        if result.returncode:
+            self.skipTest('Não foi possível acessar a sessão Hyprland: ' +
+                          (result.stderr.strip() or result.stdout.strip() or 'erro desconhecido'))
+        self.assertIn(result.stdout.strip().lower(), ('ok', ''), result.stdout)
 
 
 @unittest.skipIf(os.geteuid() == 0, 'Execute sem sudo: o instalador rejeita root.')

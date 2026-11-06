@@ -1,12 +1,12 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 36,
+  "height": 38,
   "margin-top": 8,
   "margin-left": 10,
   "margin-bottom": 0,
   "margin-right": 10,
-  "spacing": 4,
+  "spacing": 0,
   "modules-left": [
     "custom/launcher",
     "hyprland/workspaces"
@@ -19,6 +19,7 @@
     "memory",
     "wireplumber",
     "network",
+    "power-profiles-daemon",
     "battery",
     "tray",
     "custom/lock"
@@ -27,16 +28,16 @@
     "all-outputs": true,
     "format": "{name}",
     "format-icons": {
-      "1": "\u03bc",
-      "2": "\u03c0",
-      "3": "\u03c3",
-      "4": "\u03c4",
-      "5": "\u03bb",
-      "6": "\u03b1",
-      "7": "\u03b2",
-      "8": "\u03b3",
-      "9": "\u03b4",
-      "10": "\u03b6"
+      "1": "μ",
+      "2": "π",
+      "3": "σ",
+      "4": "τ",
+      "5": "λ",
+      "6": "α",
+      "7": "β",
+      "8": "γ",
+      "9": "δ",
+      "10": "ζ"
     },
     "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
     "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
@@ -62,15 +63,16 @@
   },
   "memory": {
     "interval": 10,
-    "format": "RAM {percentage}%"
+    "format": "RAM {used:.1f}G",
+    "tooltip-format": "Memória: {used:.1f} / {total:.1f} GiB"
   },
   "wireplumber": {
     "format": "VOL {volume}%",
     "format-muted": "MUTE",
     "format-icons": [
-      "\uf026",
-      "\uf027",
-      "\uf028"
+      "",
+      "",
+      ""
     ]
   },
   "network": {
@@ -86,27 +88,36 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "HP {capacity}%",
-    "format-charging": "HP +{capacity}%",
-    "format-plugged": "HP MAX",
+    "format": "BAT {capacity}%",
+    "format-charging": "BAT +{capacity}%",
+    "format-plugged": "BAT {capacity}%",
     "format-icons": [
-      "\uf244",
-      "\uf243",
-      "\uf242",
-      "\uf241",
-      "\uf240"
+      "",
+      "",
+      "",
+      "",
+      ""
     ]
   },
   "tray": {
     "spacing": 8
   },
   "custom/launcher": {
-    "format": "\u25c8 ONI / HQ",
+    "format": "◆  MENU",
     "on-click": "rofi -show drun",
     "tooltip": false
   },
   "custom/lock": {
-    "format": "\u23e3 LOCK",
+    "format": "BLOQUEAR",
     "on-click": "hyprlock"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "format-icons": {
+      "power-saver": "ECO",
+      "balanced": "NORMAL",
+      "performance": "TURBO"
+    },
+    "tooltip-format": "Energia: {profile}\nClique para trocar o perfil"
   }
 }

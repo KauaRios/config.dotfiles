@@ -1,14 +1,45 @@
-@define-color red #ff334f;
-@define-color ice #b9cedd;
-* { font-family: "DejaVu Sans Mono", monospace; font-size: 12px; font-weight: bold; min-height: 0; }
-window#waybar { background: rgba(12,16,24,0.94); color: @ice; border: 1px solid #57303e; border-bottom: 3px solid @red; border-radius: 8px; }
-#workspaces button { color: #8494a8; background: #1a202d; border-radius: 4px; margin: 5px 3px; padding: 0 10px; }
-#workspaces button.active { background: @red; color: #100e16; }
-#workspaces button.urgent { background: #e6b878; color: #15121a; }
-#custom-launcher { color: @red; padding: 0 14px; }
-#clock { color: #f4e6e9; border-bottom: 2px solid #e6b878; padding: 0 12px; }
-#cpu, #memory, #wireplumber, #network, #battery, #tray, #custom-lock { background: #202331; border-radius: 4px; margin: 5px 3px; padding: 0 8px; }
-#battery { color: #b8d6c6; }
-#battery.warning { color: #e6b878; }
-#battery.critical, #custom-lock { color: @red; }
-tooltip { background: #141824; border: 1px solid @red; }
+@define-color ink #101722;
+@define-color mist #c9d6df;
+@define-color muted #8295a5;
+@define-color red #e94b59;
+
+* {
+    font-family: "DejaVu Sans", sans-serif;
+    font-size: 12px;
+    min-height: 0;
+}
+window#waybar {
+    background: rgba(16, 23, 34, 0.93);
+    color: @mist;
+    border: 1px solid rgba(185, 206, 221, 0.16);
+    border-radius: 8px;
+}
+#custom-launcher {
+    color: #f07a80;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 0 16px;
+    border-right: 1px solid rgba(185, 206, 221, 0.16);
+}
+#workspaces { margin: 4px 8px; }
+#workspaces button {
+    color: @muted;
+    background: transparent;
+    border-radius: 4px;
+    padding: 0 10px;
+    border-bottom: 2px solid transparent;
+}
+#workspaces button.active { color: #fff1ef; border-bottom-color: @red; background: rgba(233, 75, 89, 0.12); }
+#workspaces button.urgent { color: #f4c48c; }
+#clock { color: #f2e8e8; font-weight: bold; letter-spacing: 0.5px; }
+#cpu, #memory, #wireplumber, #network, #battery, #tray, #power-profiles-daemon, #custom-lock {
+    padding: 0 9px;
+    color: @mist;
+}
+#cpu, #memory { color: @muted; }
+#power-profiles-daemon { color: #e8b983; font-weight: bold; }
+#power-profiles-daemon.power-saver { color: #9cc9b1; }
+#battery.warning { color: #e8b983; }
+#battery.critical, #custom-lock { color: #f07a80; }
+#custom-lock { border-left: 1px solid rgba(185, 206, 221, 0.16); margin-left: 5px; padding: 0 15px; font-weight: bold; }
+tooltip { background: #161e2a; color: @mist; border: 1px solid #526171; border-radius: 6px; }

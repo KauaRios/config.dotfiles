@@ -9,6 +9,7 @@ GROUPS = {
     'ConfigTests': 'Configurações e sintaxe',
     'InstallTests': 'Links, backups e preservação do KDE',
     'ScreenshotTests': 'Captura de tela e área de transferência',
+    'HyprlandSessionTests': 'Sessão Hyprland',
 }
 
 
@@ -57,7 +58,7 @@ def main():
         print('\nNenhuma falha nos testes executados.')
     else:
         print('\nHá falhas que precisam ser corrigidas.')
-    print('Aparência e funcionamento na sessão Hyprland não são testados aqui.\n')
+    print('Aparência e interação gráfica não são testadas aqui.\n')
     return 0 if result.wasSuccessful() else 1
 
 
