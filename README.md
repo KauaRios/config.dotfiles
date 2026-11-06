@@ -69,3 +69,19 @@ A revisão inclui qt6ct na lista de pastas vinculadas, com backup da configuraç
 ## Verificação na sessão gráfica
 
 Depois de instalar e entrar no Hyprland, execute `hyprctl configerrors` e `hyprctl monitors all`. Confira fullscreen (Super+Shift+Space), terminal flutuante (Super+Shift+Q), ajuda (Super+H), scroll dos workspaces e captura (Super+I). Este repositório foi revisado estaticamente; não houve execução de Hyprland, Waybar, Rofi ou Hyprlock no ambiente de revisão. A versão dos pacotes da sua distribuição e os modos suportados pelos monitores precisam ser conferidos no sistema real.
+
+## Testes automatizados
+
+Execute como usuário normal, sem sudo, na raiz do repositório:
+
+```bash
+python3 tests/run.py
+```
+
+O resumo aparece em português. Se já estiver dentro de `tests`, execute `python3 run.py`. Para a lista técnica completa, use `python3 -B -m unittest discover -s tests -v` na raiz do repositório.
+
+Requer Python 3, Bash e utilitários básicos de Linux. Para conferir a sintaxe Lua, instale também `lua` (com `luac`); sem ele, esse teste aparece como `skipped`, não como aprovado.
+
+A suíte verifica sintaxe Bash/Lua, JSON da Waybar, referências dos módulos, links simbólicos, backups, preservação do KDE, reinstalação, mudança do nome da pasta, simulação sem escrita e entradas inválidas. Também testa captura cancelada, falha e sucesso usando ferramentas simuladas.
+
+Os testes de instalação usam diretórios temporários e uma cópia do instalador. Não instalam pacotes, não acessam a `.config` real e não capturam sua tela. Não validam a API real do Hyprland, aparência dos temas, disponibilidade dos pacotes nem compatibilidade dos monitores; essas verificações continuam dependendo do sistema e da sessão gráfica reais.
