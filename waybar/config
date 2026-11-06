@@ -16,6 +16,7 @@
     "wireplumber",
     "network",
     "cpu",
+    "temperature",
     "memory",
     "power-profiles-daemon",
     "battery",
@@ -65,13 +66,14 @@
     "tooltip-format": "Volume: {volume}%"
   },
   "network": {
-    "format-wifi": "⌁ {essid}",
+    "format-wifi": "📶 {signalStrength}%",
     "format-ethernet": "⇆ {ifname}",
     "format-disconnected": "⊘",
     "tooltip-format": "{ifname} via {gwaddr}",
-    "tooltip-format-wifi": "{essid} ({signaldBm}dBm)",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
     "max-length": 20,
-    "tooltip-format-disconnected": "Sem conexão"
+    "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
+    "on-click": "kcmshell6 kcm_networkmanagement"
   },
   "battery": {
     "states": {
@@ -106,5 +108,12 @@
       "performance": "ϟ"
     },
     "tooltip-format": "Energia: {profile}\nClique para trocar o perfil"
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "interval": 5,
+    "format": "{temperatureC}°C 🌡",
+    "tooltip-format": "CPU (Tctl): {temperatureC}°C"
   }
 }

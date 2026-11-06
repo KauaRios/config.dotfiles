@@ -102,3 +102,5 @@ Saia e entre novamente na sessão para aplicar a mudança e encerrar os supervis
 
 O Super+H abre a lista de atalhos no Kitty, usando `hypr/scripts/cheat_sheet.lua`.
 Pressione Enter para fechar.
+
+A Waybar consulta a temperatura da CPU AMD pelo sensor `k10temp` (Tctl). O caminho do dispositivo em `temperature.hwmon-path-abs` deve ser ajustado em outros computadores. Clicar no indicador de rede abre `kcmshell6 kcm_networkmanagement`, disponível com as configurações de rede do KDE neste sistema.

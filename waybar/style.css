@@ -34,7 +34,7 @@ window#waybar {
 #workspaces button.active { color: #c2d8ec; background: #303e50; }
 #workspaces button:hover { color: #e0e6f0; background: #374052; }
 #workspaces button.urgent { color: #edb1be; background: #493344; }
-#clock, #cpu, #memory, #wireplumber, #network, #battery, #power-profiles-daemon, #custom-lock {
+#clock, #cpu, #temperature, #memory, #wireplumber, #network, #battery, #power-profiles-daemon, #custom-lock {
     background: @panel;
     border-radius: 5px;
     padding: 0 7px;
@@ -42,7 +42,7 @@ window#waybar {
 }
 #tray { padding: 0 5px; margin: 3px 0; }
 #wireplumber, #network { color: @blue; }
-#cpu, #memory, #power-profiles-daemon, #battery { color: @purple; }
+#cpu, #temperature, #memory, #power-profiles-daemon, #battery { color: @purple; }
 #clock { color: #cc9fa9; padding: 0 10px; }
 #custom-lock { color: #99aecb; padding: 0 8px; }
 #custom-lock:hover { background: #374052; color: #e0e6f0; }
