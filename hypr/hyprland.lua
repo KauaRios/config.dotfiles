@@ -1,4 +1,6 @@
-local root = (os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")) .. "/hypr/"
+local config = os.getenv("XDG_CONFIG_HOME")
+if not config or config == "" then config = os.getenv("HOME") .. "/.config" end
+local root = config .. "/hypr/"
 package.path = root .. "?.lua;" .. package.path
 require("lua.programs")
 require("lua.monitors")

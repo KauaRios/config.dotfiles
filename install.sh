@@ -11,7 +11,7 @@ case "$root/" in "$config/"*)
     exit 1
 esac
 mode=${1:-}
-[[ -z $mode || $mode = --dry-run ]] || { echo 'Uso: ./install.sh [--dry-run]'; exit 1; }
+[[ $# -le 1 && ( -z $mode || $mode = --dry-run ) ]] || { echo 'Uso: ./install.sh [--dry-run]'; exit 1; }
 folders=(hypr waybar rofi wofi mako wallpapers qt6ct)
 for name in "${folders[@]}"; do [[ -d $root/$name ]] || exit 1; done
 backup=

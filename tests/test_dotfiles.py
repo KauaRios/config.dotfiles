@@ -13,6 +13,23 @@ FOLDERS = ('hypr', 'waybar', 'rofi', 'wofi', 'mako', 'wallpapers', 'qt6ct')
 
 
 class ConfigTests(unittest.TestCase):
+    def test_empty_xdg_config_uses_home(self):
+        lua = shutil.which('lua')
+        if not lua:
+            self.skipTest('Instale lua para verificar os caminhos.')
+        harness = '''
+require = function() end
+io.open = function(path)
+    assert(path == os.getenv("HOME") .. "/.config/hypr/local.lua", path)
+end
+dofile(arg[1])
+assert(package.path:find(os.getenv("HOME") .. "/.config/hypr/?.lua;", 1, true) == 1)
+'''
+        subprocess.run([lua, '-', str(ROOT / 'hypr/hyprland.lua')],
+                       input=harness, text=True, capture_output=True, check=True,
+                       env=dict(os.environ, HOME='/tmp/dotfiles-test-home', XDG_CONFIG_HOME=''),
+                       timeout=10)
+
     def test_autostart_waits_for_hyprland_start(self):
         lua = shutil.which('lua')
         if not lua:
@@ -35,11 +52,21 @@ local bar, wallpaper = false, false
 for _, command in ipairs(commands) do
     bar = bar or command == "waybar"
     wallpaper = wallpaper or command:match("^swaybg ") ~= nil
+    if command:match("^pgrep ") then print(command) end
 end
 assert(bar and wallpaper, "Barra ou wallpaper ausente")
 '''
-        subprocess.run([lua, '-', str(ROOT / 'hypr/lua/autostart.lua')],
-                       input=harness, text=True, capture_output=True, check=True, timeout=10)
+        result = subprocess.run([lua, '-', str(ROOT / 'hypr/lua/autostart.lua')],
+                                input=harness, text=True, capture_output=True, check=True, timeout=10)
+        self.assertTrue(result.stdout.strip(), 'Verificação do mako ausente')
+        # Simula um usuário diferente: não depende de UID exportado pelo shell.
+        shell = '''
+id() { printf '12345\\n'; }
+pgrep() { [ "$1" = -u ] && [ "$2" = 12345 ] && [ "$3" = -x ] && [ "$4" = mako ]; }
+mako() { exit 99; }
+'''
+        subprocess.run(['/bin/sh', '-c', shell + result.stdout],
+                       check=True, capture_output=True, timeout=10)
 
     def test_rofi_theme_parses(self):
         if not shutil.which('rofi'):
@@ -166,6 +193,12 @@ class InstallTests(unittest.TestCase):
     def test_invalid_argument_does_not_write(self):
         self.install('--invalid', ok=False)
         self.assertEqual(list(self.config.iterdir()), [])
+
+    def test_extra_arguments_do_not_write(self):
+        for args in (('--dry-run', '--invalid'), ('', '--invalid')):
+            with self.subTest(args=args):
+                self.install(*args, ok=False)
+                self.assertEqual(list(self.config.iterdir()), [])
 
     def test_relative_config_is_rejected(self):
         self.env['XDG_CONFIG_HOME'] = 'relative'

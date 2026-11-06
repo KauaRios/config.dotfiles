@@ -21,13 +21,13 @@ O instalador de dependências solicita sudo e a confirmação do gerenciador. In
 
 O instalador dos links roda SEM sudo. Vincula somente hypr, waybar, rofi, wofi, mako, wallpapers e qt6ct dentro de `${XDG_CONFIG_HOME:-$HOME/.config}`. Não substitui a .config inteira. Configurações existentes dessas pastas são movidas para `.config/dot-backup.XXXXXXXX`; configurações do KDE permanecem no lugar. Pode executar novamente sem duplicar links. Não mova a pasta DOT depois da instalação.
 
-Saia da sessão e escolha Hyprland no login. O wallpaper é iniciado com swaybg em todos os monitores. Arquivos legados inativos estão em archive/ e não são vinculados à .config.
+Saia da sessão e escolha Hyprland no login. O wallpaper é iniciado com swaybg em todos os monitores.
 
 ## Organização
 
 - `hypr/hyprland.lua`: entrada para Hyprland 0.55+; módulos em `hypr/lua`.
 - `hypr/local.lua`: arquivo opcional para ajustes pessoais carregado por último; crie para configurar monitores e dispositivos específicos.
-- `hypr/scripts`: inicialização da sessão e captura de região para clipboard.
+- `hypr/scripts`: cheatsheet no terminal, controle de volume e captura de região para clipboard.
 - `waybar/style.css`: cores e aparência do HUD; `waybar/config`: módulos.
 - `rofi/oni.rasi`: launcher; `mako/config`: notificações; `wofi`: alternativa visual.
 
