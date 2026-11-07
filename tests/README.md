@@ -40,3 +40,28 @@ Os subprocessos são encerrados pelos grupos criados pelo teste, sem `pkill` glo
 - Autostart real, múltiplos monitores físicos, escala, GPU, suspensão e retomada.
 
 Validação feita com Hyprland 0.57.1. Para executar sem o sandbox que bloqueia o socket Wayland, use um terminal normal da sua sessão. Isso abre e fecha algumas janelas de teste; não execute como root.
+
+## Testes do seletor de modelos da Waybar
+
+`test_waybar_templates.py` testa funções de `hypr/scripts/waybar.py`. Cada teste que copia arquivos usa uma pasta temporária; as respostas do Rofi são simuladas.
+
+| Teste | Situação e resultado conferido |
+| --- | --- |
+| `test_cancel` | O Rofi retorna código 1 (cancelamento); `escolher_template` retorna `None`. Não executa a main inteira. |
+| `test_unknown_selection` | O seletor responde `../bad`, fora dos modelos oferecidos; a função lança `ValueError`. |
+| `test_copy_preserves_palette_and_original_backup` | Aplica um modelo duas vezes, verifica que `colors.css` permanece igual e que o CSS de origem continua disponível. Aplica o backup e confirma que o CSS original volta, comprovando que o segundo uso não sobrescreveu esse backup. |
+| `test_invalid_json_does_not_modify_destination` | O modelo contém JSON inválido; a função rejeita e o destino continua vazio. |
+
+Esses quatro testes não comprovam aparência, abertura real do Rofi, recarga por SIGUSR2, recuperação de falhas de disco, execução simultânea nem validade de todos os modelos. Também não verificam todos os conteúdos copiados: o teste do backup confere explicitamente o CSS, não a igualdade do JSON restaurado.
+
+Outras verificações relacionadas à Waybar:
+
+- `test_dotfiles.py` confere o JSON/módulos e o CSS GTK da configuração ativa no repositório.
+- `test_cheatsheets.py` confere que Super+Shift+R aponta para `waybar.py`, usando simulação Lua; não pressiona a tecla.
+- `test_graphical.py`, habilitado com `--gui`, testa a layer/espaço reservado pela barra e rejeição de CSS inválido em sessão isolada. Não executa a troca de modelos pelo seletor.
+
+Para rodar somente os quatro testes do seletor, mostrando a descrição de cada um:
+
+```bash
+python3 -B -m unittest discover -s tests -p test_waybar_templates.py -v
+```
