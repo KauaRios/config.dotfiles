@@ -25,6 +25,8 @@ hl.bind(mainMod .. " + L",           hl.dsp.exec_cmd("pkill -u \"$USER\" -x wayb
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd('python3 "${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/wallpaper.py"'), { description = "Escolher wallpaper e cores" })
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }), { description = "Alternar tela cheia" })
 
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("wofi --show drun"), { description = "Abrir Wofi" })
+
 -- Foco com setas
 hl.bind(mainMod .. " + left",        hl.dsp.focus({ direction = "left" }), { description = "Focar à esquerda" })
 hl.bind(mainMod .. " + right",       hl.dsp.focus({ direction = "right" }), { description = "Focar à direita" })
