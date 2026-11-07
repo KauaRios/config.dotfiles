@@ -78,7 +78,7 @@ def apply(image, colors):
             pass
     if colors:
         template_dir = Path(__file__).resolve().parent / 'theme-templates'
-        for source, dest in [('wofi.css', 'wofi/colors.css'), ('waybar.css', 'waybar/colors.css'), ('rofi.rasi', 'rofi/colors.rasi'), ('mako.conf', 'mako/config'), ('hypr.lua', 'hypr/lua/colors.lua')]:
+        for source, dest in [('wofi.css', 'wofi/colors'), ('waybar.css', 'waybar/colors.css'), ('rofi.rasi', 'rofi/colors.rasi'), ('mako.conf', 'mako/config'), ('hypr.lua', 'hypr/lua/colors.lua')]:
             text = (template_dir / source).read_text()
             for key, value in colors.items():
                 text = text.replace('@' + key + '@', value).replace('@' + key + '_rgb@', value[1:])

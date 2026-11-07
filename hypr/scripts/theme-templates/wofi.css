@@ -1,5 +1,5 @@
-@define-color surface @surface@;
-@define-color foreground @on_surface@;
-@define-color primary @primary@;
-@define-color secondary @secondary@;
-@define-color outline @outline@;
+@surface@
+@on_surface@
+@primary@
+@secondary@
+@outline@

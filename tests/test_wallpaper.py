@@ -86,4 +86,10 @@ class WallpaperTests(unittest.TestCase):
             from gi.repository import Gtk
         except (ImportError, ValueError):
             self.skipTest('GTK 3 indisponível')
-        Gtk.CssProvider().load_from_path(str(Path(__file__).resolve().parents[1] / 'wofi/style.css'))
+        root = Path(__file__).resolve().parents[1] / 'wofi'
+        css = (root / 'style.css').read_text()
+        for index, color in enumerate((root / 'colors').read_text().splitlines()):
+            css = css.replace('--wofi-color' + str(index), color)
+        # Wofi carrega texto, sem caminho-base para imports relativos.
+        self.assertNotIn('@import', css)
+        Gtk.CssProvider().load_from_data(css.encode())

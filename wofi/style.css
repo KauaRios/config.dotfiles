@@ -1,4 +1,8 @@
-@import "colors.css";
+@define-color surface --wofi-color0;
+@define-color foreground --wofi-color1;
+@define-color primary --wofi-color2;
+@define-color secondary --wofi-color3;
+@define-color outline --wofi-color4;
 
 * {
     font-family: "DejaVu Sans", sans-serif;

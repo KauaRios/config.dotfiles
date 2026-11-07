@@ -19,7 +19,7 @@ python3 ~/.config/hypr/scripts/wallpaper.py --image ~/Imagens/exemplo.jpg
 Os modelos estão em `hypr/scripts/theme-templates/`:
 
 - `waybar.css` gera `waybar/colors.css`, importado pelo estilo. Fundo, destaques e cores principais passam a acompanhar a imagem; alertas mantêm cores próprias.
-- `wofi.css` gera `wofi/colors.css`, importado por `wofi/style.css`.
+- `wofi.css` gera `wofi/colors`, lido pelo mecanismo nativo de cores do Wofi.
 - `rofi.rasi` continua gerando cores para o Rofi opcional.
 - `mako.conf` gera `mako/config`. Faça personalizações persistentes no template, pois a próxima escolha sobrescreve esse arquivo.
 - `hypr.lua` gera `hypr/lua/colors.lua`, carregado após as opções de aparência para atualizar bordas.
@@ -50,6 +50,8 @@ A execução sem terminal agora fornece `--source-color-index 0`, escolhendo a c
 
 ## Aparência do Wofi
 
-Super+R abre aplicativos; Super+W abre a seleção manual de imagens. O Wofi usa painel central de 620×520, cantos arredondados, busca destacada, ícones de aplicativos e seleção com a cor principal. Os cinco nomes de cores descrevem funções, sem nomes de tons fixos. `wofi/style.css` controla o visual e importa `colors.css`; personalize a aparência no primeiro e as associações de cores no template `wofi.css`. O seletor de wallpapers usa nomes, sem miniaturas, e desativa interpretação de imagens/markup. Escape cancela. Não é necessário instalar uma dependência nova: Wofi já integra install-deps.sh.
+Super+R abre aplicativos; Super+W abre a seleção manual de imagens. O Wofi usa painel central de 620×520, cantos arredondados, busca destacada, ícones de aplicativos e seleção com a cor principal. Os cinco nomes de cores descrevem funções, sem nomes de tons fixos. `wofi/style.css` controla o visual e usa macros `--wofi-color0` a `--wofi-color4`, preenchidas a partir de `wofi/colors`; personalize a aparência no primeiro e as associações de cores no template `wofi.css`. O seletor de wallpapers usa nomes, sem miniaturas, e desativa interpretação de imagens/markup. Escape cancela. Não é necessário instalar uma dependência nova: Wofi já integra install-deps.sh.
 
 A migração foi verificada com a suíte local e o parser GTK 3; aparência e interação precisam ser conferidas na sessão Wayland. Execute `hyprctl reload` para carregar o launcher novo.
+
+O arquivo `wofi/config` usa `colors=colors`: esse caminho é relativo à pasta de configuração do Wofi. O CSS não usa import relativo, pois Wofi o carrega como texto. O teste reproduz a substituição das macros e valida o texto resultante com GTK.
