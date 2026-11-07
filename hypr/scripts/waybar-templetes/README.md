@@ -14,4 +14,8 @@ Os módulos usam as configurações do projeto atual (inclusive a ação de rede
 
 ## Seletor Python
 
-`python3 ~/.config/hypr/scripts/waybar.py` abre o Rofi. `--list` apenas lista modelos; `--template orbit` aplica diretamente; `--restore` recupera a barra anterior à primeira troca. O backup fica em `${XDG_STATE_HOME:-~/.local/state}/dotfiles-waybar/original`. O script copia config e CSS, preserva cores, e solicita reload com SIGUSR2. Não foi aplicado automaticamente nem associado a atalho. Modelos novos devem conter JSON válido em `config` e CSS GTK válido em `style.css`; o script valida JSON, mas não valida CSS em execução. A recarga real deve ser conferida na sessão gráfica.
+Execute `python3 ~/.config/hypr/scripts/waybar.py` para escolher pelo Rofi. Escape cancela. A main lista os modelos, recebe a escolha, copia os arquivos e recarrega a barra.
+
+O script usa cópias simples com shutil.copy2 e preserva colors.css. O primeiro backup fica em `${XDG_STATE_HOME:-~/.local/state}/dotfiles-waybar/original`. Para recuperar esse backup manualmente, copie seus arquivos config e style.css para a pasta ativa da Waybar. Os modelos continuam disponíveis após a troca.
+
+A versão simplificada não possui opções --list, --template ou --restore, lock nem escrita atômica. Evite executar duas trocas simultâneas. Uma falha durante a cópia pode exigir restauração manual do backup. JSON é validado antes da cópia; CSS e aparência devem ser conferidos ao criar os modelos. Nenhuma troca é aplicada apenas por instalar o script.
