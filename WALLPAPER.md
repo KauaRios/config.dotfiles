@@ -4,7 +4,7 @@ Super+W abre o Rofi com imagens de `${XDG_CONFIG_HOME:-~/.config}/wallpapers`, i
 
 ## Dependências
 
-Python 3, Rofi, swaybg, Matugen com `image --dry-run --json hex`, hyprctl, makoctl, notify-send e procps (pgrep/pkill). A correção foi validada com Matugen 4.2.0 instalado. No Arch/EndeavourOS, instale `matugen` pelo gerenciador de pacotes; no Fedora, confira sua disponibilidade para a versão utilizada antes de habilitar um repositório. O instalador existente continua instalando swaybg; Matugen é uma dependência adicional da troca de paleta.
+Python 3, Rofi, swaybg, Matugen com `image --dry-run --json hex`, hyprctl, makoctl, notify-send e procps (pgrep/pkill). A correção foi validada com Matugen 4.2.0 instalado. `install-deps.sh` inclui Matugen nos pacotes comuns e Python 3 nos dois caminhos: `python` no Arch/EndeavourOS e `python3` no Fedora. Matugen existe nos repositórios oficiais de ambas as distribuições; a versão fornecida pode variar. A integração foi testada com 4.2.0, sem garantir compatibilidade com versões anteriores.
 
 Após instalar Matugen, execute `hyprctl reload` e pressione Super+W. Para escolher diretamente:
 
