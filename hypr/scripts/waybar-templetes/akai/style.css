@@ -1,0 +1,77 @@
+@import "colors.css";
+
+* {
+    font-family: "DejaVu Sans Mono", "Noto Sans Symbols 2", monospace;
+    font-size: 10px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+window#waybar { background: alpha(@panel, 0.82); color: @blue; }
+
+/* Extremidades diagonais desenhadas com gradientes GTK. */
+.modules-left {
+    background-image: linear-gradient(135deg, @panel 0%, @panel 94%, transparent 94%);
+    padding-right: 18px;
+}
+#custom-launcher {
+    background-image: linear-gradient(135deg, @blue 0%, @blue 83%, @panel 83%);
+    color: @panel;
+    font-weight: bold;
+    font-size: 17px;
+    min-width: 45px;
+    padding-right: 10px;
+    margin-right: 12px;
+}
+#custom-launcher:hover { color: @purple; }
+#workspaces { padding-right: 5px; }
+#workspaces button {
+    color: @blue;
+    background: transparent;
+    min-width: 20px;
+    padding: 0 4px;
+    box-shadow: none;
+    text-shadow: none;
+}
+#workspaces button.active { color: @purple; font-weight: bold; }
+#workspaces button:hover { background: alpha(@blue, 0.15); }
+#workspaces button.urgent { background: @blue; color: @panel; }
+
+.modules-center { background: transparent; }
+#clock.date {
+    background-image: linear-gradient(45deg, transparent 0%, transparent 12%, @panel 12%);
+    padding: 0 24px 0 32px;
+    color: @blue;
+}
+#hyprland-window {
+    background-image: linear-gradient(135deg, @blue 0%, @blue 94%, transparent 94%);
+    color: @panel;
+    padding: 0 25px 0 22px;
+}
+window#waybar.empty #hyprland-window { background: transparent; padding: 0; }
+#clock {
+    background-image: linear-gradient(135deg, @panel 0%, @panel 88%, transparent 88%);
+    color: @blue;
+    padding: 0 30px 0 18px;
+}
+/* A data mantém o recorte oposto ao relógio. */
+#clock.date {
+    background-image: linear-gradient(45deg, transparent 0%, transparent 12%, @panel 12%);
+    padding: 0 24px 0 32px;
+}
+
+.modules-right {
+    background-image: linear-gradient(45deg, transparent 0%, transparent 5%, @panel 5%);
+    padding: 0 9px 0 24px;
+}
+#memory, #temperature, #cpu { color: @blue; padding: 0 9px; }
+#idle_inhibitor { color: @muted; padding: 0 11px; font-size: 14px; }
+#idle_inhibitor.activated { color: @blue; }
+#custom-lock { color: @blue; padding: 0 10px; font-size: 13px; }
+#custom-lock:hover { background: @blue; color: @panel; }
+#temperature.critical { color: @panel; background: @purple; }
+#tray { padding: 0 5px 0 11px; }
+tooltip { color: @purple; background: @panel; border: 1px solid @blue; }
+tooltip label { padding: 7px; }

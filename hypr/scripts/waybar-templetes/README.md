@@ -30,3 +30,5 @@ A versão simplificada não possui opções --list, --template ou --restore, loc
 - **Tsuki**: criação autoral, três painéis flutuantes arredondados, lua e relógio com data.
 
 Todos mantêm colors.css separado e usam a paleta dinâmica. São descobertos automaticamente pelo seletor.
+
+- **Akai**: nova reference1.png, faixa técnica com recortes diagonais e título central destacado; cores dinâmicas separadas.
