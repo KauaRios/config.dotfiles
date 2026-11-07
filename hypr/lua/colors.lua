@@ -1,0 +1,1 @@
+-- Cores geradas após a primeira escolha pelo Super+W.

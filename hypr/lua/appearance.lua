@@ -42,3 +42,5 @@ hl.config({
     },
 
 })
+
+require("lua.colors")

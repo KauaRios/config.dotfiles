@@ -1,0 +1,1 @@
+* { bg: @surface@; fg: @on_surface@; accent: @primary@; }

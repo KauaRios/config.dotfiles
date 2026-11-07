@@ -60,7 +60,7 @@ callback()
 local bar, wallpaper = false, false
 for _, command in ipairs(commands) do
     bar = bar or command == "waybar"
-    wallpaper = wallpaper or command:match("^swaybg ") ~= nil
+    wallpaper = wallpaper or command:find("wallpaper.py", 1, true) ~= nil
     if command:match("^pgrep ") then print(command) end
 end
 assert(bar and wallpaper, "Barra ou wallpaper ausente")

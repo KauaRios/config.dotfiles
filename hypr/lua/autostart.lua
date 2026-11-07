@@ -5,5 +5,5 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("waybar")
     -- O mako também pode ter sido iniciado por ativação D-Bus.
     hl.exec_cmd("pgrep -u \"$(id -u)\" -x mako >/dev/null || mako")
-    hl.exec_cmd('swaybg -i "${XDG_CONFIG_HOME:-$HOME/.config}/wallpapers/anime-girl-white-hair-background-hd-wallpaper-uhdpaper.com-763@5@t.jpg" -m fill')
+    hl.exec_cmd('python3 "${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/wallpaper.py" --restore')
 end)

@@ -1,7 +1,4 @@
-@define-color panel #202533;
-@define-color blue #8eabc8;
-@define-color purple #b19acb;
-@define-color muted #65758c;
+@import "colors.css";
 
 * {
     font-family: "DejaVu Sans", "Noto Sans Symbols 2", sans-serif;
@@ -31,8 +28,8 @@ window#waybar {
     text-shadow: none;
     font-size: 10px;
 }
-#workspaces button.active { color: #c2d8ec; background: #303e50; }
-#workspaces button:hover { color: #e0e6f0; background: #374052; }
+#workspaces button.active { color: @blue; background: @panel; }
+#workspaces button:hover { color: @blue; background: @panel; }
 #workspaces button.urgent { color: #edb1be; background: #493344; }
 #clock, #cpu, #temperature, #memory, #wireplumber, #network, #battery, #power-profiles-daemon, #custom-lock {
     background: @panel;
@@ -45,7 +42,7 @@ window#waybar {
 #cpu, #temperature, #memory, #power-profiles-daemon, #battery { color: @purple; }
 #clock { color: #cc9fa9; padding: 0 10px; }
 #custom-lock { color: #99aecb; padding: 0 8px; }
-#custom-lock:hover { background: #374052; color: #e0e6f0; }
+#custom-lock:hover { background: @panel; color: @blue; }
 #wireplumber.muted, #network.disconnected { color: @muted; }
 #power-profiles-daemon.power-saver, #battery.charging, #battery.plugged { color: #9bbcac; }
 #battery.warning:not(.charging):not(.plugged) { color: #d9bd91; }

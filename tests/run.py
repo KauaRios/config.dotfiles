@@ -12,6 +12,7 @@ GROUPS = {
     'CheatsheetTests': 'Ajuda e atalhos',
     'VolumeTests': 'Volume e notificações',
     'RunnerTests': 'Relatório e código de saída da suíte',
+    'WallpaperTests': 'Escolha de wallpaper e paleta',
     'ConfigTests': 'Configurações e sintaxe',
     'InstallTests': 'Links, backups e preservação do KDE',
     'ScreenshotTests': 'Captura de tela e área de transferência',

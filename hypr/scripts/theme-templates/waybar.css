@@ -1,0 +1,4 @@
+@define-color panel @surface@;
+@define-color blue @primary@;
+@define-color purple @secondary@;
+@define-color muted @outline@;
