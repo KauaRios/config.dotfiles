@@ -16,28 +16,43 @@ window#waybar { background: alpha(@panel, 0.82); color: @blue; }
     background-image: linear-gradient(135deg, @panel 0%, @panel 94%, transparent 94%);
     padding-right: 18px;
 }
+/* Silhueta Arch do SVG distribuído pelo pacote archlinux-artwork. */
 #custom-launcher {
-    background-image: linear-gradient(135deg, @blue 0%, @blue 83%, @panel 83%);
-    color: @panel;
-    font-weight: bold;
-    font-size: 17px;
-    min-width: 45px;
-    padding-right: 10px;
-    margin-right: 12px;
+    background-color: @blue;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogPGcgZmlsbD0iIzExMTExMSI+CiAgPHBhdGggZD0ibTEyNy45OCAxMi4wN2MtMTAuMzE2IDI1LjMwOS0xNi41NDMgNDEuODU1LTI4LjAzMSA2Ni40MSA3LjA0MyA3LjQ2MDkgMTUuNjkxIDE2LjE1NiAyOS43MzQgMjUuOTc3LTE1LjA5OC02LjIwNy0yNS4zOTUtMTIuNDQ1LTMzLjA5NC0xOC45MTgtMTQuNzAzIDMwLjY4LTM3Ljc0MiA3NC4zOTEtODQuNDkyIDE1OC4zOSAzNi43NDYtMjEuMjE5IDY1LjIzLTM0LjI5MyA5MS43NzMtMzkuMjg5LTEuMTQwNi00Ljg5NDUtMS43ODUyLTEwLjE5NS0xLjc0MjItMTUuNzM0bDAuMDQyOTY5LTEuMTcxOWMwLjU4MjAzLTIzLjU1MSAxMi44MjgtNDEuNjQ1IDI3LjMzNi00MC40MTggMTQuNTA4IDEuMjI2NiAyNS43ODEgMjEuMzE2IDI1LjE5OSA0NC44NjctMC4xMDkzOCA0LjQyMTktMC42MDkzOCA4LjY5MTQtMS40ODA1IDEyLjY0MSAyNi4yNTggNS4xMzI4IDU0LjQzOCAxOC4xOCA5MC42ODQgMzkuMTA1LTcuMTQ4NC0xMy4xNTYtMTMuNTI3LTI1LjAxNi0xOS42MjEtMzYuMzE2LTkuNTkzOC03LjQzMzYtMTkuNjA1LTE3LjExNy00MC4wMjMtMjcuNTk0IDE0LjAzNSAzLjY0MDYgMjQuMDgyIDcuODUxNiAzMS45MTQgMTIuNTU1LTYxLjk0MS0xMTUuMzItNjYuOTU3LTEzMC42Ni04OC4xOTktMTgwLjV6IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz4KICA8cGF0aCBkPSJtMjM1LjE3IDIxMC42MXYtNS44MzJoLTIuMTc1OHYtMC43ODEyNWg1LjIzODN2MC43ODEyNWgtMi4xODc1djUuODMyaC0wLjg3NSIvPgogIDxwYXRoIGQ9Im0yMzkuMTQgMjEwLjYxdi02LjYxMzNoMS4zMTY0bDEuNTY2NCA0LjY4MzZjMC4xNDQ1MyAwLjQzMzU5IDAuMjQ2MDkgMC43NjE3MiAwLjMxMjUgMC45NzY1NiAwLjA3ODEyNS0wLjIzODI4IDAuMTk1MzEtMC41OTM3NSAwLjM1MTU2LTEuMDU4NmwxLjU4NTktNC42MDE2aDEuMTc1OHY2LjYxMzNoLTAuODQzNzV2LTUuNTM1MmwtMS45MjE5IDUuNTM1MmgtMC43ODkwNmwtMS45MTAyLTUuNjI4OXY1LjYyODloLTAuODQzNzUiLz4KIDwvZz4KPC9zdmc+Cg==");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+    min-width: 44px;
+    margin-right: 10px;
+    border-bottom: 2px solid alpha(@panel, 0.4);
 }
-#custom-launcher:hover { color: @purple; }
+#custom-launcher:hover { background-color: @purple; }
 #workspaces { padding-right: 5px; }
 #workspaces button {
-    color: @blue;
+    color: @purple;
     background: transparent;
-    min-width: 20px;
-    padding: 0 4px;
+    min-width: 22px;
+    padding: 0 5px;
+    margin: 2px 2px;
+    border-bottom: 2px solid transparent;
     box-shadow: none;
     text-shadow: none;
 }
-#workspaces button.active { color: @purple; font-weight: bold; }
-#workspaces button:hover { background: alpha(@blue, 0.15); }
-#workspaces button.urgent { background: @blue; color: @panel; }
+#workspaces button.empty { color: @muted; }
+#workspaces button:hover { color: @blue; background: alpha(@blue, 0.16); }
+#workspaces button.active,
+#workspaces button.active:hover {
+    color: @panel;
+    background: @blue;
+    border-bottom-color: @purple;
+    font-weight: bold;
+}
+#workspaces button.urgent {
+    color: @panel;
+    background: @purple;
+    border-bottom-color: @blue;
+}
 
 .modules-center { background: transparent; }
 #clock.date {
