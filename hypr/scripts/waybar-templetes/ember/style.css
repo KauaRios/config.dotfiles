@@ -19,3 +19,16 @@ window#waybar { background: transparent; color: @purple; }
 #mpris { border-left: 3px solid @blue; font-size: 10px; }
 #clock { font-size: 10px; }
 #network, #wireplumber, #battery { font-size: 10px; }
+
+/* Ember: faixa de telemetria técnica, sem cápsulas. */
+.modules-right { border: 1px solid alpha(@muted, 0.65); padding: 0 3px; }
+.modules-right label { font-size: 10px; }
+#custom-lock { color: @blue; padding: 0 7px; border-right: 1px solid alpha(@muted, 0.35); margin: 4px 0; }
+#temperature { color: @purple; padding: 0 8px; }
+#network { color: @purple; padding: 0 8px; border-right: 1px solid alpha(@muted, 0.35); margin: 4px 0; }
+#battery { color: @purple; padding: 0 8px; }
+#wireplumber { color: @blue; padding: 0 8px; border-left: 1px solid alpha(@muted, 0.35); margin: 4px 0; }
+#custom-lock:hover { color: @panel; background: @blue; }
+#network.disconnected, #wireplumber.muted { color: @muted; }
+#battery.charging, #battery.plugged { color: @blue; }
+#temperature.critical, #battery.critical { background: @purple; color: @panel; }

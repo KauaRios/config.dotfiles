@@ -17,7 +17,8 @@
   ],
   "modules-right": [
     "backlight",
-    "custom/lock",
+    "idle_inhibitor",
+    "bluetooth",
     "tray",
     "network",
     "wireplumber",
@@ -47,13 +48,13 @@
   },
   "cpu": {
     "interval": 2,
-    "format": "◉ {usage}%",
+    "format": "◈ {usage}%",
     "max-length": 10,
     "tooltip-format": "Processador: {usage}%"
   },
   "wireplumber": {
-    "format": "♪ {volume}%",
-    "format-muted": "♩  —",
+    "format": "{icon}",
+    "format-muted": "×",
     "format-icons": [
       "♩",
       "♪",
@@ -62,8 +63,8 @@
     "tooltip-format": "Volume: {volume}%"
   },
   "network": {
-    "format-wifi": "⌁ {signalStrength}%",
-    "format-ethernet": "⇆ {ifname}",
+    "format-wifi": "⌁",
+    "format-ethernet": "⇆",
     "format-disconnected": "⊘",
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
@@ -77,8 +78,8 @@
       "critical": 15
     },
     "format": "▰ {capacity}%",
-    "format-charging": "ϟ  {capacity}%",
-    "format-plugged": "ϟ  {capacity}%",
+    "format-charging": "ϟ {capacity}%",
+    "format-plugged": "ϟ {capacity}%",
     "format-icons": [
       "▱",
       "▱",
@@ -90,11 +91,6 @@
   "tray": {
     "spacing": 6,
     "icon-size": 12
-  },
-  "custom/lock": {
-    "format": "⏻",
-    "on-click": "hyprlock",
-    "tooltip-format": "Bloquear a sessão"
   },
   "custom/launcher": {
     "format": "◇",
@@ -108,6 +104,24 @@
   },
   "backlight": {
     "format": "☼ {percent}%",
-    "tooltip": false
+    "tooltip": true
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "☀",
+      "deactivated": "☾"
+    },
+    "tooltip-format-activated": "Suspensão automática inibida · clique para permitir",
+    "tooltip-format-deactivated": "Suspensão automática permitida · clique para inibir"
+  },
+  "bluetooth": {
+    "format": "ᛒ",
+    "format-connected": "ᛒ",
+    "format-disabled": "ᛒ",
+    "format-off": "ᛒ",
+    "format-no-controller": "",
+    "tooltip-format": "Bluetooth: {status}",
+    "tooltip-format-connected": "Bluetooth: {device_alias}"
   }
 }

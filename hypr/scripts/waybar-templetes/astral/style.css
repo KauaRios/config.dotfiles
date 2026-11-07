@@ -22,3 +22,19 @@ window#waybar { background: alpha(@panel, 0.97); color: @purple; border-top: 1px
 #hyprland-window { color: @blue; }
 #backlight { color: @purple; }
 #custom-lock { font-size: 14px; color: @blue; }
+
+/* Astral: controles discretos e duas métricas em destaque. */
+.modules-right { padding: 0 5px 0 7px; }
+#backlight { color: @purple; padding: 0 9px; margin: 7px 0; border-right: 1px solid alpha(@muted, 0.35); }
+#idle_inhibitor { color: @blue; font-size: 17px; min-width: 24px; padding: 0 4px; }
+#idle_inhibitor.activated { color: @panel; background: @blue; border-radius: 10px; margin: 5px 0; }
+#bluetooth { color: @muted; font-size: 15px; padding: 0 6px; }
+#bluetooth.connected { color: @blue; }
+#network, #wireplumber { color: @purple; font-size: 15px; min-width: 17px; padding: 0 6px; }
+#tray { padding: 0 4px; }
+#cpu { color: @muted; font-size: 10px; border-left: 1px solid alpha(@muted, 0.35); padding: 0 9px; margin: 7px 0; }
+#battery { color: @blue; background: alpha(@blue, 0.12); border: 1px solid alpha(@blue, 0.25); border-radius: 5px; padding: 0 8px; margin: 5px 0 5px 4px; }
+#battery.charging, #battery.plugged { color: @panel; background: @blue; }
+#battery.warning { border-color: @purple; color: @purple; }
+#battery.critical { color: @panel; background: @purple; }
+#network.disconnected, #wireplumber.muted { color: @muted; }

@@ -16,11 +16,11 @@
     "clock"
   ],
   "modules-right": [
+    "custom/lock",
+    "temperature",
     "network",
-    "wireplumber",
-    "cpu",
     "battery",
-    "custom/lock"
+    "wireplumber"
   ],
   "hyprland/workspaces": {
     "all-outputs": true,
@@ -43,15 +43,9 @@
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "▦  {:%d.%m.%Y}"
   },
-  "cpu": {
-    "interval": 2,
-    "format": "◉ {usage}%",
-    "max-length": 10,
-    "tooltip-format": "Processador: {usage}%"
-  },
   "wireplumber": {
-    "format": "♪ {volume}%",
-    "format-muted": "♩  —",
+    "format": "{volume}% ♪",
+    "format-muted": "mute ×",
     "format-icons": [
       "♩",
       "♪",
@@ -60,12 +54,12 @@
     "tooltip-format": "Volume: {volume}%"
   },
   "network": {
-    "format-wifi": "⌁ {signalStrength}%",
+    "format-wifi": "⌁ {ifname}",
     "format-ethernet": "⇆ {ifname}",
-    "format-disconnected": "⊘",
+    "format-disconnected": "× offline",
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
-    "max-length": 12,
+    "max-length": 15,
     "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
     "on-click": "kcmshell6 kcm_networkmanagement"
   },
@@ -74,9 +68,9 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "▰ {capacity}%",
-    "format-charging": "ϟ  {capacity}%",
-    "format-plugged": "ϟ  {capacity}%",
+    "format": "{capacity}% ▰",
+    "format-charging": "{capacity}% ϟ",
+    "format-plugged": "{capacity}% ϟ",
     "format-icons": [
       "▱",
       "▱",
@@ -86,7 +80,7 @@
     ]
   },
   "custom/lock": {
-    "format": "⏻",
+    "format": "↪",
     "on-click": "hyprlock",
     "tooltip-format": "Bloquear a sessão"
   },
@@ -99,5 +93,13 @@
     "format": "♪ {artist} · {title}",
     "format-paused": "Ⅱ {title}",
     "max-length": 28
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "interval": 5,
+    "critical-threshold": 85,
+    "format": "{temperatureC}°C",
+    "tooltip-format": "Temperatura da CPU: {temperatureC}°C"
   }
 }
