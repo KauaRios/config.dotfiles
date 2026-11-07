@@ -3,6 +3,9 @@
 Estes modelos não estão instalados e não são iniciados pelo Hyprland.
 
 - `original`: seu modelo anterior, recuperado do backup anterior à primeira troca; barra superior compacta.
+- `reference-01`: referência `reference.png`, faixa contínua fina, marca à esquerda, workspaces centrais e mídia em destaque.
+- `reference-02`: referência `reference1.png`, três blocos separados, relógio central e workspaces à esquerda.
+- `reference-03`: referência `reference3.png`, painel escuro arredondado, data à esquerda e círculos centrais.
 - `orbit`: barra inferior flutuante, painel arredondado, workspaces em cápsulas e relógio central grande.
 - `ribbon`: faixa superior contínua, cantos retos, workspaces sublinhados e relógio central em bloco de destaque.
 

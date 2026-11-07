@@ -1,0 +1,21 @@
+@import "colors.css";
+* { font-family: "DejaVu Sans Mono", "Noto Sans Symbols 2", monospace; font-size: 9px; min-height: 0; border: none; border-radius: 0; padding: 0; margin: 0; }
+#workspaces button { min-width: 13px; padding: 0 3px; background: transparent; color: @muted; box-shadow: none; text-shadow: none; }
+#workspaces button:hover { color: @blue; background: alpha(@blue, 0.15); }
+#workspaces button.active { background: @blue; color: @panel; }
+#workspaces button.urgent, #battery.critical { color: @panel; background: @purple; }
+#wireplumber, #network, #cpu, #memory, #battery, #tray, #custom-lock, #power-profiles-daemon { padding: 0 5px; }
+#wireplumber.muted, #network.disconnected { color: @muted; }
+#battery.warning { color: @purple; }
+#custom-brand { color: @blue; font-weight: bold; padding: 0 6px; }
+#hyprland-window { padding: 0 7px; color: @purple; }
+#mpris { padding: 0 6px; color: @purple; }
+#clock { padding: 0 8px; }
+tooltip { color: @purple; background: @panel; border: 1px solid @muted; }
+tooltip label { padding: 6px; }
+window#waybar { background: transparent; color: @purple; }
+.modules-left, .modules-center, .modules-right { background: alpha(@panel, 0.96); border: 1px solid alpha(@muted, 0.45); border-radius: 2px; }
+#custom-brand { font-size: 10px; letter-spacing: -1px; }
+#workspaces button { border-right: 1px solid alpha(@muted, 0.2); }
+#hyprland-window, #mpris { border-left: 1px solid @muted; }
+#clock { font-size: 9px; font-weight: bold; }

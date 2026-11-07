@@ -1,0 +1,139 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 22,
+  "margin-top": 12,
+  "margin-left": 8,
+  "margin-bottom": 0,
+  "margin-right": 8,
+  "spacing": 1,
+  "modules-left": [
+    "custom/brand",
+    "hyprland/workspaces",
+    "hyprland/window",
+    "mpris"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "tray",
+    "wireplumber",
+    "network",
+    "cpu",
+    "battery",
+    "custom/lock"
+  ],
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{name}",
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  },
+  "clock": {
+    "format": "{:%I:%M %p · %A, %b %d}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "▦  {:%d.%m.%Y}"
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "◉ {usage}%",
+    "max-length": 10,
+    "tooltip-format": "Processador: {usage}%"
+  },
+  "memory": {
+    "interval": 10,
+    "format": "▤ {used:.1f}G",
+    "tooltip-format": "Memória: {used:.1f} / {total:.1f} GiB"
+  },
+  "wireplumber": {
+    "format": "♪ {volume}%",
+    "format-muted": "♩  —",
+    "format-icons": [
+      "♩",
+      "♪",
+      "♫"
+    ],
+    "tooltip-format": "Volume: {volume}%"
+  },
+  "network": {
+    "format-wifi": "⌁ {signalStrength}%",
+    "format-ethernet": "⇆",
+    "format-disconnected": "⊘",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
+    "max-length": 8,
+    "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
+    "on-click": "kcmshell6 kcm_networkmanagement"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "▰ {capacity}%",
+    "format-charging": "ϟ  {capacity}%",
+    "format-plugged": "ϟ  {capacity}%",
+    "format-icons": [
+      "▱",
+      "▱",
+      "▰",
+      "▰",
+      "▰"
+    ]
+  },
+  "tray": {
+    "spacing": 5,
+    "icon-size": 10
+  },
+  "custom/lock": {
+    "format": "⏻",
+    "on-click": "hyprlock",
+    "tooltip-format": "Bloquear a sessão"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "format-icons": {
+      "power-saver": "♧",
+      "balanced": "◐",
+      "performance": "ϟ"
+    },
+    "tooltip-format": "Energia: {profile}\nClique para trocar o perfil"
+  },
+  "custom/brand": {
+    "format": "OMARCHY",
+    "tooltip": false,
+    "on-click": "rofi -show drun"
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 10,
+    "separate-outputs": true
+  },
+  "mpris": {
+    "format": "{status_icon} {title}",
+    "format-paused": "{status_icon} {title}",
+    "status-icons": {
+      "playing": "▶",
+      "paused": "Ⅱ",
+      "stopped": "■"
+    },
+    "max-length": 22,
+    "tooltip": true
+  }
+}
