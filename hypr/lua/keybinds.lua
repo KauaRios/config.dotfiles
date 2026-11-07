@@ -22,6 +22,7 @@ hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("kitty -e lua \"${XDG_CONFIG_HOME:-$H
 
 
 hl.bind(mainMod .. " + L",           hl.dsp.exec_cmd("pkill -u \"$USER\" -x waybar; waybar"), { description = "Reiniciar Waybar" })
+hl.bind(mainMod .. " + W",           hl.dsp.exec_cmd('pkill -u "$(id -u)" -x swaybg; swaybg -i "${XDG_CONFIG_HOME:-$HOME/.config}/wallpapers/anime-girl-white-hair-background-hd-wallpaper-uhdpaper.com-763@5@t.jpg" -m fill'), { description = "Reaplicar wallpaper" })
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }), { description = "Alternar tela cheia" })
 
 -- Foco com setas

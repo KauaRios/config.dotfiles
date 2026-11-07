@@ -1,11 +1,11 @@
 # ONI — Fedora / Arch
 
-![ONI — wallpaper de samurai em vermelho, preto e azul gelo](wallpapers/visual.png)
+![Wallpaper de anime com garota de cabelo branco](wallpapers/anime-girl-white-hair-background-hd-wallpaper-uhdpaper.com-763@5@t.jpg)
 
 
 Requer Hyprland 0.55 ou superior, com configuração exclusivamente Lua.
 
-Tema baseado no samurai do wallpaper: vermelho, carvão e azul gelo. Waybar fina e transparente, com indicadores em pequenos blocos escuros, ícones Unicode e tons de azul e lilás; os valores são métricas reais. O relógio alterna entre hora e data ao clicar. Os ícones usam DejaVu Sans e Noto Sans Symbols 2 quando disponível, sem depender de Nerd Fonts.
+Wallpaper de anime com garota de cabelo branco. A paleta atual permanece em vermelho, carvão e azul gelo; não há geração automática de cores. Waybar fina e transparente, com indicadores em pequenos blocos escuros, ícones Unicode e tons de azul e lilás; os valores são métricas reais. O relógio alterna entre hora e data ao clicar. Os ícones usam DejaVu Sans e Noto Sans Symbols 2 quando disponível, sem depender de Nerd Fonts.
 
 ## Instalar
 
@@ -20,7 +20,7 @@ O instalador de dependências solicita sudo e a confirmação do gerenciador. In
 
 O instalador dos links roda SEM sudo. Vincula somente hypr, waybar, rofi, wofi, mako, wallpapers e qt6ct dentro de `${XDG_CONFIG_HOME:-$HOME/.config}`. Não substitui a .config inteira. Configurações existentes dessas pastas são movidas para `.config/dot-backup.XXXXXXXX`; configurações do KDE permanecem no lugar. Pode executar novamente sem duplicar links. Não mova a pasta DOT depois da instalação.
 
-Saia da sessão e escolha Hyprland no login. O wallpaper é iniciado com swaybg em todos os monitores.
+Saia da sessão e escolha Hyprland no login. O wallpaper de anime é aplicado com `swaybg -m fill` em todos os monitores, diretamente em `hypr/lua/autostart.lua`. Requer `swaybg` no PATH.
 
 ## Organização
 
@@ -93,11 +93,13 @@ A Waybar mostra a RAM usada em GiB. O botão de energia alterna os perfis dispon
 
 ### Inicialização da sessão
 
-Waybar, mako e swaybg são iniciados diretamente em `hypr/lua/autostart.lua`, no evento `hyprland.start`. A mesma configuração aplica as preferências de tema e inicia o agente de autenticação. Não há script intermediário nem supervisor de processos.
+Waybar, mako e swaybg são iniciados em `hypr/lua/autostart.lua`, no evento `hyprland.start`. A mesma configuração aplica as preferências de tema e inicia o agente de autenticação. O wallpaper é iniciado diretamente na configuração Lua, sem script intermediário.
 
 Saia e entre novamente na sessão para aplicar a mudança e encerrar os supervisores da versão anterior. O evento de início não é uma ação de retorno da suspensão; a causa da perda da conexão Wayland após suspender ainda precisa ser investigada.
 
 ### Atalhos (Super+H)
+
+Super+W reinicia o `swaybg` do usuário e reaplica a mesma imagem de anime.
 
 O Super+H abre a lista de atalhos no Kitty, usando `hypr/scripts/cheat_sheet.lua`.
 Pressione Enter para fechar.

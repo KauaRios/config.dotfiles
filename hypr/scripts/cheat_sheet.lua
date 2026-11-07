@@ -26,6 +26,7 @@ local atalhos = {
 
     -- Sistema e Ferramentas
     { tecla = "SUPER + L",             acao = "Reiniciar Waybar" },
+    { tecla = "SUPER + W",             acao = "Reaplicar Wallpaper" },
     { tecla = "SUPER + I",             acao = "Captura de Tela (Clipboard)" },
 
     -- Foco e Navegação
