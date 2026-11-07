@@ -20,7 +20,7 @@ O instalador de dependências solicita sudo e a confirmação do gerenciador. In
 
 O instalador dos links roda SEM sudo. Vincula somente hypr, waybar, rofi, wofi, mako, wallpapers e qt6ct dentro de `${XDG_CONFIG_HOME:-$HOME/.config}`. Não substitui a .config inteira. Configurações existentes dessas pastas são movidas para `.config/dot-backup.XXXXXXXX`; configurações do KDE permanecem no lugar. Pode executar novamente sem duplicar links. Não mova a pasta DOT depois da instalação.
 
-Saia da sessão e escolha Hyprland no login. O wallpaper de anime é aplicado com `swaybg -m fill` em todos os monitores, diretamente em `hypr/lua/autostart.lua`. Requer `swaybg` no PATH.
+Saia da sessão e escolha Hyprland no login. O wallpaper é restaurado pelo script Python no login e exibido com swaybg. Super+W permite escolher uma imagem e gerar cores com Matugen. Consulte [a documentação completa](WALLPAPER.md).
 
 ## Organização
 
@@ -93,13 +93,13 @@ A Waybar mostra a RAM usada em GiB. O botão de energia alterna os perfis dispon
 
 ### Inicialização da sessão
 
-Waybar, mako e swaybg são iniciados em `hypr/lua/autostart.lua`, no evento `hyprland.start`. A mesma configuração aplica as preferências de tema e inicia o agente de autenticação. O wallpaper é iniciado diretamente na configuração Lua, sem script intermediário.
+Waybar, mako e swaybg são iniciados em `hypr/lua/autostart.lua`, no evento `hyprland.start`. A mesma configuração aplica as preferências de tema e inicia o agente de autenticação. O autostart chama `wallpaper.py --restore`.
 
 Saia e entre novamente na sessão para aplicar a mudança e encerrar os supervisores da versão anterior. O evento de início não é uma ação de retorno da suspensão; a causa da perda da conexão Wayland após suspender ainda precisa ser investigada.
 
 ### Atalhos (Super+H)
 
-Super+W reinicia o `swaybg` do usuário e reaplica a mesma imagem de anime.
+Super+W abre o seletor manual de wallpaper e atualiza a paleta. Requer Matugen.
 
 O Super+H abre a lista de atalhos no Kitty, usando `hypr/scripts/cheat_sheet.lua`.
 Pressione Enter para fechar.
