@@ -39,16 +39,15 @@ def choose(folder):
     images = sorted(p for p in folder.rglob('*') if p.suffix.lower() in ('.png', '.jpg', '.jpeg', '.webp') and p.is_file() and '\n' not in str(p))
     if not images:
         raise ValueError('Nenhuma imagem na pasta ' + str(folder))
-    result = sp.run(['wofi', '--dmenu', '--insensitive', '--no-custom-entry', '--define', 'allow_images=false', '--define', 'allow_markup=false', '--prompt', 'Escolher wallpaper'],
+    result = sp.run(['rofi', '-dmenu', '-i', '-no-custom', '-format', 'i', '-p', 'Wallpaper'],
                     input='\n'.join(str(p.relative_to(folder)) for p in images), text=True, capture_output=True)
     if result.returncode == 1:
         return None
     result.check_returncode()
-    selected = result.stdout.removesuffix('\n')
-    choices = {str(p.relative_to(folder)): p for p in images}
-    if selected not in choices:
+    index = int(result.stdout.strip())
+    if not 0 <= index < len(images):
         raise ValueError('Seleção inválida')
-    return choices[selected].resolve()
+    return images[index].resolve()
 
 
 def atomic(path, text):
@@ -78,7 +77,7 @@ def apply(image, colors):
             pass
     if colors:
         template_dir = Path(__file__).resolve().parent / 'theme-templates'
-        for source, dest in [('wofi.css', 'wofi/colors'), ('waybar.css', 'waybar/colors.css'), ('rofi.rasi', 'rofi/colors.rasi'), ('mako.conf', 'mako/config'), ('hypr.lua', 'hypr/lua/colors.lua')]:
+        for source, dest in [('waybar.css', 'waybar/colors.css'), ('rofi.rasi', 'rofi/colors.rasi'), ('mako.conf', 'mako/config'), ('hypr.lua', 'hypr/lua/colors.lua')]:
             text = (template_dir / source).read_text()
             for key, value in colors.items():
                 text = text.replace('@' + key + '@', value).replace('@' + key + '_rgb@', value[1:])

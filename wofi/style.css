@@ -1,61 +1,6 @@
-@define-color surface --wofi-color0;
-@define-color foreground --wofi-color1;
-@define-color primary --wofi-color2;
-@define-color secondary --wofi-color3;
-@define-color outline --wofi-color4;
-
-* {
-    font-family: "DejaVu Sans", sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    outline: none;
-}
-
-window {
-    background-color: alpha(@surface, 0.97);
-    color: @foreground;
-    border: 1px solid alpha(@primary, 0.55);
-    border-radius: 22px;
-}
-
-#outer-box { padding: 22px; }
-
-#input {
-    margin: 0 0 18px 0;
-    padding: 16px 18px;
-    background-color: alpha(@primary, 0.08);
-    color: @foreground;
-    border: 1px solid alpha(@outline, 0.28);
-    border-radius: 14px;
-    box-shadow: none;
-    caret-color: @primary;
-}
-
-#input:focus {
-    border-color: @primary;
-    background-color: alpha(@primary, 0.12);
-}
-
-#input image { color: @primary; }
-#scroll { border: none; }
-#inner-box { padding: 2px; }
-
-#entry {
-    margin: 3px 0;
-    padding: 12px 16px;
-    border: 1px solid transparent;
-    border-radius: 12px;
-    background-color: transparent;
-    color: @foreground;
-}
-
-#entry:selected {
-    background-color: alpha(@primary, 0.17);
-    border-color: alpha(@primary, 0.50);
-}
-
-#entry:hover { background-color: alpha(@secondary, 0.10); }
-#text { margin: 0 8px; color: @foreground; }
-#text:selected { color: @primary; font-weight: bold; }
-#img { margin-right: 12px; }
-#expander-box { background-color: transparent; }
+@define-color red #ff334f;
+@define-color ice #b9cedd;
+* { font-family: "DejaVu Sans Mono", monospace; font-size: 12px; font-weight: bold; min-height: 0; }
+window { background: #10141f; color: #b9cedd; border: 2px solid #ff334f; }
+#entry:selected { background: #b51632; }
+#input { background: #202331; color: #b9cedd; padding: 12px; }
