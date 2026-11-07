@@ -1,0 +1,18 @@
+@import "colors.css";
+* { font-family: "DejaVu Sans", "Noto Sans Symbols 2", sans-serif; font-size: 11px; min-height: 0; border: none; border-radius: 0; }
+window#waybar { background: @panel; color: @blue; border-bottom: 2px solid @blue; }
+.modules-left { margin-left: 16px; }
+.modules-right { margin-right: 12px; }
+#workspaces button { color: @muted; background: transparent; padding: 0 16px; border-bottom: 3px solid transparent; box-shadow: none; text-shadow: none; }
+#workspaces button.active { color: @blue; background: alpha(@blue, 0.12); border-bottom-color: @blue; }
+#workspaces button:hover { color: @purple; background: alpha(@purple, 0.12); }
+#clock { font-weight: bold; font-size: 16px; color: @panel; background: @blue; padding: 0 32px; }
+#cpu, #memory, #battery, #wireplumber, #network, #tray, #custom-lock { padding: 0 12px; margin: 8px 0; border-left: 1px solid alpha(@muted, 0.35); }
+#cpu, #memory { color: @purple; }
+#custom-lock { color: @purple; font-size: 16px; }
+#custom-lock:hover { color: @blue; background: alpha(@blue, 0.10); }
+#network.disconnected, #wireplumber.muted { color: @muted; }
+#battery.warning { color: #e5ba77; }
+#battery.critical, #workspaces button.urgent { color: #ffadbd; background: #592d39; }
+tooltip { background: @panel; color: @blue; border: 1px solid @purple; }
+tooltip label { padding: 8px; }

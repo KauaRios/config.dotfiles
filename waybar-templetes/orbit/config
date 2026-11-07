@@ -1,0 +1,118 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 40,
+  "margin-top": 0,
+  "margin-left": 40,
+  "margin-bottom": 14,
+  "margin-right": 40,
+  "spacing": 8,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "wireplumber",
+    "network",
+    "cpu",
+    "memory",
+    "battery",
+    "tray",
+    "custom/lock"
+  ],
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{name}",
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%a, %d %b}"
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "CPU {usage}%",
+    "max-length": 10,
+    "tooltip-format": "Processador: {usage}%"
+  },
+  "memory": {
+    "interval": 10,
+    "format": "RAM {used:.1f}G",
+    "tooltip-format": "Memória: {used:.1f} / {total:.1f} GiB"
+  },
+  "wireplumber": {
+    "format": "♪ {volume}%",
+    "format-muted": "♩  —",
+    "format-icons": [
+      "♩",
+      "♪",
+      "♫"
+    ],
+    "tooltip-format": "Volume: {volume}%"
+  },
+  "network": {
+    "format-wifi": "Wi-Fi {signalStrength}%",
+    "format-ethernet": "LAN",
+    "format-disconnected": "⊘",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
+    "max-length": 20,
+    "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
+    "on-click": "kcmshell6 kcm_networkmanagement"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "ϟ  {capacity}%",
+    "format-plugged": "ϟ  {capacity}%",
+    "format-icons": [
+      "▱",
+      "▱",
+      "▰",
+      "▰",
+      "▰"
+    ]
+  },
+  "tray": {
+    "spacing": 8,
+    "icon-size": 14
+  },
+  "custom/lock": {
+    "format": "⏻",
+    "on-click": "hyprlock",
+    "tooltip-format": "Bloquear a sessão"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "format-icons": {
+      "power-saver": "♧",
+      "balanced": "◐",
+      "performance": "ϟ"
+    },
+    "tooltip-format": "Energia: {profile}\nClique para trocar o perfil"
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "interval": 5,
+    "format": "{temperatureC}°C 🌡",
+    "tooltip-format": "CPU (Tctl): {temperatureC}°C"
+  }
+}
