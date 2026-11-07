@@ -1,31 +1,139 @@
 @import "colors.css";
-* { font-family: "DejaVu Sans Mono", "Noto Sans Symbols 2", monospace; font-size: 11px; min-height: 0; border: none; padding: 0; margin: 0; }
-#workspaces button { background: transparent; color: @muted; box-shadow: none; text-shadow: none; min-width: 20px; padding: 0 5px; }
-#workspaces button.active { color: @panel; background: @blue; }
-#workspaces button:hover { color: @blue; background: alpha(@blue, 0.18); }
-#workspaces button.urgent, #battery.critical { background: @purple; color: @panel; }
-#network.disconnected, #wireplumber.muted { color: @muted; }
-#battery.warning { color: @purple; }
-#custom-launcher { color: @blue; padding: 0 10px; }
-#clock { color: @purple; padding: 0 12px; }
-#wireplumber, #network, #cpu, #memory, #battery, #tray, #custom-lock, #power-profiles-daemon, #backlight { padding: 0 7px; }
-#hyprland-window, #mpris { padding: 0 12px; color: @purple; }
-tooltip { background: @panel; color: @purple; border: 1px solid @muted; border-radius: 8px; }
-tooltip label { padding: 8px; }
-* { font-family: "DejaVu Sans", "Noto Sans Symbols 2", sans-serif; font-size: 12px; }
+
+/* Paleta compartilhada: panel=fundo, blue=destaque, purple=texto secundário. */
+* {
+    font-family: "DejaVu Sans", "Noto Sans Symbols 2", sans-serif;
+    font-size: 12px;
+    min-height: 0;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
 window#waybar { background: transparent; color: @purple; }
-.modules-left, .modules-center, .modules-right { background: alpha(@panel, 0.97); border: 1px solid alpha(@blue, 0.28); border-radius: 24px; }
-.modules-left { padding: 4px 10px 4px 4px; }
-.modules-center { padding: 0 8px; border-bottom: 2px solid @blue; }
-.modules-right { padding: 4px 5px 4px 10px; }
-#custom-launcher { color: @panel; background: @blue; border-radius: 20px; margin-right: 10px; padding: 0 13px; font-size: 20px; }
-#workspaces button { border-radius: 14px; min-width: 18px; padding: 0 7px; margin: 5px 2px; }
-#workspaces button.active { background: @blue; color: @panel; }
-#clock { font-weight: bold; font-size: 17px; letter-spacing: 1px; color: @blue; padding: 0 14px; }
-#clock.date { font-size: 10px; font-weight: normal; letter-spacing: 0; color: @purple; padding-left: 10px; border-left: 1px solid alpha(@muted, 0.35); margin: 10px 0; }
-#network, #wireplumber { padding: 0 10px; }
-#battery { color: @blue; background: alpha(@blue, 0.09); border-radius: 14px; padding: 0 12px; margin: 3px 4px; }
-#custom-lock { color: @panel; background: @purple; border-radius: 20px; margin-left: 7px; padding: 0 12px; }
-#custom-lock:hover { background: @blue; }
-#tray { margin-right: 6px; }
+
+.modules-left, .modules-center, .modules-right {
+    background-image: linear-gradient(180deg, mix(@panel, @purple, 0.07), @panel);
+    border: 1px solid alpha(@blue, 0.23);
+    border-radius: 18px;
+    box-shadow: inset 0 1px 0 alpha(@purple, 0.06);
+}
+.modules-left { padding: 5px 10px 5px 5px; }
+.modules-center {
+    padding: 0 7px;
+    border-color: alpha(@blue, 0.48);
+    border-bottom: 2px solid @blue;
+}
+.modules-right { padding: 5px; }
+
+/* Assinatura lunar e navegação */
+#custom-launcher {
+    color: @panel;
+    background-image: linear-gradient(120deg, @blue, @purple);
+    border-radius: 13px;
+    padding: 0 13px;
+    margin-right: 9px;
+    font-size: 21px;
+}
+#custom-launcher:hover { background-image: none; background-color: @purple; }
+#workspaces { padding: 0 3px; }
+#workspaces button {
+    background: transparent;
+    color: @muted;
+    min-width: 22px;
+    padding: 0 3px;
+    margin: 7px 1px;
+    border-radius: 9px;
+    box-shadow: none;
+    text-shadow: none;
+    font-size: 16px;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+#workspaces button.active {
+    color: @blue;
+    background: alpha(@blue, 0.14);
+    box-shadow: inset 0 -2px 0 @blue;
+    font-size: 12px;
+}
+#workspaces button:hover { background: alpha(@purple, 0.14); color: @purple; }
+#workspaces button.urgent { background: @purple; color: @panel; }
+#mpris {
+    color: @purple;
+    font-size: 10px;
+    padding: 0 11px;
+    margin: 10px 0 10px 6px;
+    border-left: 1px solid alpha(@muted, 0.3);
+}
+#mpris.paused { color: @muted; }
+
+/* Relógio: hora em destaque e data compacta. */
+#clock {
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    color: @blue;
+    padding: 0 17px;
+}
+#clock.date {
+    font-family: "DejaVu Sans", sans-serif;
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0;
+    color: @purple;
+    padding: 0 13px;
+    margin: 10px 0;
+    border-left: 1px solid alpha(@blue, 0.3);
+}
+
+/* Painel do sistema: controles e métricas em duas linhas. */
+#tray { padding: 0 9px; margin-right: 3px; }
+#network {
+    color: @blue;
+    font-size: 22px;
+    min-width: 22px;
+    padding: 0 9px;
+}
+#network:hover { background: alpha(@blue, 0.1); border-radius: 12px; }
+#wireplumber {
+    color: @purple;
+    font-weight: bold;
+    min-width: 52px;
+    padding: 0 10px;
+    margin: 5px 3px;
+    border-left: 1px solid alpha(@muted, 0.25);
+}
+#battery {
+    color: @blue;
+    background: alpha(@blue, 0.10);
+    border: 1px solid alpha(@blue, 0.18);
+    border-radius: 11px;
+    font-weight: bold;
+    min-width: 56px;
+    padding: 0 9px;
+    margin: 1px 6px;
+}
+#battery.charging, #battery.plugged {
+    color: @panel;
+    background: @blue;
+}
+#battery.warning { border-color: @purple; color: @purple; }
 #battery.critical { background: @purple; color: @panel; }
+#wireplumber.muted, #network.disconnected { color: @muted; }
+#custom-lock {
+    color: @purple;
+    background: alpha(@purple, 0.1);
+    border-radius: 13px;
+    margin-left: 2px;
+    padding: 0 12px;
+    font-size: 18px;
+}
+#custom-lock:hover { color: @panel; background: @purple; }
+
+tooltip {
+    color: @purple;
+    background: @panel;
+    border: 1px solid alpha(@blue, 0.5);
+    border-radius: 12px;
+}
+tooltip label { padding: 10px; }

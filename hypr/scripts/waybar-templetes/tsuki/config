@@ -1,15 +1,16 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 46,
-  "margin-top": 14,
-  "margin-left": 24,
+  "height": 52,
+  "margin-top": 12,
+  "margin-left": 18,
   "margin-bottom": 0,
-  "margin-right": 24,
-  "spacing": 2,
+  "margin-right": 18,
+  "spacing": 0,
   "modules-left": [
     "custom/launcher",
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "mpris"
   ],
   "modules-center": [
     "clock",
@@ -24,7 +25,7 @@
   ],
   "hyprland/workspaces": {
     "all-outputs": true,
-    "format": "{name}",
+    "format": "{icon}",
     "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
     "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
     "sort-by-number": true,
@@ -36,16 +37,23 @@
         4,
         5
       ]
+    },
+    "format-icons": {
+      "active": "●",
+      "default": "○",
+      "empty": "·",
+      "persistent": "·",
+      "urgent": "!"
     }
   },
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "▦  {:%d.%m.%Y}"
+    "format-alt": "{:%H:%M:%S}"
   },
   "wireplumber": {
-    "format": "♪ {volume}%",
-    "format-muted": "♩  —",
+    "format": "<span size=\"x-small\">VOLUME</span>\n{volume}%",
+    "format-muted": "<span size=\"x-small\">VOLUME</span>\nMUDO",
     "format-icons": [
       "♩",
       "♪",
@@ -54,8 +62,8 @@
     "tooltip-format": "Volume: {volume}%"
   },
   "network": {
-    "format-wifi": "⌁ {signalStrength}%",
-    "format-ethernet": "⇆ {ifname}",
+    "format-wifi": "⌁",
+    "format-ethernet": "⇆",
     "format-disconnected": "⊘",
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
@@ -68,9 +76,9 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "▰ {capacity}%",
-    "format-charging": "ϟ  {capacity}%",
-    "format-plugged": "ϟ  {capacity}%",
+    "format": "<span size=\"x-small\">BATERIA</span>\n{capacity}%",
+    "format-charging": "<span size=\"x-small\">CARGA</span>\nϟ {capacity}%",
+    "format-plugged": "<span size=\"x-small\">TOMADA</span>\n{capacity}%",
     "format-icons": [
       "▱",
       "▱",
@@ -80,8 +88,8 @@
     ]
   },
   "tray": {
-    "spacing": 6,
-    "icon-size": 12
+    "spacing": 8,
+    "icon-size": 14
   },
   "custom/lock": {
     "format": "⏻",
@@ -89,12 +97,18 @@
     "tooltip-format": "Bloquear a sessão"
   },
   "custom/launcher": {
-    "format": "☾",
+    "format": "☾  <span size=\"small\" weight=\"bold\" letter_spacing=\"1800\">TSUKI</span>",
     "on-click": "rofi -show drun",
     "tooltip-format": "Abrir aplicativos"
   },
   "clock#date": {
-    "format": "{:%a\n%d %b}",
+    "format": "<span size=\"small\" weight=\"bold\">{:%a}</span>\n{:%d %b}",
     "tooltip": false
+  },
+  "mpris": {
+    "format": "♪  {title}",
+    "format-paused": "Ⅱ  {title}",
+    "max-length": 19,
+    "tooltip": true
   }
 }
