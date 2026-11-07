@@ -4,7 +4,7 @@ Super+W abre o Rofi com imagens de `${XDG_CONFIG_HOME:-~/.config}/wallpapers`, i
 
 ## Dependências
 
-Python 3, Rofi, swaybg, Matugen com `image --dry-run --json hex`, hyprctl, makoctl, notify-send e procps (pgrep/pkill). O Matugen não estava instalado no ambiente de desenvolvimento. No Arch/EndeavourOS, instale `matugen` pelo gerenciador de pacotes; no Fedora, confira sua disponibilidade para a versão utilizada antes de habilitar um repositório. O instalador existente continua instalando swaybg; Matugen é uma dependência adicional da troca de paleta.
+Python 3, Rofi, swaybg, Matugen com `image --dry-run --json hex`, hyprctl, makoctl, notify-send e procps (pgrep/pkill). A correção foi validada com Matugen 4.2.0 instalado. No Arch/EndeavourOS, instale `matugen` pelo gerenciador de pacotes; no Fedora, confira sua disponibilidade para a versão utilizada antes de habilitar um repositório. O instalador existente continua instalando swaybg; Matugen é uma dependência adicional da troca de paleta.
 
 Após instalar Matugen, execute `hyprctl reload` e pressione Super+W. Para escolher diretamente:
 
@@ -35,10 +35,14 @@ Como as pastas são links para este repositório, os arquivos gerados aparecem c
 
 ## Verificação
 
-`python3 tests/run.py`: 44 passaram e 4 foram ignorados na implementação. Os cinco testes novos verificam cancelamento, nomes com espaços, rejeição de cor inválida, falha de geração antes da aplicação e restauração sem Matugen. São simulações; não comprovam execução real do Matugen nem aparência.
+`python3 tests/run.py`: 47 passaram e 4 foram ignorados após a correção do Matugen. Os cinco testes novos verificam cancelamento, nomes com espaços, rejeição de cor inválida, falha de geração antes da aplicação e restauração sem Matugen. Há também testes de diagnóstico de erro, formato JSON atual e extração com Matugen real nas imagens disponíveis. A aparência ainda exige conferência na sessão gráfica.
 
 A suíte também aprovou a configuração com o binário instalado do Hyprland, sintaxe Lua/Bash, CSS GTK e tema Rofi. A consulta à sessão ativa ficou inacessível; três testes gráficos são opcionais. Na sessão local, execute `python3 tests/run.py --gui --strict` e confira manualmente Super+W, Escape, mudança de cores e restauração após novo login. Essa suíte gráfica não testa o seletor de wallpaper de ponta a ponta.
 
 ## Retorno ao tema anterior
 
 Os arquivos de cores iniciais e o Mako original estão no Git. Restaure esses arquivos a partir do commit anterior à escolha, remova `selection.json` e recarregue os componentes. Para desativar a integração, volte o autostart para swaybg direto e o atalho para reaplicar a imagem.
+
+## Correção do Matugen 4.2
+
+A execução sem terminal agora fornece `--source-color-index 0`, escolhendo a cor dominante da imagem que o usuário selecionou. Isso não escolhe wallpapers aleatórios. O leitor aceita cores no formato atual `colors.primary.dark.color` e nos formatos anteriores. Erros do Matugen incluem o diagnóstico original na mensagem. A troca acontece na mesma sessão, sem precisar sair e entrar.

@@ -47,3 +47,27 @@ class WallpaperTests(unittest.TestCase):
                 w.main()
                 palette.assert_not_called()
                 apply.assert_called_once_with(image, None)
+
+    def test_real_matugen_without_terminal(self):
+        import shutil
+        if not shutil.which('matugen'):
+            self.skipTest('Matugen não instalado')
+        root = Path(__file__).resolve().parents[1]
+        images = list((root / 'wallpapers').glob('*.jpg')) + list((root / 'wallpapers').glob('*.jpeg'))
+        self.assertTrue(images)
+        for image in images:
+            with self.subTest(image=image.name):
+                colors = w.palette(image)
+                self.assertEqual(set(colors), {'surface', 'on_surface', 'primary', 'secondary', 'outline'})
+                for color in colors.values():
+                    self.assertRegex(color, r'^#[0-9a-fA-F]{6}$')
+
+    def test_matugen_error_preserves_diagnostic(self):
+        with patch.object(w, 'run', side_effect=subprocess.CalledProcessError(1, 'matugen', stderr='source color missing')):
+            with self.assertRaisesRegex(RuntimeError, 'source color missing'):
+                w.palette(Path('test.jpg'))
+
+    def test_current_json_format(self):
+        colors = {key: {'dark': {'color': '#123456'}} for key in ('surface', 'on_surface', 'primary', 'secondary', 'outline')}
+        with patch.object(w, 'run', return_value=subprocess.CompletedProcess([], 0, json.dumps({'colors': colors}), '')):
+            self.assertEqual(w.palette(Path('test.jpg'))['primary'], '#123456')

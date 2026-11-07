@@ -19,10 +19,17 @@ def run(*args, **kwargs):
 
 
 def palette(image):
-    result = run('matugen', 'image', str(image), '--dry-run', '--json', 'hex', '-m', 'dark', capture_output=True)
-    colors = json.loads(result.stdout)['colors']['dark']
+    try:
+        result = run('matugen', 'image', str(image), '--dry-run', '--json', 'hex',
+                     '-m', 'dark', '--source-color-index', '0', capture_output=True)
+    except sp.CalledProcessError as error:
+        raise RuntimeError('Matugen: ' + (error.stderr or error.stdout or str(error)).strip()) from error
+    data = json.loads(result.stdout)['colors']
     keys = ('surface', 'on_surface', 'primary', 'secondary', 'outline')
+    colors = {}
     for key in keys:
+        value = data['dark'][key] if 'dark' in data else data[key]['dark']
+        colors[key] = value['color'] if isinstance(value, dict) else value
         if not re.fullmatch(r'#[0-9a-fA-F]{6}', colors[key]):
             raise ValueError('Cor inválida: ' + key)
     return {key: colors[key] for key in keys}
