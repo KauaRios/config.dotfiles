@@ -1,0 +1,56 @@
+@import "colors.css";
+
+* {
+    font-family: "DejaVu Sans", "Noto Sans Symbols 2", sans-serif;
+    font-size: 10px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+window#waybar {
+    background: transparent;
+    color: @blue;
+}
+#workspaces {
+    background: @panel;
+    border-radius: 5px;
+    margin: 3px 0;
+    padding: 0 3px;
+}
+#workspaces button {
+    background: transparent;
+    color: @muted;
+    padding: 0 6px;
+    margin: 0;
+    min-width: 10px;
+    border-radius: 4px;
+    box-shadow: none;
+    text-shadow: none;
+    font-size: 10px;
+}
+#workspaces button.active { color: @blue; background: @panel; }
+#workspaces button:hover { color: @blue; background: @panel; }
+#workspaces button.urgent { color: #edb1be; background: #493344; }
+#clock, #cpu, #temperature, #memory, #wireplumber, #network, #battery, #power-profiles-daemon, #custom-lock {
+    background: @panel;
+    border-radius: 5px;
+    padding: 0 7px;
+    margin: 3px 0;
+}
+#tray { padding: 0 5px; margin: 3px 0; }
+#wireplumber, #network { color: @blue; }
+#cpu, #temperature, #memory, #power-profiles-daemon, #battery { color: @purple; }
+#clock { color: #cc9fa9; padding: 0 10px; }
+#custom-lock { color: #99aecb; padding: 0 8px; }
+#custom-lock:hover { background: @panel; color: @blue; }
+#wireplumber.muted, #network.disconnected { color: @muted; }
+#power-profiles-daemon.power-saver, #battery.charging, #battery.plugged { color: #9bbcac; }
+#battery.warning:not(.charging):not(.plugged) { color: #d9bd91; }
+#battery.critical:not(.charging):not(.plugged) { color: #ef9eaf; background: #493344; }
+tooltip {
+    background: @panel;
+    color: #c3cddd;
+    border: 1px solid #46516a;
+    border-radius: 6px;
+}
+tooltip label { padding: 5px; }

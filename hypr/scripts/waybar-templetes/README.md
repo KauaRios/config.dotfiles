@@ -2,6 +2,7 @@
 
 Estes modelos não estão instalados e não são iniciados pelo Hyprland.
 
+- `original`: seu modelo anterior, recuperado do backup anterior à primeira troca; barra superior compacta.
 - `orbit`: barra inferior flutuante, painel arredondado, workspaces em cápsulas e relógio central grande.
 - `ribbon`: faixa superior contínua, cantos retos, workspaces sublinhados e relógio central em bloco de destaque.
 
