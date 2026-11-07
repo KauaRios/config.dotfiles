@@ -28,6 +28,8 @@ hl = { dsp = setmetatable({ exec_cmd = function(command) return command end }, {
     actions[keys] = action
 end }
 dofile(arg[1] .. "/hypr/lua/keybinds.lua")
+assert(actions["SUPER + SHIFT + R"] == 'python3 "${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/waybar.py"')
+assert(seen["SUPER + SHIFT + R"] == "Escolher modelo da Waybar")
 assert(count >= 50, "Os loops de workspaces precisam ser expandidos")
 assert(seen["SUPER + H"] == "Consultar atalhos")
 assert(actions["SUPER + H"] == 'kitty -e lua "${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/cheat_sheet.lua"')
