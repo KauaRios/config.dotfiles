@@ -22,3 +22,11 @@ Execute `python3 ~/.config/hypr/scripts/waybar.py` para escolher pelo Rofi. Esca
 O script usa cópias simples com shutil.copy2 e preserva colors.css. O primeiro backup fica em `${XDG_STATE_HOME:-~/.local/state}/dotfiles-waybar/original`. Para recuperar esse backup manualmente, copie seus arquivos config e style.css para a pasta ativa da Waybar. Os modelos continuam disponíveis após a troca.
 
 A versão simplificada não possui opções --list, --template ou --restore, lock nem escrita atômica. Evite executar duas trocas simultâneas. Uma falha durante a cópia pode exigir restauração manual do backup. JSON é validado antes da cópia; CSS e aparência devem ser conferidos ao criar os modelos. Nenhuma troca é aplicada apenas por instalar o script.
+
+## Novos modelos
+
+- **Ember**: reference1.png; blocos escuros retangulares com destaque da paleta.
+- **Astral**: reference2.png; painel compacto com título central e workspaces à esquerda.
+- **Tsuki**: criação autoral, três painéis flutuantes arredondados, lua e relógio com data.
+
+Todos mantêm colors.css separado e usam a paleta dinâmica. São descobertos automaticamente pelo seletor.

@@ -1,0 +1,103 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "margin-top": 5,
+  "margin-left": 12,
+  "margin-bottom": 0,
+  "margin-right": 12,
+  "spacing": 0,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "mpris"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "network",
+    "wireplumber",
+    "cpu",
+    "battery",
+    "custom/lock"
+  ],
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{name}",
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "clock": {
+    "format": "{:%A %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "▦  {:%d.%m.%Y}"
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "◉ {usage}%",
+    "max-length": 10,
+    "tooltip-format": "Processador: {usage}%"
+  },
+  "wireplumber": {
+    "format": "♪ {volume}%",
+    "format-muted": "♩  —",
+    "format-icons": [
+      "♩",
+      "♪",
+      "♫"
+    ],
+    "tooltip-format": "Volume: {volume}%"
+  },
+  "network": {
+    "format-wifi": "⌁ {signalStrength}%",
+    "format-ethernet": "⇆ {ifname}",
+    "format-disconnected": "⊘",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
+    "max-length": 12,
+    "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
+    "on-click": "kcmshell6 kcm_networkmanagement"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "▰ {capacity}%",
+    "format-charging": "ϟ  {capacity}%",
+    "format-plugged": "ϟ  {capacity}%",
+    "format-icons": [
+      "▱",
+      "▱",
+      "▰",
+      "▰",
+      "▰"
+    ]
+  },
+  "custom/lock": {
+    "format": "⏻",
+    "on-click": "hyprlock",
+    "tooltip-format": "Bloquear a sessão"
+  },
+  "custom/launcher": {
+    "format": "▣",
+    "on-click": "rofi -show drun",
+    "tooltip-format": "Abrir aplicativos"
+  },
+  "mpris": {
+    "format": "♪ {artist} · {title}",
+    "format-paused": "Ⅱ {title}",
+    "max-length": 28
+  }
+}
