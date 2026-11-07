@@ -21,7 +21,7 @@ class WallpaperTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             image = Path(d, 'anime girl.jpg')
             image.touch()
-            with patch.object(w.sp, 'run', return_value=subprocess.CompletedProcess([], 0, '0\n', '')):
+            with patch.object(w.sp, 'run', return_value=subprocess.CompletedProcess([], 0, 'anime girl.jpg\n', '')):
                 self.assertEqual(w.choose(Path(d)), image)
 
     def test_invalid_color_rejected(self):
@@ -71,3 +71,19 @@ class WallpaperTests(unittest.TestCase):
         colors = {key: {'dark': {'color': '#123456'}} for key in ('surface', 'on_surface', 'primary', 'secondary', 'outline')}
         with patch.object(w, 'run', return_value=subprocess.CompletedProcess([], 0, json.dumps({'colors': colors}), '')):
             self.assertEqual(w.palette(Path('test.jpg'))['primary'], '#123456')
+
+    def test_wofi_rejects_unknown_selection(self):
+        with tempfile.TemporaryDirectory() as d:
+            Path(d, 'girl.jpg').touch()
+            with patch.object(w.sp, 'run', return_value=subprocess.CompletedProcess([], 0, '../other.jpg\n', '')):
+                with self.assertRaises(ValueError):
+                    w.choose(Path(d))
+
+    def test_wofi_css_parses(self):
+        try:
+            import gi
+            gi.require_version('Gtk', '3.0')
+            from gi.repository import Gtk
+        except (ImportError, ValueError):
+            self.skipTest('GTK 3 indisponível')
+        Gtk.CssProvider().load_from_path(str(Path(__file__).resolve().parents[1] / 'wofi/style.css'))

@@ -3,7 +3,7 @@
 ---------------------
 local terminal    = "kitty"
 local fileManager = "dolphin"
-local menu        = "rofi -show drun"
+local menu        = "wofi --show drun"
 local firefox     = "firefox"
 
 return {

@@ -20,7 +20,7 @@ local atalhos = {
 
     -- Aplicativos e Menus
     { tecla = "SUPER + E",             acao = "Gerenciador de Arquivos" },
-    { tecla = "SUPER + R",             acao = "Menu de Aplicativos (Rofi)" },
+    { tecla = "SUPER + R",             acao = "Menu de Aplicativos (Wofi)" },
     { tecla = "SUPER + B",             acao = "Firefox" },
     { tecla = "SUPER + H",             acao = "Menu de Ajuda (Esta tela)" },
 
