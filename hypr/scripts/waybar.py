@@ -45,7 +45,11 @@ def aplicar_template(origem, destino, backup):
         shutil.copy2(destino / 'config', backup / 'config')
         shutil.copy2(destino / 'style.css', backup / 'style.css')
 
-    # Copia somente o modelo; colors.css continua com a paleta atual.
+    # Alguns modelos possuem ícones/CSS auxiliares referenciados pelo estilo.
+    if (origem / 'assets').is_dir():
+        shutil.copytree(origem / 'assets', destino / 'assets', dirs_exist_ok=True)
+
+    # Copia o modelo; colors.css continua com a paleta atual.
     shutil.copy2(origem / 'config', destino / 'config')
     shutil.copy2(origem / 'style.css', destino / 'style.css')
 

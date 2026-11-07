@@ -75,7 +75,7 @@
     "tooltip-format": "CPU: {temperatureC}°C"
   },
   "custom/launcher": {
-    "format": " ",
+    "format": "​",
     "on-click": "rofi -show drun",
     "tooltip-format": "Arch Linux · abrir aplicativos"
   },

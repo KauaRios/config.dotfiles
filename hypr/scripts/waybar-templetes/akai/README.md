@@ -8,6 +8,8 @@ Não foi inventada uma segunda temperatura: a captura possui sensores cuja orige
 
 JSON e CSS validados sem aplicação. A aparência não foi comparada na sessão gráfica. Abra Super+Shift+R e escolha akai para aplicar quando desejar.
 
-## Contraste e marca
+## Fidelidade à referência
 
-Workspace ativo usa fundo principal preenchido, texto escuro, negrito e sublinhado; vazios são discretos e os demais mantêm texto secundário. O hover não apaga a seleção. O launcher usa a silhueta do Arch Linux em SVG, obtida de /usr/share/pixmaps/archlinux-logo.svg (archlinux-artwork), incorporada como data URI no CSS para funcionar após a cópia do modelo. O símbolo é escuro sobre o destaque dinâmico e não depende de fonte de ícones.
+Workspace ativo verde, demais números na cor principal, sem caixas ou sublinhados. O verde fica separado em assets/akai-colors.css; é uma cor fixa de estado para manter a distinção mesmo quando a paleta principal muda. O restante mantém colors.css dinâmico.
+
+O launcher usa o SVG local assets/akai-arch.svg, silhueta do arquivo distribuído por archlinux-artwork, em preto sobre a cor principal, com recorte diagonal. O format contém um caractere de largura zero em vez de espaço vazio para manter o módulo presente. O seletor agora copia a pasta assets dos modelos antes do CSS. Não depende de fonte de ícones nem de data URI.

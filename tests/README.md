@@ -65,3 +65,5 @@ Para rodar somente os quatro testes do seletor, mostrando a descrição de cada 
 ```bash
 python3 -B -m unittest discover -s tests -p test_waybar_templates.py -v
 ```
+
+O teste `test_optional_assets_are_copied_without_changing_palette` verifica que recursos locais (ícones/CSS auxiliar) acompanham a cópia do modelo e que a paleta ativa continua intacta. Ele não verifica renderização do SVG.

@@ -50,3 +50,18 @@ class WaybarTemplateTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 w.aplicar_template(source, dest, root/'backup')
             self.assertEqual(list(dest.iterdir()), [])
+
+    def test_optional_assets_are_copied_without_changing_palette(self):
+        """Ícones locais acompanham o CSS, e colors.css ativo é preservado."""
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d); source = root / 'model'; dest = root / 'active'
+            (source / 'assets').mkdir(parents=True); dest.mkdir()
+            (source / 'config').write_text('{}')
+            (source / 'style.css').write_text('new')
+            (source / 'assets/icon.svg').write_text('<svg/>')
+            (dest / 'config').write_text('{}')
+            (dest / 'style.css').write_text('old')
+            (dest / 'colors.css').write_text('palette')
+            w.aplicar_template(source, dest, root / 'backup')
+            self.assertEqual((dest / 'assets/icon.svg').read_text(), '<svg/>')
+            self.assertEqual((dest / 'colors.css').read_text(), 'palette')

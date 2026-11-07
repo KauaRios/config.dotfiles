@@ -32,3 +32,5 @@ A versão simplificada não possui opções --list, --template ou --restore, loc
 Todos mantêm colors.css separado e usam a paleta dinâmica. São descobertos automaticamente pelo seletor.
 
 - **Akai**: nova reference1.png, faixa técnica com recortes diagonais e título central destacado; cores dinâmicas separadas.
+
+Modelos também podem conter `assets/`: o seletor copia essa pasta para a Waybar ativa, para ícones e CSS auxiliar. Arquivos antigos dessa pasta são mantidos para não quebrar estilos de backup. Akai usa esse mecanismo para seu SVG Arch e a cor de estado verde da referência.
