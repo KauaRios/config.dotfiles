@@ -1,16 +1,16 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 38,
-  "margin-top": 8,
-  "margin-left": 16,
+  "height": 36,
+  "margin-top": 6,
+  "margin-left": 12,
   "margin-bottom": 0,
-  "margin-right": 16,
+  "margin-right": 12,
   "spacing": 0,
   "modules-left": [
     "custom/launcher",
     "hyprland/window",
-    "wireplumber",
+    "group/audio",
     "cpu",
     "memory"
   ],
@@ -18,15 +18,15 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "idle_inhibitor",
-    "bluetooth",
+    "custom/bindings",
+    "group/controls",
     "network",
     "battery",
     "clock",
     "tray"
   ],
   "hyprland/workspaces": {
-    "all-outputs": true,
+    "all-outputs": false,
     "format": "{name}",
     "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
     "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
@@ -64,9 +64,9 @@
     "tooltip-format": "Volume: {volume}%"
   },
   "network": {
-    "format-wifi": "⌁",
+    "format-wifi": "⌁ {signalStrength}%",
     "format-ethernet": "⇆",
-    "format-disconnected": "⊘",
+    "format-disconnected": "⌁ ×",
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
     "max-length": 12,
@@ -94,13 +94,13 @@
     "icon-size": 16
   },
   "custom/launcher": {
-    "format": "◈",
+    "format": "❄",
     "on-click": "rofi -show drun",
     "tooltip-format": "Abrir aplicativos"
   },
   "hyprland/window": {
     "format": "{title}",
-    "max-length": 24,
+    "max-length": 28,
     "separate-outputs": true
   },
   "backlight": {
@@ -128,5 +128,41 @@
   "memory": {
     "format": "▤ {percentage}%",
     "interval": 5
+  },
+  "group/audio": {
+    "orientation": "horizontal",
+    "modules": [
+      "wireplumber",
+      "wireplumber#source"
+    ]
+  },
+  "wireplumber#source": {
+    "node-type": "Audio/Source",
+    "format": "♩ {volume}%",
+    "format-muted": "♩ ×",
+    "tooltip-format": "Microfone: {volume}%"
+  },
+  "group/controls": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/lock",
+      "idle_inhibitor",
+      "custom/wallpaper"
+    ]
+  },
+  "custom/bindings": {
+    "format": "⌨ Bindings",
+    "on-click": "kitty -e lua \"${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/cheat_sheet.lua\"",
+    "tooltip-format": "Consultar atalhos"
+  },
+  "custom/lock": {
+    "format": "⏻",
+    "on-click": "hyprlock",
+    "tooltip-format": "Bloquear sessão"
+  },
+  "custom/wallpaper": {
+    "format": "▧",
+    "on-click": "python3 \"${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/wallpaper.py\"",
+    "tooltip-format": "Escolher wallpaper"
   }
 }

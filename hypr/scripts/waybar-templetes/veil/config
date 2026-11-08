@@ -1,11 +1,11 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 38,
-  "margin-top": 8,
-  "margin-left": 16,
+  "height": 36,
+  "margin-top": 6,
+  "margin-left": 12,
   "margin-bottom": 0,
-  "margin-right": 16,
+  "margin-right": 12,
   "spacing": 0,
   "modules-left": [
     "custom/launcher",
@@ -18,13 +18,12 @@
   "modules-right": [
     "battery",
     "wireplumber",
+    "hyprland/language",
     "network",
-    "bluetooth",
-    "idle_inhibitor",
-    "tray"
+    "custom/lock"
   ],
   "hyprland/workspaces": {
-    "all-outputs": true,
+    "all-outputs": false,
     "format": "{name}",
     "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
     "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
@@ -59,12 +58,12 @@
     "tooltip-format": "Volume: {volume}%"
   },
   "network": {
-    "format-wifi": "⌁ {essid}",
+    "format-wifi": "⌁ {essid} ({signalStrength}%)",
     "format-ethernet": "⇆",
     "format-disconnected": "⊘",
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
-    "max-length": 18,
+    "max-length": 22,
     "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
     "on-click": "kcmshell6 kcm_networkmanagement"
   },
@@ -89,13 +88,13 @@
     "icon-size": 16
   },
   "custom/launcher": {
-    "format": "Λ",
+    "format": "​",
     "on-click": "rofi -show drun",
     "tooltip-format": "Abrir aplicativos"
   },
   "hyprland/window": {
     "format": "{title}",
-    "max-length": 24,
+    "max-length": 28,
     "separate-outputs": true
   },
   "backlight": {
@@ -123,5 +122,15 @@
   "memory": {
     "format": "▤ {percentage}%",
     "interval": 5
+  },
+  "hyprland/language": {
+    "format": "{short}",
+    "keyboard-name": "",
+    "tooltip": false
+  },
+  "custom/lock": {
+    "format": "⏻",
+    "on-click": "hyprlock",
+    "tooltip-format": "Bloquear sessão"
   }
 }

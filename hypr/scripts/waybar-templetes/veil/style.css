@@ -1,22 +1,20 @@
 @import "colors.css";
-* { font-family: "DejaVu Sans", "Noto Sans Symbols 2", sans-serif; font-size: 13px; min-height: 0; border: none; padding: 0; margin: 0; }
+* { font-family: "DejaVu Sans", "Noto Sans Symbols 2", sans-serif; font-size: 13px; min-height: 0; border: none; border-radius: 0; padding: 0; margin: 0; }
 window#waybar { background: transparent; color: @blue; }
-#workspaces button { color: @muted; background: transparent; box-shadow: none; text-shadow: none; min-width: 25px; padding: 0 5px; border-radius: 14px; }
-#workspaces button.active { color: @panel; background: @blue; }
-#workspaces button:hover { background: alpha(@blue, 0.25); color: @blue; }
+#workspaces button { background: transparent; color: @muted; box-shadow: none; text-shadow: none; padding: 0 5px; }
+#workspaces button:hover { color: @blue; background: alpha(@blue, 0.15); }
 #workspaces button.urgent { background: @purple; color: @panel; }
-#custom-launcher { font-size: 19px; padding: 0 12px; }
-#window { padding: 0 12px; }
-#clock, #cpu, #memory, #network, #wireplumber, #battery, #tray, #bluetooth, #idle_inhibitor { padding: 0 10px; }
 #battery.warning { color: @purple; }
 #battery.critical { background: @purple; color: @panel; }
-#network.disconnected, #wireplumber.muted { color: @muted; }
-tooltip { background: @panel; color: @blue; border: 1px solid @muted; border-radius: 10px; }
+tooltip { background: @panel; color: @blue; border: 1px solid @muted; border-radius: 8px; }
 tooltip label { padding: 8px; }
-/* Veil: três ilhas discretas sobre uma faixa translúcida, referência 2. */
-window#waybar { background: alpha(@panel, 0.35); border-radius: 10px; }
-.modules-left, .modules-center, .modules-right { background: alpha(@panel, 0.85); border-radius: 16px; margin: 4px 5px; padding: 0 3px; }
-#workspaces button { margin: 3px 1px; min-width: 20px; border-radius: 6px; }
-#workspaces button.active { background: alpha(@blue, 0.20); color: @blue; border-bottom: 2px solid @blue; }
-#window, #clock { color: @purple; }
-#battery, #wireplumber, #network, #bluetooth { padding: 0 8px; }
+/* Faixa de vidro contínua e três ilhas escuras, como a referência 2. */
+window#waybar { background: alpha(@panel, 0.32); color: @blue; }
+.modules-left, .modules-center, .modules-right { background: alpha(@panel, 0.88); border-radius: 16px; margin: 4px 7px; padding: 0 6px; }
+#custom-launcher { background-image: url("assets/veil-arch.svg"); background-size: 18px 18px; background-position: center; background-repeat: no-repeat; min-width: 28px; }
+#workspaces button { min-width: 18px; padding: 0 3px; margin: 3px 0; }
+#workspaces button.active { color: @blue; background: transparent; border-bottom: 2px solid @blue; }
+#window { color: @blue; padding: 0 7px; }
+#clock { color: @blue; padding: 0 8px; }
+#battery, #wireplumber, #language, #network { padding: 0 7px; }
+#custom-lock { padding: 0 7px; font-size: 16px; }

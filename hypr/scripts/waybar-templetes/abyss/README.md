@@ -1,5 +1,5 @@
 # Abyss
 
-Baseado na referência 1 enviada pelo usuário. Altura solicitada de 38px, fonte de 13px e ícones de bandeja de 16px para tamanho intermediário. As cores vêm do colors.css separado, ligado à paleta dinâmica.
+Referência 1: segmentos escuros com entrada diagonal e canto inferior direito arredondado; áudio e microfone juntos; workspaces centrais circulares com ativo alongado; atalhos, controles, rede, bateria e relógio à direita.
 
-Selecione pelo menu de modelos da Waybar. O modelo não é aplicado ao ser criado. Ícones usam caracteres Unicode; o lançador abre Rofi. Conteúdo real (janela, rede e métricas) substitui os textos da referência.
+Altura de 36px e fonte de 13px para tamanho intermediário. A paleta é importada do colors.css separado. Valores exibidos são reais; não são os números estáticos da captura. Use o seletor para aplicar novamente o modelo.

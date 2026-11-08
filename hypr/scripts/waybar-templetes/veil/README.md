@@ -1,5 +1,5 @@
 # Veil
 
-Baseado na referência 2 enviada pelo usuário. Altura solicitada de 38px, fonte de 13px e ícones de bandeja de 16px para tamanho intermediário. As cores vêm do colors.css separado, ligado à paleta dinâmica.
+Referência 2: faixa translúcida contínua, ilha esquerda com logo Arch em SVG, workspaces e título; relógio central; bateria, volume, idioma, rede e bloqueio na ilha direita. O SVG é claro para reproduzir o símbolo da captura e não depende de fonte de ícones.
 
-Selecione pelo menu de modelos da Waybar. O modelo não é aplicado ao ser criado. Ícones usam caracteres Unicode; o lançador abre Rofi. Conteúdo real (janela, rede e métricas) substitui os textos da referência.
+Altura de 36px e fonte de 13px para tamanho intermediário. A paleta é importada do colors.css separado. Valores exibidos são reais; não são os números estáticos da captura. Use o seletor para aplicar novamente o modelo.
