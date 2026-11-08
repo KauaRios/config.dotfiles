@@ -2,6 +2,11 @@
 ---- LOOK AND FEEL ----
 -----------------------
 hl.config({
+    render = {
+        -- Evita alternar automaticamente para HDR ao entrar em tela cheia.
+        cm_auto_hdr = 0,
+    },
+
     general = {
         gaps_in  = 5,
         gaps_out = 10,
