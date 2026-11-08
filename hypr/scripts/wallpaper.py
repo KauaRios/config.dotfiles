@@ -47,17 +47,19 @@ def choose(folder):
     images = sorted(images)
     if not images:
         raise ValueError('Nenhuma imagem na pasta ' + str(folder))
-    # Cada linha contém o nome visível e o caminho da miniatura para o Rofi.
+    # thumbnail:// solicita o gerador de miniaturas do sistema, com cache do Rofi.
     entries = []
     for image in images:
         name = str(image.relative_to(folder))
-        entries.append(name + '\0icon\x1f' + str(image.resolve()))
+        entries.append(name + '\0icon\x1fthumbnail://' + str(image.resolve()))
     theme = CONFIG / 'rofi/wallpapers.rasi'
     result = sp.run(
         ['rofi', '-no-config', '-dmenu', '-i', '-no-custom', '-format', 'i',
-         '-show-icons', '-theme', str(theme), '-p', 'Wallpapers'],
+         '-show-icons', '-theme', str(theme)],
         input='\n'.join(entries), text=True, capture_output=True,
     )
+    if result.stderr:
+        print(result.stderr.strip())
     if result.returncode == 1:
         return None
     result.check_returncode()

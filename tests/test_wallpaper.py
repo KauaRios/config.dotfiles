@@ -85,8 +85,8 @@ class WallpaperTests(unittest.TestCase):
             self.assertIn('-show-icons', command)
             self.assertIn(str(w.CONFIG / 'rofi/wallpapers.rasi'), command)
             self.assertEqual(run.call_args.kwargs['input'],
-                             'a/foto bonita.jpg\0icon\x1f' + str(first.resolve()) + '\n' +
-                             'b/foto bonita.jpg\0icon\x1f' + str(second.resolve()))
+                             'a/foto bonita.jpg\0icon\x1fthumbnail://' + str(first.resolve()) + '\n' +
+                             'b/foto bonita.jpg\0icon\x1fthumbnail://' + str(second.resolve()))
 
     def test_gallery_ignores_control_characters_in_names(self):
         """Nomes não podem injetar outra linha ou campo no protocolo do Rofi."""
@@ -97,7 +97,7 @@ class WallpaperTests(unittest.TestCase):
             (folder / 'bad\nname.jpg').touch()
             with patch.object(w.sp, 'run', return_value=subprocess.CompletedProcess([], 0, '0\n', '')) as run:
                 self.assertEqual(w.choose(folder), good.resolve())
-            self.assertEqual(run.call_args.kwargs['input'], 'safe.jpg\0icon\x1f' + str(good.resolve()))
+            self.assertEqual(run.call_args.kwargs['input'], 'safe.jpg\0icon\x1fthumbnail://' + str(good.resolve()))
 
     def test_gallery_theme_parses(self):
         """O Rofi real valida o tema; não abre a galeria nem comprova renderização das imagens."""

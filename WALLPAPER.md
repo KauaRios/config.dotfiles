@@ -49,9 +49,9 @@ A execução sem terminal agora fornece `--source-color-index 0`, escolhendo a c
 
 ## Galeria visual de wallpapers
 
-O menu exclusivo `rofi/wallpapers.rasi` segue a referência de cartões horizontais: quatro colunas, imagem acima do nome, fundo escuro, contorno fino e seleção preenchida com a cor principal. Tem busca por nome e indicação de teclas. A largura padrão é 1000px; abaixo de 1100px usa 92% da tela, e abaixo de 700px passa para duas colunas. As miniaturas preservam a proporção; não há recorte forçado.
+O menu exclusivo `rofi/wallpapers.rasi` segue a referência de cartões horizontais: quatro colunas, imagem acima do nome, fundo escuro, contorno fino e seleção preenchida com a cor principal. Mostra somente a lista de cartões, sem campo de pesquisa e sem rodapé. A largura padrão é 900px; abaixo de 1100px usa 92% da tela, e abaixo de 700px passa para duas colunas. As miniaturas preservam a proporção; não há recorte forçado.
 
-`choose()` envia cada nome relativo e o campo nativo `icon` com o caminho absoluto da imagem. O Rofi carrega as miniaturas; não há conversão por ImageMagick nem dependência nova. A seleção continua retornando o índice original, para distinguir nomes iguais em subpastas. Escape mantém a imagem atual. Nomes longos podem aparecer abreviados visualmente, mas continuam disponíveis para a busca.
+`choose()` envia cada nome relativo e o campo nativo `icon` com `thumbnail://` seguido do caminho absoluto da imagem. O Rofi usa um thumbnailer XDG do sistema e seu cache. Neste sistema, glycin-thumbnailer já está instalado e declara suporte a JPEG, PNG e WebP. Em outra instalação, é necessário um thumbnailer para esses formatos. A seleção continua retornando o índice original, para distinguir nomes iguais em subpastas. Escape mantém a imagem atual. Nomes longos podem aparecer abreviados visualmente. Use as setas para navegar, Enter para aplicar e Escape para fechar.
 
 O tema importa `rofi/colors.rasi` (bg, fg, accent), que já recebe cores do Matugen. O argumento `-no-config` isola o seletor das configurações do launcher, e `-theme` carrega somente o tema da galeria. Super+R e o seletor de Waybar permanecem com o tema anterior. Super+W já chama o script atualizado: basta fechar e abrir o menu.
 
@@ -62,3 +62,5 @@ Arquivos desta mudança:
 - `tests/README.md` e este documento: cobertura e instruções.
 
 Validação da galeria: 55 testes passaram e 4 foram ignorados. O Rofi instalado aceitou o tema. Os testes simulam seleção e verificam os caminhos das miniaturas; não comprovam decodificação/renderização real das imagens. A sessão gráfica não é acessível neste ambiente, portanto a aparência não foi comparada pixel a pixel com a referência. A cor selecionada acompanha o wallpaper, em vez de ficar rosa fixa.
+
+Correção da galeria: removidos inputbar e texto de ajuda; o ícone de cada item solicita agora uma miniatura XDG. Mensagens stderr do Rofi são exibidas pelo script para diagnosticar falhas de imagem. O carregamento gráfico ainda não pôde ser validado neste ambiente por bloqueio de D-Bus/Wayland.
