@@ -66,3 +66,5 @@ Validação da galeria: 55 testes passaram e 4 foram ignorados. O Rofi instalado
 Correção da galeria: removidos inputbar e texto de ajuda; o ícone de cada item solicita agora uma miniatura XDG. Mensagens stderr do Rofi são exibidas pelo script para diagnosticar falhas de imagem. O carregamento gráfico ainda não pôde ser validado neste ambiente por bloqueio de D-Bus/Wayland.
 
 Estabilidade do layout: a janela, a lista e os cartões têm altura explícita; as miniaturas reservam uma área quadrada mesmo durante o carregamento. A regra anterior de 92% abaixo de 1100px foi removida, pois podia deixar o menu mais largo em um monitor menor. A renderização ainda precisa ser conferida na sessão real.
+
+Abertura da galeria: `-sync` faz o Rofi consumir toda a lista enviada pelo Python antes de exibir o menu, evitando construir o layout com uma lista parcial. Isso não torna a decodificação das miniaturas síncrona. A validação automatizada confere o argumento e o protocolo; a estabilidade visual em aberturas repetidas precisa ser confirmada na sessão real.

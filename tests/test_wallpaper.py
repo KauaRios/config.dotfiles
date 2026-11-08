@@ -83,6 +83,7 @@ class WallpaperTests(unittest.TestCase):
                 self.assertEqual(w.choose(folder), second.resolve())
             command = run.call_args.args[0]
             self.assertIn('-show-icons', command)
+            self.assertIn('-sync', command)
             self.assertIn(str(w.CONFIG / 'rofi/wallpapers.rasi'), command)
             self.assertEqual(run.call_args.kwargs['input'],
                              'a/foto bonita.jpg\0icon\x1fthumbnail://' + str(first.resolve()) + '\n' +

@@ -53,8 +53,9 @@ def choose(folder):
         name = str(image.relative_to(folder))
         entries.append(name + '\0icon\x1fthumbnail://' + str(image.resolve()))
     theme = CONFIG / 'rofi/wallpapers.rasi'
+    # A lista inteira deve estar pronta antes de abrir a galeria.
     result = sp.run(
-        ['rofi', '-no-config', '-dmenu', '-i', '-no-custom', '-format', 'i',
+        ['rofi', '-no-config', '-dmenu', '-sync', '-i', '-no-custom', '-format', 'i',
          '-show-icons', '-theme', str(theme)],
         input='\n'.join(entries), text=True, capture_output=True,
     )
