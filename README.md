@@ -1,6 +1,6 @@
 #  — Fedora / Arch
 
-![Wallpaper de anime com garota de cabelo branco](wallpapers/anime-girl-white-hair-background-hd-wallpaper-uhdpaper.com-763@5@t.jpg)
+![Demonstração das dotfiles com Hyprland, Waybar e wallpaper de anime](visual.png)
 
 
 Requer Hyprland 0.55 ou superior, com configuração exclusivamente Lua.
