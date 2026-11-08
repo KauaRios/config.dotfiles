@@ -49,7 +49,7 @@ A execução sem terminal agora fornece `--source-color-index 0`, escolhendo a c
 
 ## Galeria visual de wallpapers
 
-O menu exclusivo `rofi/wallpapers.rasi` segue a referência de cartões horizontais: quatro colunas, imagem acima do nome, fundo escuro, contorno fino e seleção preenchida com a cor principal. Mostra somente a lista de cartões, sem campo de pesquisa e sem rodapé. A geometria padrão é 900×300px, com cartões de 240px e área quadrada de miniatura. Abaixo de 940px passa para duas colunas em uma janela de 480px; somente em telas menores que 520px usa largura percentual. As miniaturas preservam a proporção; não há recorte forçado.
+O menu exclusivo `rofi/wallpapers.rasi` segue a referência de cartões horizontais: quatro colunas, imagem acima do nome, fundo escuro, contorno fino e seleção preenchida com a cor principal. Mostra somente a lista de cartões, sem campo de pesquisa e sem rodapé. O layout segue o arquivo Rasi fornecido pelo usuário: largura de 900px, quatro colunas, uma linha, padding de 30px no mainbox e 20px nos cartões, ícones de 160px e margem de 10px acima do nome. Não há alturas explícitas nem regras de largura por monitor; a altura é calculada pelo Rofi.
 
 `choose()` envia cada nome relativo e o campo nativo `icon` com `thumbnail://` seguido do caminho absoluto da imagem. O Rofi usa um thumbnailer XDG do sistema e seu cache. Neste sistema, glycin-thumbnailer já está instalado e declara suporte a JPEG, PNG e WebP. Em outra instalação, é necessário um thumbnailer para esses formatos. A seleção continua retornando o índice original, para distinguir nomes iguais em subpastas. Escape mantém a imagem atual. Nomes longos podem aparecer abreviados visualmente. Use as setas para navegar, Enter para aplicar e Escape para fechar.
 
@@ -57,7 +57,7 @@ O tema importa `rofi/colors.rasi` (bg, fg, accent), que já recebe cores do Matu
 
 Arquivos desta mudança:
 - `hypr/scripts/wallpaper.py`: geração das entradas com miniaturas e uso do tema exclusivo.
-- `rofi/wallpapers.rasi`: layout, tipografia, estados de seleção e adaptação à largura.
+- `rofi/wallpapers.rasi`: layout da referência, tipografia e estados de seleção.
 - `tests/test_wallpaper.py`: testes de miniaturas, seleção por índice, caracteres especiais e leitura do tema pelo Rofi.
 - `tests/README.md` e este documento: cobertura e instruções.
 
@@ -65,6 +65,6 @@ Validação da galeria: 55 testes passaram e 4 foram ignorados. O Rofi instalado
 
 Correção da galeria: removidos inputbar e texto de ajuda; o ícone de cada item solicita agora uma miniatura XDG. Mensagens stderr do Rofi são exibidas pelo script para diagnosticar falhas de imagem. O carregamento gráfico ainda não pôde ser validado neste ambiente por bloqueio de D-Bus/Wayland.
 
-Estabilidade do layout: a janela, a lista e os cartões têm altura explícita; as miniaturas reservam uma área quadrada mesmo durante o carregamento. A regra anterior de 92% abaixo de 1100px foi removida, pois podia deixar o menu mais largo em um monitor menor. A renderização ainda precisa ser conferida na sessão real.
+Adaptação da referência Rasi: removidas as alturas explícitas, a área quadrada forçada e as media queries acrescentadas anteriormente. Os imports shared/colors.rasi e shared/fonts.rasi foram substituídos pelo colors.rasi local e pela fonte DejaVu Sans 11. Os nomes background e background-alt apontam para bg; selected aponta para accent. Assim, as cores continuam dinâmicas sem novos arquivos gerados. A paleta atual não fornece um segundo fundo, portanto os dois fundos usam a mesma cor. Essa mudança reproduz a estrutura fornecida; não comprova que a variação entre aberturas esteja resolvida.
 
 Abertura da galeria: `-sync` faz o Rofi consumir toda a lista enviada pelo Python antes de exibir o menu, evitando construir o layout com uma lista parcial. Isso não torna a decodificação das miniaturas síncrona. A validação automatizada confere o argumento e o protocolo; a estabilidade visual em aberturas repetidas precisa ser confirmada na sessão real.

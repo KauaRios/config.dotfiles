@@ -1,78 +1,77 @@
-/* Galeria de wallpapers: tema independente do launcher de aplicativos. */
+/* Referência enviada pelo usuário, com a paleta dinâmica local. */
+configuration {
+    show-icons: true;
+}
 @import "colors.rasi"
 
 * {
     font: "DejaVu Sans 11";
-    background-color: transparent;
-    text-color: @fg;
-    border-color: @accent;
+    background: @bg;
+    background-alt: @bg;
+    selected: @accent;
 }
+
 window {
+    transparency: "real";
     location: center;
     anchor: center;
+    fullscreen: false;
     width: 900px;
-    height: 300px;
-    background-color: @bg;
-    border: 2px;
-    border-color: @accent;
-    border-radius: 3px;
-    padding: 28px;
-    children: [ mainbox ];
+    border: 1px solid;
+    border-radius: 2px;
+    border-color: @selected;
+    background-color: @background;
 }
-mainbox { orientation: vertical; children: [ listview ]; expand: false; }
+
+mainbox {
+    spacing: 0px;
+    padding: 30px;
+    background-color: @background;
+    children: [ "listview" ];
+}
+
 listview {
-    expand: false;
-    height: 240px;
     columns: 4;
     lines: 1;
-    flow: horizontal;
+    spacing: 20px;
     layout: vertical;
     fixed-columns: true;
     fixed-height: true;
-    dynamic: false;
     scrollbar: false;
-    cycle: true;
-    spacing: 20px;
+    background-color: @background;
 }
+
 element {
-    height: 240px;
     orientation: vertical;
-    children: [ element-icon, element-text ];
-    background-color: @bg;
-    border: 1px;
-    border-color: @bg;
+    padding: 20px;
     border-radius: 2px;
-    padding: 24px 12px 18px;
-    spacing: 22px;
+    background-color: @background-alt;
+    text-color: @background;
 }
-element selected.normal, element selected.active {
-    background-color: @accent;
-    border-color: @accent;
-    text-color: @bg;
+
+element normal.normal {
+    background-color: @background-alt;
 }
+
+element selected.normal {
+    background-color: @selected;
+    text-color: @background;
+}
+
 element-icon {
-    size: 150px;
-    squared: true;
-    expand: false;
-    horizontal-align: 0.5;
-    vertical-align: 0.5;
+    size: 160px;
+    border-radius: 6px;
     background-color: transparent;
 }
+
 element-text {
-    expand: false;
+    margin: 10px 0px 0px 0px;
     horizontal-align: 0.5;
-    vertical-align: 0.5;
-    background-color: transparent;
-    text-color: inherit;
-    font: "DejaVu Sans 9";
+    background-color: @background-alt;
+    text-color: @selected;
 }
-/* Muda apenas o número de cartões quando não há largura para quatro. */
-@media (max-width: 940px) {
-    window { width: 480px; }
-    listview { columns: 2; }
-}
-@media (max-width: 520px) {
-    window { width: 92%; padding: 28px 12px; }
-    element-icon { size: 110px; }
-    listview { spacing: 12px; }
+
+element-text selected.normal {
+    background-color: @selected;
+    text-color: @background-alt;
 }
