@@ -1,6 +1,6 @@
 # Wallpaper e cores
 
-Super+W abre o Rofi com imagens de `${XDG_CONFIG_HOME:-~/.config}/wallpapers`, incluindo subpastas. A seleção é manual; Escape cancela sem modificar o tema. São listados PNG, JPG, JPEG e WebP. Nomes com espaços são suportados; nomes com quebra de linha são omitidos. O seletor lista nomes, sem miniaturas.
+Super+W abre o Rofi com imagens de `${XDG_CONFIG_HOME:-~/.config}/wallpapers`, incluindo subpastas. A seleção é manual; Escape cancela sem modificar o tema. São listados PNG, JPG, JPEG e WebP. Nomes com espaços são suportados; nomes com quebra de linha, retorno de carro ou separador de campos são omitidos. O seletor mostra cartões com miniaturas e nomes.
 
 ## Dependências
 
@@ -46,3 +46,19 @@ Os arquivos de cores iniciais e o Mako original estão no Git. Restaure esses ar
 ## Correção do Matugen 4.2
 
 A execução sem terminal agora fornece `--source-color-index 0`, escolhendo a cor dominante da imagem que o usuário selecionou. Isso não escolhe wallpapers aleatórios. O leitor aceita cores no formato atual `colors.primary.dark.color` e nos formatos anteriores. Erros do Matugen incluem o diagnóstico original na mensagem. A troca acontece na mesma sessão, sem precisar sair e entrar.
+
+## Galeria visual de wallpapers
+
+O menu exclusivo `rofi/wallpapers.rasi` segue a referência de cartões horizontais: quatro colunas, imagem acima do nome, fundo escuro, contorno fino e seleção preenchida com a cor principal. Tem busca por nome e indicação de teclas. A largura padrão é 1000px; abaixo de 1100px usa 92% da tela, e abaixo de 700px passa para duas colunas. As miniaturas preservam a proporção; não há recorte forçado.
+
+`choose()` envia cada nome relativo e o campo nativo `icon` com o caminho absoluto da imagem. O Rofi carrega as miniaturas; não há conversão por ImageMagick nem dependência nova. A seleção continua retornando o índice original, para distinguir nomes iguais em subpastas. Escape mantém a imagem atual. Nomes longos podem aparecer abreviados visualmente, mas continuam disponíveis para a busca.
+
+O tema importa `rofi/colors.rasi` (bg, fg, accent), que já recebe cores do Matugen. O argumento `-no-config` isola o seletor das configurações do launcher, e `-theme` carrega somente o tema da galeria. Super+R e o seletor de Waybar permanecem com o tema anterior. Super+W já chama o script atualizado: basta fechar e abrir o menu.
+
+Arquivos desta mudança:
+- `hypr/scripts/wallpaper.py`: geração das entradas com miniaturas e uso do tema exclusivo.
+- `rofi/wallpapers.rasi`: layout, tipografia, estados de seleção e adaptação à largura.
+- `tests/test_wallpaper.py`: testes de miniaturas, seleção por índice, caracteres especiais e leitura do tema pelo Rofi.
+- `tests/README.md` e este documento: cobertura e instruções.
+
+Validação da galeria: 55 testes passaram e 4 foram ignorados. O Rofi instalado aceitou o tema. Os testes simulam seleção e verificam os caminhos das miniaturas; não comprovam decodificação/renderização real das imagens. A sessão gráfica não é acessível neste ambiente, portanto a aparência não foi comparada pixel a pixel com a referência. A cor selecionada acompanha o wallpaper, em vez de ficar rosa fixa.

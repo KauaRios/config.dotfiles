@@ -1,0 +1,84 @@
+/* Galeria de wallpapers: tema independente do launcher de aplicativos. */
+@import "colors.rasi"
+
+* {
+    font: "DejaVu Sans 11";
+    background-color: transparent;
+    text-color: @fg;
+    border-color: @accent;
+}
+window {
+    location: center;
+    anchor: center;
+    width: 1000px;
+    background-color: @bg;
+    border: 2px;
+    border-color: @accent;
+    border-radius: 3px;
+    padding: 24px;
+    children: [ mainbox ];
+}
+mainbox { orientation: vertical; spacing: 20px; children: [ inputbar, listview, textbox-hint ]; }
+inputbar {
+    padding: 0px 4px 12px;
+    spacing: 16px;
+    border: 0px 0px 1px;
+    children: [ prompt, entry ];
+}
+prompt { text-color: @accent; }
+entry { placeholder: "Buscar uma imagem…"; expand: true; }
+listview {
+    columns: 4;
+    lines: 1;
+    flow: horizontal;
+    layout: vertical;
+    fixed-columns: true;
+    fixed-height: true;
+    dynamic: false;
+    scrollbar: false;
+    cycle: true;
+    spacing: 18px;
+}
+element {
+    orientation: vertical;
+    children: [ element-icon, element-text ];
+    background-color: @bg;
+    border: 1px;
+    border-color: @bg;
+    border-radius: 2px;
+    padding: 15px 10px;
+    spacing: 14px;
+}
+element selected.normal, element selected.active {
+    background-color: @accent;
+    border-color: @accent;
+    text-color: @bg;
+}
+element-icon {
+    size: 170px;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+    background-color: transparent;
+}
+element-text {
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+    background-color: transparent;
+    text-color: inherit;
+    font: "DejaVu Sans 9";
+}
+textbox-hint {
+    str: "← → escolher     Enter aplicar     Esc voltar";
+    horizontal-align: 0.5;
+    text-color: @fg;
+    font: "DejaVu Sans 9";
+}
+@media (max-width: 1100px) {
+    window { width: 92%; padding: 18px; }
+    element-icon { size: 130px; }
+    listview { spacing: 12px; }
+}
+@media (max-width: 700px) {
+    listview { columns: 2; }
+    element-icon { size: 110px; }
+}

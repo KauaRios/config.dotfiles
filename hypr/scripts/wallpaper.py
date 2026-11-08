@@ -36,11 +36,28 @@ def palette(image):
 
 
 def choose(folder):
-    images = sorted(p for p in folder.rglob('*') if p.suffix.lower() in ('.png', '.jpg', '.jpeg', '.webp') and p.is_file() and '\n' not in str(p))
+    images = []
+    for path in folder.rglob('*'):
+        if not path.is_file() or path.suffix.lower() not in ('.png', '.jpg', '.jpeg', '.webp'):
+            continue
+        # Esses caracteres separam linhas/campos no protocolo de entrada do Rofi.
+        if any(char in str(path) for char in ('\n', '\r', '\x1f')):
+            continue
+        images.append(path)
+    images = sorted(images)
     if not images:
         raise ValueError('Nenhuma imagem na pasta ' + str(folder))
-    result = sp.run(['rofi', '-dmenu', '-i', '-no-custom', '-format', 'i', '-p', 'Wallpaper'],
-                    input='\n'.join(str(p.relative_to(folder)) for p in images), text=True, capture_output=True)
+    # Cada linha contém o nome visível e o caminho da miniatura para o Rofi.
+    entries = []
+    for image in images:
+        name = str(image.relative_to(folder))
+        entries.append(name + '\0icon\x1f' + str(image.resolve()))
+    theme = CONFIG / 'rofi/wallpapers.rasi'
+    result = sp.run(
+        ['rofi', '-no-config', '-dmenu', '-i', '-no-custom', '-format', 'i',
+         '-show-icons', '-theme', str(theme), '-p', 'Wallpapers'],
+        input='\n'.join(entries), text=True, capture_output=True,
+    )
     if result.returncode == 1:
         return None
     result.check_returncode()

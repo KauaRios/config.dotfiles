@@ -67,3 +67,12 @@ python3 -B -m unittest discover -s tests -p test_waybar_templates.py -v
 ```
 
 O teste `test_optional_assets_are_copied_without_changing_palette` verifica que recursos locais (ícones/CSS auxiliar) acompanham a cópia do modelo e que a paleta ativa continua intacta. Ele não verifica renderização do SVG.
+
+## Galeria de wallpapers
+
+Em `test_wallpaper.py`:
+- `test_gallery_sends_thumbnail_paths_and_keeps_index_selection`: confere os campos icon com caminhos absolutos, nomes com espaços, subpastas com nomes repetidos e seleção pelo índice correto.
+- `test_gallery_ignores_control_characters_in_names`: verifica que nomes com separadores de linha/campo não entram no protocolo do Rofi.
+- `test_gallery_theme_parses`: executa o parser do Rofi real no tema exclusivo, sem abrir o menu.
+
+Os testes de cancelamento existentes continuam ativos. Nenhum desses testes garante a renderização visual das miniaturas; é necessário conferir Super+W na sessão Wayland.

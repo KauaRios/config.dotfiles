@@ -71,3 +71,39 @@ class WallpaperTests(unittest.TestCase):
         colors = {key: {'dark': {'color': '#123456'}} for key in ('surface', 'on_surface', 'primary', 'secondary', 'outline')}
         with patch.object(w, 'run', return_value=subprocess.CompletedProcess([], 0, json.dumps({'colors': colors}), '')):
             self.assertEqual(w.palette(Path('test.jpg'))['primary'], '#123456')
+
+    def test_gallery_sends_thumbnail_paths_and_keeps_index_selection(self):
+        """Miniaturas usam caminho absoluto; nomes repetidos em subpastas continuam distintos."""
+        with tempfile.TemporaryDirectory(prefix='gallery test ') as d:
+            folder = Path(d)
+            (folder / 'a').mkdir(); (folder / 'b').mkdir()
+            first = folder / 'a/foto bonita.jpg'; second = folder / 'b/foto bonita.jpg'
+            first.touch(); second.touch()
+            with patch.object(w.sp, 'run', return_value=subprocess.CompletedProcess([], 0, '1\n', '')) as run:
+                self.assertEqual(w.choose(folder), second.resolve())
+            command = run.call_args.args[0]
+            self.assertIn('-show-icons', command)
+            self.assertIn(str(w.CONFIG / 'rofi/wallpapers.rasi'), command)
+            self.assertEqual(run.call_args.kwargs['input'],
+                             'a/foto bonita.jpg\0icon\x1f' + str(first.resolve()) + '\n' +
+                             'b/foto bonita.jpg\0icon\x1f' + str(second.resolve()))
+
+    def test_gallery_ignores_control_characters_in_names(self):
+        """Nomes não podem injetar outra linha ou campo no protocolo do Rofi."""
+        with tempfile.TemporaryDirectory() as d:
+            folder = Path(d)
+            good = folder / 'safe.jpg'; good.touch()
+            (folder / 'bad\x1fname.jpg').touch()
+            (folder / 'bad\nname.jpg').touch()
+            with patch.object(w.sp, 'run', return_value=subprocess.CompletedProcess([], 0, '0\n', '')) as run:
+                self.assertEqual(w.choose(folder), good.resolve())
+            self.assertEqual(run.call_args.kwargs['input'], 'safe.jpg\0icon\x1f' + str(good.resolve()))
+
+    def test_gallery_theme_parses(self):
+        """O Rofi real valida o tema; não abre a galeria nem comprova renderização das imagens."""
+        import shutil
+        if not shutil.which('rofi'):
+            self.skipTest('Rofi não instalado')
+        theme = Path(__file__).resolve().parents[1] / 'rofi/wallpapers.rasi'
+        subprocess.run(['rofi', '-no-config', '-theme', str(theme), '-dump-theme'],
+                       check=True, capture_output=True, text=True, timeout=10)
