@@ -1,0 +1,127 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 38,
+  "margin-top": 8,
+  "margin-left": 16,
+  "margin-bottom": 0,
+  "margin-right": 16,
+  "spacing": 0,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "battery",
+    "wireplumber",
+    "network",
+    "bluetooth",
+    "idle_inhibitor",
+    "tray"
+  ],
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{name}",
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2
+      ]
+    }
+  },
+  "clock": {
+    "format": "{:%H:%M:%S | %d %B}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "▦  {:%d.%m.%Y}",
+    "interval": 1
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "◈ {usage}%",
+    "max-length": 10,
+    "tooltip-format": "Processador: {usage}%"
+  },
+  "wireplumber": {
+    "format": "♪ {volume}%",
+    "format-muted": "×",
+    "format-icons": [
+      "♩",
+      "♪",
+      "♫"
+    ],
+    "tooltip-format": "Volume: {volume}%"
+  },
+  "network": {
+    "format-wifi": "⌁ {essid}",
+    "format-ethernet": "⇆",
+    "format-disconnected": "⊘",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
+    "max-length": 18,
+    "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
+    "on-click": "kcmshell6 kcm_networkmanagement"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "▰ {capacity}%",
+    "format-charging": "ϟ {capacity}%",
+    "format-plugged": "ϟ {capacity}%",
+    "format-icons": [
+      "▱",
+      "▱",
+      "▰",
+      "▰",
+      "▰"
+    ]
+  },
+  "tray": {
+    "spacing": 8,
+    "icon-size": 16
+  },
+  "custom/launcher": {
+    "format": "Λ",
+    "on-click": "rofi -show drun",
+    "tooltip-format": "Abrir aplicativos"
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 24,
+    "separate-outputs": true
+  },
+  "backlight": {
+    "format": "☼ {percent}%",
+    "tooltip": true
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "☀",
+      "deactivated": "☾"
+    },
+    "tooltip-format-activated": "Suspensão automática inibida · clique para permitir",
+    "tooltip-format-deactivated": "Suspensão automática permitida · clique para inibir"
+  },
+  "bluetooth": {
+    "format": "ᛒ",
+    "format-connected": "ᛒ",
+    "format-disabled": "ᛒ",
+    "format-off": "ᛒ",
+    "format-no-controller": "",
+    "tooltip-format": "Bluetooth: {status}",
+    "tooltip-format-connected": "Bluetooth: {device_alias}"
+  },
+  "memory": {
+    "format": "▤ {percentage}%",
+    "interval": 5
+  }
+}

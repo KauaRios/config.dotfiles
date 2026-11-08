@@ -1,0 +1,21 @@
+@import "colors.css";
+* { font-family: "DejaVu Sans", "Noto Sans Symbols 2", sans-serif; font-size: 13px; min-height: 0; border: none; padding: 0; margin: 0; }
+window#waybar { background: transparent; color: @blue; }
+#workspaces button { color: @muted; background: transparent; box-shadow: none; text-shadow: none; min-width: 25px; padding: 0 5px; border-radius: 14px; }
+#workspaces button.active { color: @panel; background: @blue; }
+#workspaces button:hover { background: alpha(@blue, 0.25); color: @blue; }
+#workspaces button.urgent { background: @purple; color: @panel; }
+#custom-launcher { font-size: 19px; padding: 0 12px; }
+#window { padding: 0 12px; }
+#clock, #cpu, #memory, #network, #wireplumber, #battery, #tray, #bluetooth, #idle_inhibitor { padding: 0 10px; }
+#battery.warning { color: @purple; }
+#battery.critical { background: @purple; color: @panel; }
+#network.disconnected, #wireplumber.muted { color: @muted; }
+tooltip { background: @panel; color: @blue; border: 1px solid @muted; border-radius: 10px; }
+tooltip label { padding: 8px; }
+/* Abyss: cápsulas individuais e workspaces centrais, como a referência 1. */
+#custom-launcher, #window, #wireplumber, #cpu, #memory, #workspaces, #idle_inhibitor, #bluetooth, #network, #battery, #clock, #tray { background: alpha(@panel, 0.96); border-radius: 16px; margin: 3px 3px; }
+#workspaces { padding: 3px 5px; }
+#cpu, #memory { color: @purple; }
+#window { border-radius: 4px 16px 4px 16px; }
+#network { color: @purple; }
