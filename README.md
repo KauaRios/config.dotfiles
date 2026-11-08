@@ -131,3 +131,9 @@ Sem Hyprland ou sem suporte a `--verify-config`, o grupo é informado como ignor
 `python3 tests/run.py --gui --strict` abre sessões Hyprland isoladas dentro de janelas Wayland e testa foco, flutuação, fullscreen e mudança de workspace via IPC. Também inicia a Waybar com o config/CSS do repositório, verifica a layer e a reserva de espaço e confirma a rejeição de CSS inválido. Requer uma sessão Wayland acessível, `dbus-run-session`, GTK 3/PyGObject, Hyprland e Waybar.
 
 O autostart e o perfil dos monitores físicos são desativados apenas nas cópias temporárias. Os testes não pressionam teclas físicas nem avaliam beleza ou comparam screenshots. Consulte [tests/README.md](tests/README.md) para a cobertura de **cada arquivo**, dependências, isolamento e limites.
+
+### Créditos
+
+O tema do seletor de wallpapers (`rofi/wallpapers.rasi`) foi adaptado de
+[di0gosilva/hyprland-dotfiles](https://github.com/di0gosilva/hyprland-dotfiles),
+com integração às cores dinâmicas destas dotfiles.

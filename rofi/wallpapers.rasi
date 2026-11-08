@@ -1,4 +1,7 @@
-/* Referência enviada pelo usuário, com a paleta dinâmica local. */
+/* Tema adaptado de di0gosilva/hyprland-dotfiles:
+ * https://github.com/di0gosilva/hyprland-dotfiles
+ * Adaptação local: integração com a paleta dinâmica.
+ */
 configuration {
     show-icons: true;
 }
