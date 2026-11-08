@@ -11,6 +11,7 @@ window {
     location: center;
     anchor: center;
     width: 900px;
+    height: 300px;
     background-color: @bg;
     border: 2px;
     border-color: @accent;
@@ -18,8 +19,10 @@ window {
     padding: 28px;
     children: [ mainbox ];
 }
-mainbox { orientation: vertical; children: [ listview ]; }
+mainbox { orientation: vertical; children: [ listview ]; expand: false; }
 listview {
+    expand: false;
+    height: 240px;
     columns: 4;
     lines: 1;
     flow: horizontal;
@@ -32,6 +35,7 @@ listview {
     spacing: 20px;
 }
 element {
+    height: 240px;
     orientation: vertical;
     children: [ element-icon, element-text ];
     background-color: @bg;
@@ -48,24 +52,27 @@ element selected.normal, element selected.active {
 }
 element-icon {
     size: 150px;
+    squared: true;
     expand: false;
     horizontal-align: 0.5;
     vertical-align: 0.5;
     background-color: transparent;
 }
 element-text {
+    expand: false;
     horizontal-align: 0.5;
     vertical-align: 0.5;
     background-color: transparent;
     text-color: inherit;
     font: "DejaVu Sans 9";
 }
-@media (max-width: 1100px) {
-    window { width: 92%; padding: 18px; }
-    element-icon { size: 130px; }
-    listview { spacing: 12px; }
-}
-@media (max-width: 700px) {
+/* Muda apenas o número de cartões quando não há largura para quatro. */
+@media (max-width: 940px) {
+    window { width: 480px; }
     listview { columns: 2; }
+}
+@media (max-width: 520px) {
+    window { width: 92%; padding: 28px 12px; }
     element-icon { size: 110px; }
+    listview { spacing: 12px; }
 }
