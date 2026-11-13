@@ -2,7 +2,7 @@
 set -euo pipefail
 source /etc/os-release
 family=" ${ID:-} ${ID_LIKE:-} "
-common=(power-profiles-daemon hyprland waybar rofi kitty dolphin firefox mako swaybg hyprlock grim slurp wl-clipboard brightnessctl playerctl wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent wofi qt6ct gsettings-desktop-schemas matugen cava)
+common=(power-profiles-daemon hyprland waybar rofi kitty dolphin mako swaybg hyprlock grim slurp wl-clipboard brightnessctl playerctl wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent wofi qt6ct gsettings-desktop-schemas matugen cava)
 run=()
 if (( EUID != 0 )); then run=(sudo); fi
 case "$family" in
@@ -37,3 +37,9 @@ if [[ -z $number || $(printf '%s\n' 0.55.0 "$number" | sort -V | head -n1) != 0.
     exit 1
 fi
 echo 'Dependências instaladas. Execute ./install.sh sem sudo e escolha Hyprland na tela de login.'
+
+# Zen é instalado separadamente; não é um pacote comum a pacman e DNF.
+if ! command -v zen-browser >/dev/null; then
+    echo 'Instale Zen Browser separadamente e disponibilize o comando zen-browser.'
+    echo 'Arch: pacote zen-browser-bin (AUR). Guia: https://docs.zen-browser.app/guides/install-linux'
+fi

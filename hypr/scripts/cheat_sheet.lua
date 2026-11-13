@@ -22,7 +22,7 @@ local atalhos = {
     { tecla = "SUPER + E",             acao = "Gerenciador de Arquivos" },
     { tecla = "SUPER + SHIFT + R", acao = "Escolher Modelo da Waybar" },
     { tecla = "SUPER + R",             acao = "Menu de Aplicativos (Rofi)" },
-    { tecla = "SUPER + B",             acao = "Firefox" },
+    { tecla = "SUPER + B",             acao = "Zen Browser" },
     { tecla = "SUPER + H",             acao = "Menu de Ajuda (Esta tela)" },
 
     -- Sistema e Ferramentas

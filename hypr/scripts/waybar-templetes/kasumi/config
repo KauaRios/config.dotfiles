@@ -98,8 +98,8 @@
   },
   "custom/browser": {
     "format": "​",
-    "on-click": "firefox",
-    "tooltip-format": "Firefox"
+    "on-click": "zen-browser",
+    "tooltip-format": "Zen Browser"
   },
   "custom/music": {
     "format": "​",

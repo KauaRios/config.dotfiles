@@ -15,7 +15,7 @@ hl.bind(mainMod .. " + V",           hl.dsp.window.float({ action = "toggle" }),
 hl.bind(mainMod .. " + R",           hl.dsp.exec_cmd(programs.menu), { description = "Abrir menu de aplicativos" })
 hl.bind(mainMod .. " + P",           hl.dsp.window.pseudo(), { description = "Alternar pseudotiling" })
 hl.bind(mainMod .. " + J",           hl.dsp.layout("togglesplit"), { description = "Alternar divisão do layout" })
-hl.bind(mainMod .. " + B",           hl.dsp.exec_cmd(programs.firefox), { description = "Abrir Firefox" })
+hl.bind(mainMod .. " + B",           hl.dsp.exec_cmd(programs.browser), { description = "Abrir Zen Browser" })
 hl.bind(mainMod .. " + SHIFT + Q",    hl.dsp.exec_cmd(programs.terminal, { float = true, center = true, size = {800, 600} }), { description = "Abrir terminal flutuante" })
 
 hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("kitty -e lua \"${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/cheat_sheet.lua\"", { float = true, center = true, size = {800, 600} }), { description = "Consultar atalhos" })

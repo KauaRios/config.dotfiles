@@ -12,7 +12,7 @@ O cartão de temperatura fica entre o visualizador e a bateria. Usa o sensor AMD
 
 ## Conteúdo e ações
 
-- Lançador abre Rofi. Os atalhos abrem Firefox, Spotify Web e Obsidian (comando `obsidian`, encontrado neste sistema).
+- Lançador abre Rofi. Os atalhos abrem Zen Browser, Spotify Web e Obsidian (comando `obsidian`, encontrado neste sistema).
 - A música usa MPRIS: título e artista reais; clique pausa/continua, clique direito avança. Requer playerctl para os cliques e um player compatível aberto para mostrar conteúdo.
 - Volume e rede usam os valores reais. As quatro barras são um visualizador real de áudio: CAVA analisa a saída padrão e atualiza as alturas a 30 quadros por segundo. No silêncio ficam baixas.
 - Temperatura adicionada a pedido do usuário. Bateria e relógio usam valores reais.

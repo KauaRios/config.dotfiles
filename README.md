@@ -42,7 +42,7 @@ Scripts verificados com bash -n e instalação testada em diretório temporário
 
 ## Aparência dos aplicativos
 
-GTK usa Adwaita escuro e Qt6 usa qt6ct/Fusion com paleta darker. A variável Qt só é aplicada na sessão Hyprland; não alteramos kdeglobals. A preferência GNOME color-scheme=prefer-dark é persistente para o usuário e pode afetar apps GTK em outras sessões. Firefox deve estar com tema Sistema/Automático; temas e preferências explícitos de um aplicativo têm prioridade. Não alteramos perfis do Firefox, não instalamos extensões e não forçamos sites sem suporte a modo escuro. Apps Qt5/Flatpak ou com tema próprio podem exigir ajuste no aplicativo. O visual do Hyprland e da Waybar foi mantido.
+GTK usa Adwaita escuro e Qt6 usa qt6ct/Fusion com paleta darker. A variável Qt só é aplicada na sessão Hyprland; não alteramos kdeglobals. A preferência GNOME color-scheme=prefer-dark é persistente para o usuário e pode afetar apps GTK em outras sessões. Zen Browser deve estar com tema Sistema/Automático; temas e preferências explícitos de um aplicativo têm prioridade. Não alteramos perfis do Zen Browser, não instalamos extensões e não forçamos sites sem suporte a modo escuro. Apps Qt5/Flatpak ou com tema próprio podem exigir ajuste no aplicativo. O visual do Hyprland e da Waybar foi mantido.
 
 A revisão inclui qt6ct na lista de pastas vinculadas, com backup da configuração anterior. O tema darker é fornecido pelo pacote qt6ct.
 
@@ -137,3 +137,15 @@ O autostart e o perfil dos monitores físicos são desativados apenas nas cópia
 O tema do seletor de wallpapers (`rofi/wallpapers.rasi`) foi adaptado de
 [di0gosilva/hyprland-dotfiles](https://github.com/di0gosilva/hyprland-dotfiles),
 com integração às cores dinâmicas destas dotfiles.
+
+### Navegador padrão: Zen Browser
+
+Super+B e o atalho de navegador do Kasumi usam `zen-browser`. O instalador de dependências não instala outro navegador. Neste computador, o Zen é fornecido pelo pacote `zen-browser-bin`, com lançador `zen.desktop`. Em uma instalação nova, instale o Zen separadamente conforme o [guia oficial](https://docs.zen-browser.app/guides/install-linux) e garanta que o comando `zen-browser` esteja no PATH. Se usar Flatpak, ajuste o comando para `flatpak run app.zen_browser.zen` em `hypr/lua/programs.lua`, no template Kasumi e na variável BROWSER.
+
+Para definir os links HTTP/HTTPS e páginas HTML com a instalação nativa:
+
+```bash
+xdg-mime default zen.desktop x-scheme-handler/http x-scheme-handler/https text/html application/xhtml+xml
+```
+
+As associações pertencem ao usuário e também afetam links abertos em outras sessões gráficas. PDFs continuam com o leitor configurado. Depois de mudar um template, selecione-o novamente para atualizar a Waybar ativa.
