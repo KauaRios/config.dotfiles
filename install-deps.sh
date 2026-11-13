@@ -2,7 +2,7 @@
 set -euo pipefail
 source /etc/os-release
 family=" ${ID:-} ${ID_LIKE:-} "
-common=(power-profiles-daemon hyprland waybar rofi kitty dolphin firefox mako swaybg hyprlock grim slurp wl-clipboard brightnessctl playerctl wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent wofi qt6ct gsettings-desktop-schemas matugen)
+common=(power-profiles-daemon hyprland waybar rofi kitty dolphin firefox mako swaybg hyprlock grim slurp wl-clipboard brightnessctl playerctl wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent wofi qt6ct gsettings-desktop-schemas matugen cava)
 run=()
 if (( EUID != 0 )); then run=(sudo); fi
 case "$family" in

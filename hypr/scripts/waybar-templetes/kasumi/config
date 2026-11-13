@@ -77,7 +77,7 @@
   "modules-right": [
     "wireplumber",
     "network",
-    "memory",
+    "custom/cava",
     "temperature",
     "battery",
     "clock"
@@ -113,11 +113,6 @@
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl next"
   },
-  "memory": {
-    "format": "▪ ▪ ▪ ▪",
-    "tooltip-format": "RAM: {used:0.1f} GiB / {total:0.1f} GiB",
-    "interval": 5
-  },
   "temperature": {
     "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
     "input-filename": "temp1_input",
@@ -130,5 +125,11 @@
     "format": "​",
     "on-click": "obsidian",
     "tooltip-format": "Obsidian · abrir notas"
+  },
+  "custom/cava": {
+    "exec": "exec python3 -u \"${XDG_CONFIG_HOME:-$HOME/.config}/waybar/assets/kasumi-cava.py\"",
+    "return-type": "json",
+    "restart-interval": 5,
+    "tooltip": true
   }
 }
