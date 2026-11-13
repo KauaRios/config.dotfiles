@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
+if (( EUID == 0 )); then
+    echo 'Execute ./install-deps.sh sem sudo; o script solicita sudo quando necessário.' >&2
+    exit 1
+fi
+root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 source /etc/os-release
 family=" ${ID:-} ${ID_LIKE:-} "
 common=(power-profiles-daemon hyprland waybar rofi kitty dolphin mako swaybg hyprlock grim slurp wl-clipboard brightnessctl playerctl wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent wofi qt6ct gsettings-desktop-schemas matugen cava)
-run=()
-if (( EUID != 0 )); then run=(sudo); fi
+run=(sudo)
 case "$family" in
     *" arch "*|*" endeavouros "*|*" manjaro "*|*" garuda "*)
         command -v pacman >/dev/null
-        "${run[@]}" pacman -Syu --needed "${common[@]}" pipewire pipewire-pulse ttf-dejavu lua libnotify procps-ng python
+        "${run[@]}" pacman -Syu --needed "${common[@]}" pipewire pipewire-pulse ttf-dejavu lua libnotify procps-ng python git base-devel
+        bash "$root/scripts/install-zen-arch.sh"
         ;;
     *" fedora "*)
         if [[ -e /run/ostree-booted ]]; then
@@ -38,8 +43,8 @@ if [[ -z $number || $(printf '%s\n' 0.55.0 "$number" | sort -V | head -n1) != 0.
 fi
 echo 'Dependências instaladas. Execute ./install.sh sem sudo e escolha Hyprland na tela de login.'
 
-# Zen é instalado separadamente; não é um pacote comum a pacman e DNF.
+# Fora do Arch, a receita PKGBUILD não se aplica.
 if ! command -v zen-browser >/dev/null; then
     echo 'Instale Zen Browser separadamente e disponibilize o comando zen-browser.'
-    echo 'Arch: pacote zen-browser-bin (AUR). Guia: https://docs.zen-browser.app/guides/install-linux'
+    echo 'Guia: https://docs.zen-browser.app/guides/install-linux'
 fi

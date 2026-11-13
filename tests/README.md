@@ -76,3 +76,7 @@ Em `test_wallpaper.py`:
 - `test_gallery_theme_parses`: executa o parser do Rofi real no tema exclusivo, sem abrir o menu.
 
 Os testes de cancelamento existentes continuam ativos. Nenhum desses testes garante a renderização visual das miniaturas; é necessário conferir Super+W na sessão Wayland.
+
+### Instalação do Zen com revisão do AUR
+
+`test_zen_install.py` simula git, pacman e makepkg em pastas temporárias. Verifica recusa/Enter, fim da entrada, aprovação exata com exibição prévia dos arquivos, limpeza da pasta temporária e pacote já instalado. Não acessa a rede nem compila ou instala software real.

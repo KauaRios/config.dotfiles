@@ -16,7 +16,7 @@ cd ~/dotfiles
 ./install.sh
 ```
 
-O instalador de dependências solicita sudo e a confirmação do gerenciador. Instala o próprio Hyprland, Matugen e Python 3 para o seletor de wallpaper e a geração da paleta. Suporta Fedora tradicional e EndeavourOS, Arch, Manjaro, Garuda e outras distribuições que declarem ID_LIKE=arch com os pacotes disponíveis nos repositórios oficiais. No Fedora habilita o COPR comunitário nett00n/hyprland mediante confirmação do DNF; no Arch/EndeavourOS usa pacman e não usa AUR nem troca o gerenciador de login. Fedora Atomic não é suportado automaticamente.
+O instalador de dependências solicita sudo e a confirmação do gerenciador. Instala o próprio Hyprland, Matugen e Python 3 para o seletor de wallpaper e a geração da paleta. Suporta Fedora tradicional e EndeavourOS, Arch, Manjaro, Garuda e outras distribuições que declarem ID_LIKE=arch com os pacotes disponíveis nos repositórios oficiais. No Fedora habilita o COPR comunitário nett00n/hyprland mediante confirmação do DNF; no Arch/EndeavourOS usa pacman para os pacotes oficiais e revisa o PKGBUILD do AUR para instalar zen-browser-bin. Não troca o gerenciador de login. Fedora Atomic não é suportado automaticamente.
 
 O instalador dos links roda SEM sudo. Vincula somente hypr, waybar, rofi, wofi, mako, wallpapers e qt6ct dentro de `${XDG_CONFIG_HOME:-$HOME/.config}`. Não substitui a .config inteira. Configurações existentes dessas pastas são movidas para `.config/dot-backup.XXXXXXXX`; configurações do KDE permanecem no lugar. Pode executar novamente sem duplicar links. Não mova a pasta DOT depois da instalação.
 
@@ -140,7 +140,7 @@ com integração às cores dinâmicas destas dotfiles.
 
 ### Navegador padrão: Zen Browser
 
-Super+B e o atalho de navegador do Kasumi usam `zen-browser`. O instalador de dependências não instala outro navegador. Neste computador, o Zen é fornecido pelo pacote `zen-browser-bin`, com lançador `zen.desktop`. Em uma instalação nova, instale o Zen separadamente conforme o [guia oficial](https://docs.zen-browser.app/guides/install-linux) e garanta que o comando `zen-browser` esteja no PATH. Se usar Flatpak, ajuste o comando para `flatpak run app.zen_browser.zen` em `hypr/lua/programs.lua`, no template Kasumi e na variável BROWSER.
+Super+B e o atalho de navegador do Kasumi usam `zen-browser`. No Arch, o instalador inclui Zen pelo AUR, com revisão e consentimento explícito. Neste computador, o Zen é fornecido pelo pacote `zen-browser-bin`, com lançador `zen.desktop`. No Fedora, instale o Zen separadamente conforme o [guia oficial](https://docs.zen-browser.app/guides/install-linux) e garanta que o comando `zen-browser` esteja no PATH. Se usar Flatpak, ajuste o comando para `flatpak run app.zen_browser.zen` em `hypr/lua/programs.lua`, no template Kasumi e na variável BROWSER.
 
 Para definir os links HTTP/HTTPS e páginas HTML com a instalação nativa:
 
@@ -149,3 +149,11 @@ xdg-mime default zen.desktop x-scheme-handler/http x-scheme-handler/https text/h
 ```
 
 As associações pertencem ao usuário e também afetam links abertos em outras sessões gráficas. PDFs continuam com o leitor configurado. Depois de mudar um template, selecione-o novamente para atualizar a Waybar ativa.
+
+### Aprovação do PKGBUILD do Zen (Arch)
+
+Execute `./install-deps.sh` como usuário normal. O script instala git e base-devel pelos repositórios oficiais e chama `scripts/install-zen-arch.sh`. Se zen-browser-bin já estiver instalado, essa etapa é ignorada.
+
+A etapa do AUR baixa a receita de https://aur.archlinux.org/zen-browser-bin.git, mostra a revisão e todos os arquivos versionados, incluindo PKGBUILD e eventuais hooks .install. Nenhum makepkg é executado antes da revisão. Caracteres de controle são mostrados de forma visível. Para prosseguir é necessário digitar exatamente `CONFIO`; Enter, outra resposta ou fim de entrada abortam a instalação do Zen e encerram o instalador com erro. Os pacotes oficiais instalados anteriormente permanecem.
+
+Após aceitar, `makepkg --syncdeps --install --needed` usa a mesma cópia mostrada, como usuário normal. O pacman solicita elevação/confirmação quando necessário. A pasta temporária é removida ao sair. Não há aprovação automática nem helper AUR. A revisão é feita pelo usuário: exibir o PKGBUILD não certifica sua segurança nem a dos arquivos que ele baixa. No Fedora não existe etapa PKGBUILD, pois esse formato pertence ao Arch.
