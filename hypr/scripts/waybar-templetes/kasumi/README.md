@@ -32,3 +32,7 @@ Requer `cava` (incluído em install-deps.sh). Instalação manual: `sudo pacman 
 `assets/kasumi-cava.conf` usa o monitor da saída padrão via PulseAudio/PipeWire-Pulse, sem usar o microfone. `assets/kasumi-cava.py` transforma quatro valores de 0 a 7 em caracteres de altura variável e envia JSON à Waybar. Os scripts e a configuração acompanham o modelo na pasta assets. A cor continua vindo de colors.css. O processo CAVA é encerrado quando o módulo recebe SIGTERM. Se o programa não estiver instalado ou falhar, aparece `!` com diagnóstico no tooltip.
 
 A análise de áudio real precisa ser validada na sessão gráfica; os testes automatizados verificam a conversão e a integração usando saída CAVA simulada.
+
+## Perfil de energia
+
+O módulo nativo power-profiles-daemon fica entre a temperatura e a bateria. Clique para alternar entre os perfis disponíveis: ♧ economia, ◐ equilibrado e ϟ desempenho. O tooltip mostra o nome do perfil. Requer o serviço power-profiles-daemon em execução; o pacote já consta em install-deps.sh. A disponibilidade dos perfis depende do hardware.

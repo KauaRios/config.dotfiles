@@ -79,6 +79,7 @@
     "network",
     "custom/cava",
     "temperature",
+    "power-profiles-daemon",
     "battery",
     "clock"
   ],
@@ -131,5 +132,15 @@
     "return-type": "json",
     "restart-interval": 5,
     "tooltip": true
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "ϟ",
+      "power-saver": "♧",
+      "balanced": "◐",
+      "performance": "ϟ"
+    },
+    "tooltip-format": "Perfil de energia: {profile}\nClique para alternar entre os perfis disponíveis"
   }
 }

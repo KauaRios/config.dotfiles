@@ -2,7 +2,7 @@
 * { font-family: "DejaVu Sans Mono", "Noto Sans Symbols 2", monospace; font-size: 13px; font-weight: bold; min-height: 0; border: none; border-radius: 0; padding: 0; margin: 0; }
 window#waybar { background: transparent; color: @blue; }
 /* Cartões individuais: a imagem de fundo permanece visível entre eles. */
-#custom-launcher, #workspaces button, #shortcuts, #mpris, #wireplumber, #network, #custom-cava, #temperature, #battery, #clock { background: @panel; border-radius: 9px; margin: 4px 4px; }
+#custom-launcher, #workspaces button, #shortcuts, #mpris, #wireplumber, #network, #custom-cava, #temperature, #power-profiles-daemon, #battery, #clock { background: @panel; border-radius: 9px; margin: 4px 4px; }
 #custom-launcher { min-width: 34px; background-color: @purple; background-image: url("assets/kasumi-launcher.svg"); background-repeat: no-repeat; background-position: center; background-size: 22px 22px; }
 #workspaces button { min-width: 30px; padding: 0 3px; margin-left: 2px; margin-right: 2px; color: @muted; box-shadow: none; text-shadow: none; }
 #workspaces button.active { color: @panel; background: @blue; }
@@ -13,7 +13,7 @@ window#waybar { background: transparent; color: @blue; }
 #custom-music { background-image: url("assets/kasumi-music.svg"); background-size: 20px 20px; background-repeat: no-repeat; background-position: center; }
 #custom-obsidian { background-image: url("assets/kasumi-obsidian.svg"); background-size: 20px 20px; background-repeat: no-repeat; background-position: center; }
 #mpris { padding: 0 13px; color: @blue; }
-#wireplumber, #network, #custom-cava, #temperature, #battery { padding: 0 11px; color: @purple; }
+#wireplumber, #network, #custom-cava, #temperature, #power-profiles-daemon, #battery { padding: 0 11px; color: @purple; }
 #custom-cava { font-family: "DejaVu Sans Mono", monospace; font-size: 17px; letter-spacing: 2px; min-width: 48px; }
 #custom-cava.silent { color: @muted; }
 #custom-cava.error { color: @purple; }
@@ -26,3 +26,7 @@ tooltip label { padding: 8px; }
 
 /* Realce discreto dos atalhos, sem deslocar os ícones. */
 #custom-browser:hover, #custom-music:hover, #custom-obsidian:hover { background-color: alpha(@blue, 0.16); border-radius: 7px; }
+
+#power-profiles-daemon { min-width: 18px; font-size: 17px; }
+#power-profiles-daemon:hover { background: alpha(@blue, 0.25); color: @blue; }
+#power-profiles-daemon.performance { color: @panel; background: @purple; }
