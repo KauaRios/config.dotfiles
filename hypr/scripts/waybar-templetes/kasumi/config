@@ -1,0 +1,134 @@
+{
+  "layer": "top",
+  "position": "top",
+  "hyprland/workspaces": {
+    "all-outputs": false,
+    "format": "{name}",
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    }
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "▦  {:%d.%m.%Y}",
+    "interval": 1
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "▰ {capacity}%",
+    "format-charging": "ϟ {capacity}%",
+    "format-plugged": "ϟ {capacity}%",
+    "format-icons": [
+      "▱",
+      "▱",
+      "▰",
+      "▰",
+      "▰"
+    ]
+  },
+  "network": {
+    "format-wifi": "⌁ {essid}",
+    "format-ethernet": "⇆ Ethernet",
+    "format-disconnected": "⌁ offline",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
+    "max-length": 15,
+    "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
+    "on-click": "kcmshell6 kcm_networkmanagement"
+  },
+  "wireplumber": {
+    "format": "♪ {volume}%",
+    "format-muted": "♪ ×",
+    "format-icons": [
+      "♩",
+      "♪",
+      "♫"
+    ],
+    "tooltip-format": "Volume: {volume}%"
+  },
+  "height": 38,
+  "margin-top": 12,
+  "margin-left": 20,
+  "margin-right": 20,
+  "spacing": 0,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "group/shortcuts"
+  ],
+  "modules-center": [
+    "mpris"
+  ],
+  "modules-right": [
+    "wireplumber",
+    "network",
+    "memory",
+    "temperature",
+    "battery",
+    "clock"
+  ],
+  "group/shortcuts": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/browser",
+      "custom/music",
+      "custom/record"
+    ]
+  },
+  "custom/launcher": {
+    "format": "​",
+    "on-click": "rofi -show drun",
+    "tooltip-format": "Abrir aplicativos"
+  },
+  "custom/browser": {
+    "format": "​",
+    "on-click": "firefox",
+    "tooltip-format": "Firefox"
+  },
+  "custom/music": {
+    "format": "​",
+    "on-click": "xdg-open https://open.spotify.com",
+    "tooltip-format": "Spotify"
+  },
+  "custom/record": {
+    "format": "​",
+    "on-click": "obs",
+    "tooltip-format": "OBS Studio"
+  },
+  "mpris": {
+    "format": "♫ {artist} - {title}",
+    "format-paused": "Ⅱ {artist} - {title}",
+    "max-length": 28,
+    "tooltip-format": "{player}: {title}\n{artist}",
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next"
+  },
+  "memory": {
+    "format": "▪ ▪ ▪ ▪",
+    "tooltip-format": "RAM: {used:0.1f} GiB / {total:0.1f} GiB",
+    "interval": 5
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "interval": 5,
+    "critical-threshold": 85,
+    "format": "♨ {temperatureC}°C",
+    "tooltip-format": "CPU Ryzen · Tctl: {temperatureC}°C"
+  }
+}
