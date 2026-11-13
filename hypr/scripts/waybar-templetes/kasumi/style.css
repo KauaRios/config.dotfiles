@@ -9,9 +9,9 @@ window#waybar { background: transparent; color: @blue; }
 #workspaces button:hover { background: alpha(@blue, 0.35); color: @blue; }
 #workspaces button.urgent { color: @panel; background: @purple; }
 #shortcuts { margin-left: 12px; padding: 0 7px; }
-#custom-browser, #custom-music, #custom-record { min-width: 28px; font-size: 21px; color: @purple; }
-#custom-music { background-image: url("assets/kasumi-music.svg"); background-size: 19px 19px; background-repeat: no-repeat; background-position: center; }
-#custom-record { background-image: url("assets/kasumi-record.svg"); background-size: 19px 19px; background-repeat: no-repeat; background-position: center; }
+#custom-browser, #custom-music, #custom-obsidian { min-width: 32px; font-size: 21px; color: @purple; }
+#custom-music { background-image: url("assets/kasumi-music.svg"); background-size: 20px 20px; background-repeat: no-repeat; background-position: center; }
+#custom-obsidian { background-image: url("assets/kasumi-obsidian.svg"); background-size: 20px 20px; background-repeat: no-repeat; background-position: center; }
 #mpris { padding: 0 13px; color: @blue; }
 #wireplumber, #network, #memory, #temperature, #battery { padding: 0 11px; color: @purple; }
 #memory { letter-spacing: 2px; }
@@ -20,4 +20,7 @@ window#waybar { background: transparent; color: @blue; }
 #network.disconnected, #wireplumber.muted { color: @muted; }
 tooltip { background: @panel; color: @blue; border: 1px solid @muted; border-radius: 8px; }
 tooltip label { padding: 8px; }
-#custom-browser { background-image: url("assets/kasumi-browser.svg"); background-size: 19px 19px; background-repeat: no-repeat; background-position: center; }
+#custom-browser { background-image: url("assets/kasumi-browser.svg"); background-size: 20px 20px; background-repeat: no-repeat; background-position: center; }
+
+/* Realce discreto dos atalhos, sem deslocar os ícones. */
+#custom-browser:hover, #custom-music:hover, #custom-obsidian:hover { background-color: alpha(@blue, 0.16); border-radius: 7px; }

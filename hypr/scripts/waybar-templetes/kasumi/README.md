@@ -12,7 +12,7 @@ O cartão de temperatura fica entre memória e bateria. Usa o sensor AMD k10temp
 
 ## Conteúdo e ações
 
-- Lançador abre Rofi. Os atalhos abrem Firefox, Spotify Web e OBS Studio (requer OBS instalado).
+- Lançador abre Rofi. Os atalhos abrem Firefox, Spotify Web e Obsidian (comando `obsidian`, encontrado neste sistema).
 - A música usa MPRIS: título e artista reais; clique pausa/continua, clique direito avança. Requer playerctl para os cliques e um player compatível aberto para mostrar conteúdo.
 - Volume e rede usam os valores reais. Os quatro quadrados reproduzem o detalhe da referência: são decorativos, com uso real da RAM no tooltip; não são um gráfico de carga.
 - Temperatura adicionada a pedido do usuário. Bateria e relógio usam valores reais.
@@ -22,3 +22,5 @@ Selecione `kasumi` com Super+Shift+R. A criação do template não aplica o tema
 ## Validação
 
 JSON, CSS GTK, SVGs e leitura do sensor foram conferidos. A suíte geral não compara pixels nem confirma a aparência na sessão gráfica. É necessário conferir visualmente após selecionar o modelo.
+
+Ícones refinados: Obsidian em cristal facetado roxo, globo com linhas curvas, Spotify com arcos uniformes e lançador com anéis mais definidos. Atalhos têm área de 32px, ícones de 20px e realce ao passar o mouse.

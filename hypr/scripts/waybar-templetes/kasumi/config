@@ -87,7 +87,7 @@
     "modules": [
       "custom/browser",
       "custom/music",
-      "custom/record"
+      "custom/obsidian"
     ]
   },
   "custom/launcher": {
@@ -104,11 +104,6 @@
     "format": "​",
     "on-click": "xdg-open https://open.spotify.com",
     "tooltip-format": "Spotify"
-  },
-  "custom/record": {
-    "format": "​",
-    "on-click": "obs",
-    "tooltip-format": "OBS Studio"
   },
   "mpris": {
     "format": "♫ {artist} - {title}",
@@ -130,5 +125,10 @@
     "critical-threshold": 85,
     "format": "♨ {temperatureC}°C",
     "tooltip-format": "CPU Ryzen · Tctl: {temperatureC}°C"
+  },
+  "custom/obsidian": {
+    "format": "​",
+    "on-click": "obsidian",
+    "tooltip-format": "Obsidian · abrir notas"
   }
 }
