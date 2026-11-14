@@ -41,7 +41,7 @@
       "♪",
       "♫"
     ],
-    "tooltip-format": "Volume: {volume}%",
+    "tooltip-format": "Volume: {volume}%\nClique: mudo · botão direito: controle de volume",
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "on-click-right": "pavucontrol"
   },
@@ -78,7 +78,7 @@
       "balanced": "◐",
       "performance": "ϟ"
     },
-    "tooltip-format": "Perfil de energia: {profile}\nClique para alternar entre os perfis disponíveis"
+    "tooltip-format": "Perfil de energia: {profile}\nClique para alternar"
   },
   "clock": {
     "format": "{:%H:%M}",
@@ -133,7 +133,7 @@
     "on-click-right": "spotify-launcher"
   },
   "cpu": {
-    "format": "​",
+    "format": "CPU {usage}%",
     "interval": 5,
     "tooltip-format": "CPU: {usage}%"
   },
