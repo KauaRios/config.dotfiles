@@ -1,11 +1,32 @@
-#  — Fedora / Arch
+# Dotfiles — Hyprland · Fedora / Arch
 
-![Demonstração das dotfiles com Hyprland, Waybar e wallpaper de anime](visual.png)
+![Área de trabalho com Hyprland, Waybar e cores integradas ao wallpaper](assets/visual_areatrabalho.png)
 
+Configurações de Hyprland com escolha manual de wallpaper, cores dinâmicas geradas pelo Matugen e modelos de Waybar. O Rofi usa a imagem atual no cabeçalho, e o Fastfetch traz a Marika com detalhes que acompanham a paleta do sistema.
 
 Requer Hyprland 0.55 ou superior, com configuração exclusivamente Lua.
 
-Wallpaper de anime com garota de cabelo branco. A paleta escura é gerada a partir da imagem escolhida pelo Matugen. Waybar fina e transparente, com indicadores em pequenos blocos escuros, ícones Unicode e tons de azul e lilás; os valores são métricas reais. O relógio alterna entre hora e data ao clicar. Os ícones usam DejaVu Sans e Noto Sans Symbols 2 quando disponível, sem depender de Nerd Fonts.
+## Galeria
+
+As capturas mostram a mesma paleta aplicada à área de trabalho e aos seletores. As cores mudam conforme o wallpaper escolhido.
+
+### Launcher de aplicativos — Super+R
+
+Rofi com ícones e cabeçalho usando o wallpaper atual.
+
+![Launcher Rofi com pesquisa, ícones de aplicativos e wallpaper no cabeçalho](assets/visual_rofi.png)
+
+### Seletor de wallpapers — Super+W
+
+Escolha uma imagem pelas miniaturas para aplicar o wallpaper e gerar a paleta. Veja [como funciona a integração](WALLPAPER.md).
+
+![Galeria de wallpapers com miniaturas e destaque na imagem selecionada](assets/visual_trocar_wallpaper.png)
+
+### Seletor de modelos da Waybar — Super+Shift+R
+
+Troque o visual da barra pelo seletor. Os modelos estão em [waybar-templetes](hypr/scripts/waybar-templetes/README.md).
+
+![Seletor de modelos da Waybar no Rofi, com opções como Abyss, Kasumi e Astral](assets/visual_trocawaybar.png)
 
 ## Instalar
 
