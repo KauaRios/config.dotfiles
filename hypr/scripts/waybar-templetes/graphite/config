@@ -1,0 +1,143 @@
+{
+  "hyprland/workspaces": {
+    "all-outputs": false,
+    "format": "{name}",
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "wireplumber": {
+    "format": "♪ {volume}%",
+    "format-muted": "♪ ×",
+    "format-icons": [
+      "♩",
+      "♪",
+      "♫"
+    ],
+    "tooltip-format": "Volume: {volume}%"
+  },
+  "network": {
+    "format-wifi": "⌁",
+    "format-ethernet": "⇆",
+    "format-disconnected": "⌁ offline",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
+    "max-length": 15,
+    "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
+    "on-click": "kcmshell6 kcm_networkmanagement"
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "interval": 5,
+    "critical-threshold": 85,
+    "format": "♨ {temperatureC}°C",
+    "tooltip-format": "CPU Ryzen · Tctl: {temperatureC}°C"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "▰ {capacity}%",
+    "format-charging": "ϟ {capacity}%",
+    "format-plugged": "ϟ {capacity}%",
+    "format-icons": [
+      "▱",
+      "▱",
+      "▰",
+      "▰",
+      "▰"
+    ]
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "ϟ",
+      "power-saver": "♧",
+      "balanced": "◐",
+      "performance": "ϟ"
+    },
+    "tooltip-format": "Perfil de energia: {profile}\nClique para alternar entre os perfis disponíveis"
+  },
+  "layer": "top",
+  "position": "top",
+  "height": 38,
+  "spacing": 0,
+  "custom/launcher": {
+    "format": "⧖",
+    "on-click": "rofi -show drun",
+    "tooltip-format": "Aplicativos"
+  },
+  "custom/spotify": {
+    "format": "♫",
+    "on-click": "spotify-launcher",
+    "tooltip-format": "Spotify"
+  },
+  "clock": {
+    "format": "{:%Y-%m-%d %H:%M}",
+    "tooltip-format": "{calendar}"
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 9
+  },
+  "cpu": {
+    "format": "▣ {usage}%",
+    "interval": 3
+  },
+  "memory": {
+    "format": "▥ {used:.1f}G",
+    "interval": 5
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "◉",
+      "deactivated": "◎"
+    },
+    "tooltip-format": "Inibir suspensão: {status}"
+  },
+  "name": "graphite",
+  "width": 1500,
+  "margin-top": 12,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "custom/graphite-spectrum"
+  ],
+  "modules-center": [
+    "custom/play",
+    "clock",
+    "idle_inhibitor"
+  ],
+  "modules-right": [
+    "tray",
+    "custom/spotify",
+    "network",
+    "wireplumber",
+    "memory",
+    "cpu",
+    "temperature",
+    "battery"
+  ],
+  "custom/play": {
+    "format": "▶",
+    "on-click": "playerctl play-pause",
+    "tooltip-format": "Reproduzir / pausar"
+  },
+  "custom/graphite-spectrum": {
+    "exec": "exec python3 -u \"${XDG_CONFIG_HOME:-$HOME/.config}/waybar/assets/graphite-spectrum.py\"",
+    "return-type": "json",
+    "restart-interval": 5,
+    "tooltip": true
+  }
+}

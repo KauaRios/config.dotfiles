@@ -84,3 +84,5 @@ Os testes de cancelamento existentes continuam ativos. Nenhum desses testes gara
 O grupo de wallpaper também verifica o cabeçalho do launcher: troca do link da imagem com nomes especiais, caminho absoluto no Rasi gerado e atualização em apply sem nova paleta. Esses testes usam diretórios temporários e simulam swaybg/reloads; não comprovam a renderização gráfica.
 
 Fastfetch: `test_fastfetch.py` gera duas paletas em uma pasta temporária, confere cores HEX/ANSI e preservação da imagem, e valida a configuração no Fastfetch instalado sem logo gráfico. Os testes do instalador também cobrem os links de Kitty e Fastfetch.
+
+`test_graphite_sora.py`: valida JSON, referências de módulos/grupos, links da paleta compartilhada e CSS GTK dos dois modelos. Testa o espectro de 20 bandas do Graphite com silêncio, pico e entradas inválidas, sem acessar o áudio ou iniciar a Waybar. Não mede fidelidade visual.

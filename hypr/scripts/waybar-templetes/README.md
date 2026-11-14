@@ -34,3 +34,10 @@ Todos mantêm colors.css separado e usam a paleta dinâmica. São descobertos au
 - **Akai**: nova reference1.png, faixa técnica com recortes diagonais e título central destacado; cores dinâmicas separadas.
 
 Modelos também podem conter `assets/`: o seletor copia essa pasta para a Waybar ativa, para ícones e CSS auxiliar. Arquivos antigos dessa pasta são mantidos para não quebrar estilos de backup. Akai usa esse mecanismo para seu SVG Arch e a cor de estado verde da referência.
+
+## Graphite e Sora
+
+- [Graphite](graphite/README.md): nova `reference_waybar.png`, painel centralizado com workspaces quadrados, espectro CAVA real de 20 bandas e data/hora central. Altura de 38px.
+- [Sora](sora/README.md): criação original inspirada em comentários da comunidade, com três painéis arredondados, relógio destacado e temperatura visível. Altura de 42px.
+
+Ambos usam cores dinâmicas separadas e aparecem automaticamente em Super+Shift+R. Sua barra atual não é substituída ao adicionar os modelos.

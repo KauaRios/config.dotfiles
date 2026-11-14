@@ -1,0 +1,152 @@
+{
+  "hyprland/workspaces": {
+    "all-outputs": false,
+    "format": "{name}",
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "wireplumber": {
+    "format": "♪ {volume}%",
+    "format-muted": "♪ ×",
+    "format-icons": [
+      "♩",
+      "♪",
+      "♫"
+    ],
+    "tooltip-format": "Volume: {volume}%"
+  },
+  "network": {
+    "format-wifi": "⌁ {essid}",
+    "format-ethernet": "⇆ Ethernet",
+    "format-disconnected": "⌁ offline",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
+    "max-length": 12,
+    "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
+    "on-click": "kcmshell6 kcm_networkmanagement"
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "interval": 5,
+    "critical-threshold": 85,
+    "format": "♨ {temperatureC}°C",
+    "tooltip-format": "CPU Ryzen · Tctl: {temperatureC}°C"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "▰ {capacity}%",
+    "format-charging": "ϟ {capacity}%",
+    "format-plugged": "ϟ {capacity}%",
+    "format-icons": [
+      "▱",
+      "▱",
+      "▰",
+      "▰",
+      "▰"
+    ]
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "ϟ",
+      "power-saver": "♧",
+      "balanced": "◐",
+      "performance": "ϟ"
+    },
+    "tooltip-format": "Perfil de energia: {profile}\nClique para alternar entre os perfis disponíveis"
+  },
+  "layer": "top",
+  "position": "top",
+  "height": 42,
+  "spacing": 0,
+  "custom/launcher": {
+    "format": "◇",
+    "on-click": "rofi -show drun",
+    "tooltip-format": "Aplicativos"
+  },
+  "custom/spotify": {
+    "format": "♫",
+    "on-click": "spotify-launcher",
+    "tooltip-format": "Spotify"
+  },
+  "clock": {
+    "format": "{:%H:%M  ·  %a %d}",
+    "tooltip-format": "{calendar}",
+    "format-alt": "{:%d / %m / %Y}"
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 9
+  },
+  "cpu": {
+    "format": "▣ {usage}%",
+    "interval": 3
+  },
+  "memory": {
+    "format": "▥ {used:.1f}G",
+    "interval": 5
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "◉",
+      "deactivated": "◎"
+    },
+    "tooltip-format": "Inibir suspensão: {status}"
+  },
+  "name": "sora",
+  "margin-top": 12,
+  "margin-left": 22,
+  "margin-right": 22,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "mpris"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "group/health",
+    "group/connection",
+    "power-profiles-daemon",
+    "battery",
+    "tray"
+  ],
+  "group/health": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "temperature"
+    ]
+  },
+  "group/connection": {
+    "orientation": "horizontal",
+    "modules": [
+      "network",
+      "wireplumber"
+    ]
+  },
+  "mpris": {
+    "format": "♫ {title}",
+    "format-paused": "Ⅱ {title}",
+    "max-length": 24,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "spotify-launcher",
+    "tooltip-format": "{artist} — {title}"
+  }
+}

@@ -1,0 +1,26 @@
+@import "colors.css";
+* { font-family: "DejaVu Sans", "Noto Sans Symbols 2", sans-serif; font-size: 14px; font-weight: 600; min-height: 0; border: none; border-radius: 0; padding: 0; margin: 0; }
+window#waybar { background: transparent; color: @purple; }
+.modules-left, .modules-center, .modules-right { background: @panel; border: 1px solid alpha(@muted, 0.38); border-radius: 16px; }
+.modules-left { padding: 0 9px 0 0; }
+.modules-center { border-color: @blue; background: @blue; color: @panel; padding: 0 20px; }
+.modules-right { padding: 0 12px; }
+#custom-launcher { background: @blue; color: @panel; border-radius: 15px 5px 5px 15px; min-width: 42px; font-size: 26px; margin: 3px 8px 3px 3px; }
+#workspaces button { min-width: 27px; margin: 7px 2px; border-radius: 9px; color: @muted; text-shadow: none; box-shadow: none; }
+#workspaces button.active { background: @blue; color: @panel; min-width: 38px; }
+#workspaces button:hover { background: alpha(@blue, 0.25); color: @purple; }
+#workspaces button.urgent { background: @purple; color: @panel; }
+#mpris { margin: 8px 0 8px 12px; padding: 0 12px; border-left: 1px solid @muted; color: @blue; }
+#mpris.paused { color: @muted; }
+#clock { font-size: 15px; font-weight: bold; }
+#health, #connection { margin: 8px 4px; padding-right: 9px; border-right: 1px solid alpha(@muted, 0.4); }
+#cpu, #temperature, #network, #wireplumber { padding: 0 7px; }
+#temperature { color: @blue; }
+#power-profiles-daemon { padding: 0 8px; color: @blue; font-size: 18px; }
+#battery { padding: 0 10px; }
+#tray { padding-left: 8px; }
+#battery.charging { color: @blue; }
+#temperature.critical, #battery.critical { background: @purple; color: @panel; border-radius: 8px; }
+#wireplumber.muted, #network.disconnected { color: @muted; }
+tooltip { background: @panel; color: @purple; border: 1px solid @blue; border-radius: 12px; }
+tooltip label { padding: 10px; }
