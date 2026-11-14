@@ -1,26 +1,87 @@
 @import "colors.css";
-* { font-family: "DejaVu Sans", "Noto Sans Symbols 2", sans-serif; font-size: 14px; font-weight: 600; min-height: 0; border: none; border-radius: 0; padding: 0; margin: 0; }
-window#waybar { background: transparent; color: @purple; }
-.modules-left, .modules-center, .modules-right { background: @panel; border: 1px solid alpha(@muted, 0.38); border-radius: 16px; }
-.modules-left { padding: 0 9px 0 0; }
-.modules-center { border-color: @blue; background: @blue; color: @panel; padding: 0 20px; }
-.modules-right { padding: 0 12px; }
-#custom-launcher { background: @blue; color: @panel; border-radius: 15px 5px 5px 15px; min-width: 42px; font-size: 26px; margin: 3px 8px 3px 3px; }
-#workspaces button { min-width: 27px; margin: 7px 2px; border-radius: 9px; color: @muted; text-shadow: none; box-shadow: none; }
-#workspaces button.active { background: @blue; color: @panel; min-width: 38px; }
-#workspaces button:hover { background: alpha(@blue, 0.25); color: @purple; }
-#workspaces button.urgent { background: @purple; color: @panel; }
-#mpris { margin: 8px 0 8px 12px; padding: 0 12px; border-left: 1px solid @muted; color: @blue; }
+/* Faixa única: cantos discretos, módulos alinhados e destaque restrito à navegação. */
+* {
+    font-family: "DejaVu Sans Mono", "Noto Sans Symbols 2", monospace;
+    font-size: 13px;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+}
+window#waybar {
+    background: @panel;
+    color: @purple;
+    border: 1px solid alpha(@muted, 0.35);
+    border-radius: 7px;
+}
+.modules-left, .modules-center, .modules-right { background: transparent; }
+#custom-launcher {
+    background-color: @blue;
+    background-image: url("assets/sora-arch.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+    min-width: 42px;
+    margin: 4px 12px 4px 4px;
+    border-radius: 4px;
+}
+#custom-launcher:hover { background-color: @purple; }
+#workspaces { padding-right: 10px; }
+#workspaces button {
+    min-width: 31px;
+    margin: 5px 3px;
+    color: @muted;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+    border-radius: 3px 3px 0 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+#workspaces button.active {
+    color: @blue;
+    background: alpha(@blue, 0.13);
+    border-bottom-color: @blue;
+    font-weight: bold;
+}
+#workspaces button:hover { color: @purple; background: alpha(@purple, 0.15); }
+#workspaces button.urgent { background: @purple; color: @panel; border-bottom-color: @blue; }
+#custom-spotify { color: @blue; font-size: 18px; padding: 0 9px; }
+#custom-spotify:hover { color: @purple; }
+#mpris { color: @purple; padding-right: 12px; font-size: 12px; }
 #mpris.paused { color: @muted; }
-#clock { font-size: 15px; font-weight: bold; }
-#health, #connection { margin: 8px 4px; padding-right: 9px; border-right: 1px solid alpha(@muted, 0.4); }
-#cpu, #temperature, #network, #wireplumber { padding: 0 7px; }
-#temperature { color: @blue; }
-#power-profiles-daemon { padding: 0 8px; color: @blue; font-size: 18px; }
-#battery { padding: 0 10px; }
-#tray { padding-left: 8px; }
-#battery.charging { color: @blue; }
-#temperature.critical, #battery.critical { background: @purple; color: @panel; border-radius: 8px; }
+#tray { padding: 0 10px; margin: 9px 0; border-right: 1px solid alpha(@muted, 0.4); }
+#network { color: @blue; font-size: 20px; padding: 0 10px; }
+#wireplumber { padding-right: 13px; }
+#temperature {
+    margin: 9px 0;
+    padding: 0 10px 0 13px;
+    border-left: 1px solid alpha(@muted, 0.4);
+    color: @blue;
+    font-weight: bold;
+}
+#memory { padding-right: 13px; color: @muted; }
+#power-profiles-daemon {
+    margin: 9px 0;
+    border-left: 1px solid alpha(@muted, 0.4);
+    padding: 0 10px 0 13px;
+    color: @purple;
+    font-size: 17px;
+}
+#battery { padding-right: 12px; }
+#battery.charging, #battery.plugged { color: @blue; }
+#clock {
+    padding: 0 15px;
+    margin: 4px 4px 4px 0;
+    border-radius: 4px;
+    background: alpha(@blue, 0.17);
+    color: @blue;
+    font-size: 15px;
+    font-weight: bold;
+}
+#clock:hover { background: alpha(@blue, 0.28); }
 #wireplumber.muted, #network.disconnected { color: @muted; }
-tooltip { background: @panel; color: @purple; border: 1px solid @blue; border-radius: 12px; }
-tooltip label { padding: 10px; }
+#temperature.critical, #battery.critical { color: @panel; background: @purple; }
+#battery.warning { color: @blue; }
+tooltip { background: @panel; color: @purple; border: 1px solid @muted; border-radius: 7px; }
+tooltip label { padding: 9px; }
