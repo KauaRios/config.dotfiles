@@ -5,9 +5,11 @@
     "source": "\"${XDG_CONFIG_HOME:-$HOME/.config}/fastfetch/assets/Queen Marika the Eternal, Ruan Zoe.jpg\"",
     "width": 28,
     "padding": {
+      "top": 2,
       "left": 1,
-      "right": 4
-    }
+      "right": 3
+    },
+    "position": "left"
   },
   "display": {
     "separator": " : ",
@@ -21,86 +23,86 @@
   "modules": [
     {
       "type": "custom",
-      "format": "{#38;2;@primary_ansi@}\u256d\u2500 SYSTEM \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e{#}"
+      "format": "{#38;2;@primary_ansi@}╭─ SYSTEM ────────────────────────────────────────────────────╮{#}"
     },
     {
       "type": "title",
-      "key": "\u2502 User     ",
+      "key": "│ User     ",
       "format": "{user-name}@{host-name}"
     },
     {
       "type": "os",
-      "key": "\u2502 OS       ",
+      "key": "│ OS       ",
       "format": "{pretty-name}"
     },
     {
       "type": "kernel",
-      "key": "\u2502 Kernel   "
+      "key": "│ Kernel   "
     },
     {
       "type": "packages",
-      "key": "\u2502 Packages "
+      "key": "│ Packages "
     },
     {
       "type": "display",
-      "key": "\u2502 Display  ",
+      "key": "│ Display  ",
       "format": "{width}x{height}"
     },
     {
       "type": "terminal",
-      "key": "\u2502 Terminal "
+      "key": "│ Terminal "
     },
     {
       "type": "shell",
-      "key": "\u2502 Shell    "
+      "key": "│ Shell    "
     },
     {
       "type": "wm",
-      "key": "\u2502 WM       "
+      "key": "│ WM       "
     },
     {
       "type": "custom",
-      "format": "{#38;2;@primary_ansi@}\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f{#}"
+      "format": "{#38;2;@primary_ansi@}╰─────────────────────────────────────────────────────────────╯{#}"
     },
     "break",
     {
       "type": "custom",
-      "format": "{#38;2;@primary_ansi@}\u256d\u2500 HARDWARE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e{#}"
+      "format": "{#38;2;@primary_ansi@}╭─ HARDWARE ──────────────────────────────────────────────────╮{#}"
     },
     {
       "type": "cpu",
-      "key": "\u2502 CPU      ",
+      "key": "│ CPU      ",
       "format": "{name}"
     },
     {
       "type": "cpu",
-      "key": "\u2502 CPU temp ",
+      "key": "│ CPU temp ",
       "temp": true,
       "format": "{temperature}"
     },
     {
       "type": "gpu",
-      "key": "\u2502 GPU      ",
+      "key": "│ GPU      ",
       "format": "{name}"
     },
     {
       "type": "memory",
-      "key": "\u2502 Memory   ",
+      "key": "│ Memory   ",
       "format": "{used} / {total} ({percentage})"
     },
     {
       "type": "disk",
-      "key": "\u2502 Disk /   ",
+      "key": "│ Disk /   ",
       "folders": "/",
       "format": "{size-used} / {size-total} ({size-percentage})"
     },
     {
       "type": "uptime",
-      "key": "\u2502 Uptime   "
+      "key": "│ Uptime   "
     },
     {
       "type": "custom",
-      "format": "{#38;2;@primary_ansi@}\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f{#}"
+      "format": "{#38;2;@primary_ansi@}╰─────────────────────────────────────────────────────────────╯{#}"
     },
     {
       "type": "colors",

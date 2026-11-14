@@ -20,3 +20,5 @@ Para mudar o layout permanentemente, edite o **template**: a configuração gera
 A imagem original está em `assets/Queen Marika the Eternal, Ruan Zoe.jpg`. O protocolo gráfico Kitty exibe a imagem preservando a proporção; outros terminais podem não suportar esse protocolo. O caminho suporta espaços e XDG_CONFIG_HOME. O pacote `fastfetch` foi incluído nas dependências. `install.sh` instala os links de Kitty/Fastfetch com backup das pastas anteriores.
 
 Para verificar somente os dados: `fastfetch --logo none`. Os testes validam a geração da paleta e a leitura pelo Fastfetch real, sem comprovar a aparência gráfica no terminal.
+
+O logo fica explicitamente à esquerda, com duas linhas de margem superior para equilibrar o retrato com os dois blocos. A largura continua em 28 colunas, preservando a proporção; a altura visual depende das células da fonte do Kitty. Esses ajustes estão também no template para persistirem na troca de wallpaper.
