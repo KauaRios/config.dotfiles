@@ -16,8 +16,8 @@
     }
   },
   "wireplumber": {
-    "format": "♪ {volume}%",
-    "format-muted": "♪ ×",
+    "format": "{volume}%",
+    "format-muted": "—",
     "format-icons": [
       "♩",
       "♪",
@@ -28,9 +28,9 @@
     "on-click-right": "pavucontrol"
   },
   "network": {
-    "format-wifi": "⌁",
-    "format-ethernet": "⇆",
-    "format-disconnected": "×",
+    "format-wifi": "​",
+    "format-ethernet": "​",
+    "format-disconnected": "​",
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
     "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
@@ -41,7 +41,7 @@
     "input-filename": "temp1_input",
     "interval": 5,
     "critical-threshold": 85,
-    "format": "{temperatureC}°",
+    "format": "{temperatureC}°C",
     "tooltip-format": "Temperatura da CPU Ryzen: {temperatureC}°C"
   },
   "battery": {
@@ -49,9 +49,9 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "▰ {capacity}%",
-    "format-charging": "ϟ {capacity}%",
-    "format-plugged": "ϟ {capacity}%",
+    "format": "{capacity}%",
+    "format-charging": "{capacity}%",
+    "format-plugged": "{capacity}%",
     "format-icons": [
       "▱",
       "▱",
@@ -61,7 +61,7 @@
     ]
   },
   "power-profiles-daemon": {
-    "format": "{icon}",
+    "format": "​",
     "format-icons": {
       "default": "ϟ",
       "power-saver": "♧",
@@ -72,7 +72,7 @@
   },
   "layer": "top",
   "position": "top",
-  "height": 40,
+  "height": 44,
   "spacing": 0,
   "custom/launcher": {
     "format": "​",
@@ -80,51 +80,51 @@
     "tooltip-format": "Abrir aplicativos"
   },
   "custom/spotify": {
-    "format": "♫",
+    "format": "​",
     "on-click": "spotify-launcher",
     "tooltip-format": "Abrir Spotify"
   },
   "clock": {
     "format": "{:%H:%M}",
-    "format-alt": "{:%d.%m.%Y}",
+    "format-alt": "{:%H:%M:%S}",
     "tooltip-format": "<big>{:%A, %d de %B}</big>\n<tt>{calendar}</tt>"
   },
   "tray": {
-    "icon-size": 15,
-    "spacing": 9
-  },
-  "memory": {
-    "format": "{used:.1f}G",
-    "interval": 5
+    "icon-size": 16,
+    "spacing": 8
   },
   "name": "sora",
-  "margin-top": 10,
-  "margin-left": 14,
-  "margin-right": 14,
+  "margin-top": 12,
+  "margin-left": 20,
+  "margin-right": 20,
   "modules-left": [
     "custom/launcher",
-    "hyprland/workspaces"
-  ],
-  "modules-center": [
+    "hyprland/workspaces",
     "custom/spotify",
     "mpris"
   ],
+  "modules-center": [
+    "clock",
+    "clock#date"
+  ],
   "modules-right": [
-    "tray",
+    "temperature",
     "network",
     "wireplumber",
-    "temperature",
-    "memory",
     "power-profiles-daemon",
     "battery",
-    "clock"
+    "tray"
   ],
   "mpris": {
     "format": "{title}",
     "format-paused": "Ⅱ  {title}",
-    "max-length": 27,
+    "max-length": 20,
     "on-click": "playerctl play-pause",
     "on-click-right": "spotify-launcher",
     "tooltip-format": "{artist} — {title}"
+  },
+  "clock#date": {
+    "format": "{:%a\n%d %b}",
+    "tooltip": false
   }
 }

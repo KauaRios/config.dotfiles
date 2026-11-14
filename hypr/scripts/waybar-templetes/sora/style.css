@@ -1,87 +1,87 @@
 @import "colors.css";
-/* Faixa única: cantos discretos, módulos alinhados e destaque restrito à navegação. */
+/* Três ilhas funcionais. Sem uma cápsula diferente para cada indicador. */
 * {
-    font-family: "DejaVu Sans Mono", "Noto Sans Symbols 2", monospace;
+    font-family: "Noto Sans", "DejaVu Sans", sans-serif;
     font-size: 13px;
+    font-weight: 500;
     min-height: 0;
-    padding: 0;
-    margin: 0;
     border: none;
     border-radius: 0;
+    padding: 0;
+    margin: 0;
 }
-window#waybar {
+window#waybar { background: transparent; color: @purple; }
+.modules-left, .modules-center, .modules-right {
     background: @panel;
-    color: @purple;
-    border: 1px solid alpha(@muted, 0.35);
-    border-radius: 7px;
+    border: 1px solid alpha(@purple, 0.18);
+    border-radius: 12px;
+    box-shadow: inset 0 1px 0 alpha(@purple, 0.04);
 }
-.modules-left, .modules-center, .modules-right { background: transparent; }
+.modules-left { padding: 4px 10px 4px 4px; }
+.modules-center { padding: 0 15px; }
+.modules-right { padding: 0 10px; }
 #custom-launcher {
     background-color: @blue;
     background-image: url("assets/sora-arch.svg");
-    background-position: center;
+    background-size: 20px 20px;
     background-repeat: no-repeat;
-    background-size: 21px 21px;
-    min-width: 42px;
-    margin: 4px 12px 4px 4px;
-    border-radius: 4px;
+    background-position: center;
+    border-radius: 8px;
+    min-width: 34px;
+    margin-right: 8px;
 }
 #custom-launcher:hover { background-color: @purple; }
-#workspaces { padding-right: 10px; }
 #workspaces button {
-    min-width: 31px;
-    margin: 5px 3px;
+    min-width: 28px;
+    margin: 4px 2px;
+    border-radius: 7px;
     color: @muted;
+    font-weight: 600;
     background: transparent;
-    border-bottom: 2px solid transparent;
-    border-radius: 3px 3px 0 0;
     box-shadow: none;
     text-shadow: none;
 }
-#workspaces button.active {
+#workspaces button.active { color: @panel; background: @blue; }
+#workspaces button:hover { background: alpha(@blue, 0.25); color: @purple; }
+#workspaces button.active:hover { color: @panel; background: @purple; }
+#workspaces button.urgent { background: @purple; color: @panel; }
+#custom-spotify {
+    background-image: -gtk-recolor(url("assets/sora-music-symbolic.svg"));
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 19px 19px;
+    min-width: 28px;
+    margin: 7px 8px 7px 9px;
+    border-left: 1px solid alpha(@muted, 0.3);
     color: @blue;
-    background: alpha(@blue, 0.13);
-    border-bottom-color: @blue;
-    font-weight: bold;
 }
-#workspaces button:hover { color: @purple; background: alpha(@purple, 0.15); }
-#workspaces button.urgent { background: @purple; color: @panel; border-bottom-color: @blue; }
-#custom-spotify { color: @blue; font-size: 18px; padding: 0 9px; }
-#custom-spotify:hover { color: @purple; }
-#mpris { color: @purple; padding-right: 12px; font-size: 12px; }
+#mpris { font-size: 12px; padding-right: 5px; color: @purple; }
 #mpris.paused { color: @muted; }
-#tray { padding: 0 10px; margin: 9px 0; border-right: 1px solid alpha(@muted, 0.4); }
-#network { color: @blue; font-size: 20px; padding: 0 10px; }
-#wireplumber { padding-right: 13px; }
-#temperature {
-    margin: 9px 0;
-    padding: 0 10px 0 13px;
-    border-left: 1px solid alpha(@muted, 0.4);
-    color: @blue;
-    font-weight: bold;
-}
-#memory { padding-right: 13px; color: @muted; }
-#power-profiles-daemon {
-    margin: 9px 0;
-    border-left: 1px solid alpha(@muted, 0.4);
-    padding: 0 10px 0 13px;
+#clock { font-family: "DejaVu Sans Mono", monospace; font-size: 18px; font-weight: bold; color: @purple; }
+#clock.date { font-family: "Noto Sans", sans-serif; font-size: 10px; font-weight: 500; color: @muted; margin: 6px 0 6px 12px; padding-left: 12px; border-left: 1px solid alpha(@muted, 0.35); }
+/* SVG simbólico segue a propriedade color, sem fontes de ícones extras. */
+#temperature, #network, #wireplumber, #power-profiles-daemon, #battery {
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    padding: 0 10px 0 32px;
     color: @purple;
-    font-size: 17px;
+    font-size: 13px;
+    border-radius: 7px;
+    margin: 5px 0;
 }
-#battery { padding-right: 12px; }
-#battery.charging, #battery.plugged { color: @blue; }
-#clock {
-    padding: 0 15px;
-    margin: 4px 4px 4px 0;
-    border-radius: 4px;
-    background: alpha(@blue, 0.17);
-    color: @blue;
-    font-size: 15px;
-    font-weight: bold;
-}
-#clock:hover { background: alpha(@blue, 0.28); }
-#wireplumber.muted, #network.disconnected { color: @muted; }
-#temperature.critical, #battery.critical { color: @panel; background: @purple; }
-#battery.warning { color: @blue; }
-tooltip { background: @panel; color: @purple; border: 1px solid @muted; border-radius: 7px; }
+#temperature { background-image: -gtk-recolor(url("assets/sora-heat-symbolic.svg")); color: @blue; font-weight: 600; }
+#network { background-image: -gtk-recolor(url("assets/sora-wifi-symbolic.svg")); min-width: 18px; padding: 0 8px; background-position: center; }
+#network.ethernet { background-image: -gtk-recolor(url("assets/sora-ethernet-symbolic.svg")); }
+#network.disconnected { background-image: -gtk-recolor(url("assets/sora-offline-symbolic.svg")); color: @muted; }
+#wireplumber { background-image: -gtk-recolor(url("assets/sora-volume-symbolic.svg")); }
+#wireplumber.muted { background-image: -gtk-recolor(url("assets/sora-muted-symbolic.svg")); color: @muted; }
+#power-profiles-daemon { background-image: -gtk-recolor(url("assets/sora-power-symbolic.svg")); min-width: 18px; padding: 0 8px; background-position: center; }
+#power-profiles-daemon.performance { color: @blue; }
+#battery { background-image: -gtk-recolor(url("assets/sora-battery-symbolic.svg")); }
+#battery.charging, #battery.plugged { background-image: -gtk-recolor(url("assets/sora-charge-symbolic.svg")); color: @blue; }
+#temperature.critical, #battery.critical { color: @panel; background-color: @purple; }
+#network:hover, #wireplumber:hover, #power-profiles-daemon:hover { background-color: alpha(@purple, 0.1); }
+#tray { padding-left: 10px; margin: 11px 0 11px 3px; border-left: 1px solid alpha(@muted, 0.3); }
+tooltip { background: @panel; color: @purple; border: 1px solid alpha(@blue, 0.5); border-radius: 10px; }
 tooltip label { padding: 9px; }

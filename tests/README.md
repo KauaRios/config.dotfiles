@@ -86,3 +86,5 @@ O grupo de wallpaper também verifica o cabeçalho do launcher: troca do link da
 Fastfetch: `test_fastfetch.py` gera duas paletas em uma pasta temporária, confere cores HEX/ANSI e preservação da imagem, e valida a configuração no Fastfetch instalado sem logo gráfico. Os testes do instalador também cobrem os links de Kitty e Fastfetch.
 
 `test_graphite_sora.py`: valida JSON, referências de módulos/grupos, links da paleta compartilhada e CSS GTK dos dois modelos. Testa o espectro de 20 bandas do Graphite com silêncio, pico e entradas inválidas, sem acessar o áudio ou iniciar a Waybar. Não mede fidelidade visual.
+
+A cobertura de Sora também copia o template para uma pasta temporária, preserva a paleta, renderiza os SVG com librsvg e valida o CSS com os ícones no destino. Requer Gtk/PyGObject e Rsvg; sem essas bibliotecas, essa verificação é ignorada. Não compara screenshots.

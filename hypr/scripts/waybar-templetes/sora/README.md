@@ -1,21 +1,33 @@
 # Sora
 
-Faixa superior contínua de 40px, com cantos discretos e fonte de 13px. Símbolo do Arch à esquerda, cinco workspaces com sublinhado e fundo suave no ativo, música central e relógio à direita. A área de status usa divisórias finas entre conectividade, temperatura/memória e energia.
+Três blocos flutuantes com altura de 44px e cantos de 12px. A composição organiza as funções, sem criar uma cápsula por indicador:
+
+- **Esquerda:** Arch, cinco workspaces e música com título limitado. O workspace ativo recebe preenchimento sólido da cor principal.
+- **Centro:** hora em 18px e dia/data em duas linhas, sobre fundo escuro.
+- **Direita:** temperatura da CPU, rede, volume, perfil de energia, bateria e bandeja. Memória foi retirada para reduzir informação.
+
+Os ícones de status foram desenhados para este modelo, em SVG de 24px com traço uniforme. São exibidos em 18px e recoloridos pelo GTK conforme a propriedade `color` do módulo. A nota do Spotify foi substituída por um ícone vetorial; o Arch continua usando o asset do Akai deste repositório. Não precisa de Nerd Fonts.
+
+## Cores e instalação
+
+`colors.css` continua separado, apontando para a paleta compartilhada da Waybar. Fundo, textos, ícones simbólicos e workspace ativo acompanham o wallpaper. A marca do Arch mantém o desenho escuro sobre a cor principal.
+
+Selecione **sora** em Super+Shift+R. O seletor copia também os arquivos `assets/sora-*.svg`. Não copie apenas o CSS: os ícones precisam acompanhar o modelo.
+
+## Controles
 
 - Arch: abre Rofi.
-- Nota musical: abre o Spotify instalado via `spotify-launcher`.
+- Spotify: abre `spotify-launcher`.
 - Música: clique pausa/continua; botão direito abre Spotify.
 - Volume: clique alterna mudo; botão direito abre pavucontrol.
 - Rede: abre as configurações de rede do KDE.
-- Relógio: alterna hora/data.
+- Relógio: alterna exibição dos segundos.
 - Perfil de energia: alterna os perfis disponíveis.
 
-A temperatura usa o sensor k10temp do Ryzen deste computador. Memória, volume, bateria e temperatura mostram valores reais. O título da música é limitado para conter a largura.
+Temperatura usa k10temp do Ryzen deste computador. O título musical depende de um player MPRIS ativo, e a bandeja depende dos aplicativos abertos.
 
-`colors.css` permanece separado e acompanha a paleta do wallpaper. O ícone Arch vem do asset já presente no modelo Akai deste repositório; não depende de Nerd Fonts. O seletor copia `assets/sora-arch.svg` ao aplicar o modelo.
+## Validação
 
-Selecione **sora** em Super+Shift+R. CSS GTK, JSON e links de cores são validados pelos testes; aparência e distribuição dos módulos precisam de conferência na sessão gráfica.
+Testes conferem JSON, referências de módulos, link da paleta e sintaxe CSS GTK. Os SVG são renderizados pelo librsvg; uma cópia temporária verifica o CSS com os assets fora do repositório. Isso não substitui a avaliação da aparência na sessão gráfica.
 
-## Pesquisa inicial
-
-A primeira versão explorava painéis arredondados inspirados em comentários sobre [este setup](https://www.reddit.com/r/unixporn/comments/1olgyf0/hyprland_my_first_rice/) e [este outro](https://www.reddit.com/r/unixporn/comments/1n0if4i/hyprland_what_do_you_think/). Após seu feedback, o layout foi refeito como faixa contínua. Não foram copiados arquivos CSS ou configurações desses autores.
+A implementação de recoloração segue a [documentação CSS do GTK 3](https://docs.gtk.org/gtk3/css-overview). O código deste modelo foi escrito para as dotfiles; não foram copiados estilos de outros autores.
