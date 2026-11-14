@@ -108,3 +108,34 @@ class WallpaperTests(unittest.TestCase):
         theme = Path(__file__).resolve().parents[1] / 'rofi/wallpapers.rasi'
         subprocess.run(['rofi', '-no-config', '-theme', str(theme), '-dump-theme'],
                        check=True, capture_output=True, text=True, timeout=10)
+
+    def test_rofi_header_tracks_selected_image_without_copy(self):
+        """O link acompanha a troca, inclusive nomes especiais, sem copiar imagens."""
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            first = root / 'imagem "azul".jpg'; first.write_bytes(b'first')
+            second = root / 'outra imagem.jpg'; second.write_bytes(b'second')
+            with patch.object(w, 'CONFIG', root / 'config'):
+                w.update_rofi_wallpaper(first)
+                link = w.CONFIG / 'rofi/current-wallpaper'
+                self.assertTrue(link.is_symlink())
+                self.assertEqual(link.resolve(), first)
+                w.update_rofi_wallpaper(second)
+                self.assertEqual(link.resolve(), second)
+                self.assertEqual(first.read_bytes(), b'first')
+                header = (w.CONFIG / 'rofi/header-image.rasi').read_text()
+                self.assertIn(json.dumps(str(link), ensure_ascii=False), header)
+                self.assertFalse(list(link.parent.glob('.wallpaper-*')))
+
+    def test_apply_updates_header_even_without_new_palette(self):
+        """Restauração sem Matugen também atualiza o cabeçalho do launcher."""
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            image = root / 'wallpaper.jpg'; image.touch()
+            with patch.object(w, 'CONFIG', root / 'config'), patch.object(w, 'STATE', root / 'state'), \
+                 patch.object(w.sp, 'run', return_value=subprocess.CompletedProcess([], 0, '', '')), \
+                 patch.object(w.sp, 'Popen') as spawn:
+                spawn.return_value.wait.side_effect = subprocess.TimeoutExpired('swaybg', 0.4)
+                w.apply(image, None)
+                self.assertEqual((w.CONFIG / 'rofi/current-wallpaper').resolve(), image)
+                self.assertEqual(json.loads((w.STATE / 'selection.json').read_text())['image'], str(image))

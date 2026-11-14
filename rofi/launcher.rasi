@@ -1,0 +1,74 @@
+/* Menu em três colunas, com busca sobre o wallpaper atual. */
+@import "colors.rasi"
+* {
+    font: "DejaVu Sans Mono 11";
+    background-color: transparent;
+    text-color: @fg;
+    border-color: @accent;
+}
+window {
+    location: center;
+    anchor: center;
+    width: 720px;
+    border: 0px;
+    border-radius: 10px;
+    background-color: @bg;
+}
+mainbox {
+    children: [ header, listview ];
+    spacing: 0px;
+    padding: 0px;
+}
+header {
+    orientation: vertical;
+    children: [ inputbar ];
+    background-color: @bg;
+    padding: 66px 115px;
+}
+inputbar {
+    children: [ prompt, entry ];
+    spacing: 12px;
+    background-color: transparent;
+}
+prompt {
+    enabled: true;
+    padding: 12px 15px;
+    border-radius: 8px;
+    background-color: @bg;
+    text-color: @accent;
+}
+entry {
+    placeholder: "Pesquisar";
+    placeholder-color: @fg;
+    padding: 12px 15px;
+    border-radius: 8px;
+    background-color: @bg;
+    text-color: @fg;
+}
+listview {
+    columns: 3;
+    lines: 5;
+    layout: vertical;
+    fixed-columns: true;
+    fixed-height: true;
+    dynamic: false;
+    scrollbar: false;
+    padding: 18px;
+    spacing: 6px;
+}
+element {
+    orientation: horizontal;
+    children: [ element-icon, element-text ];
+    padding: 10px 9px;
+    spacing: 10px;
+    border-radius: 6px;
+}
+element selected.normal, element selected.active {
+    background-color: @accent;
+    text-color: @bg;
+}
+element-icon { size: 24px; vertical-align: 0.5; }
+element-text { vertical-align: 0.5; text-color: inherit; }
+
+/* Gerado pelo seletor: caminho absoluto, independente do diretório de abertura. */
+@import "header-image.rasi"

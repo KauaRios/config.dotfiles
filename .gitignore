@@ -1,2 +1,6 @@
 __pycache__/
 *.py[cod]
+
+# Wallpaper selecionado localmente, usado no cabeçalho do Rofi.
+/rofi/current-wallpaper
+/rofi/header-image.rasi

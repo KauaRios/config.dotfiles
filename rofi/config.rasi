@@ -1,6 +1,8 @@
 configuration {
     modi: "drun,run";
     show-icons: true;
-    font: "Sans 12";
+    font: "DejaVu Sans Mono 11";
+    display-drun: "≡";
+    drun-display-format: "{name}";
 }
-@theme "oni"
+@theme "launcher"

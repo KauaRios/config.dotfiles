@@ -68,3 +68,13 @@ Correção da galeria: removidos inputbar e texto de ajuda; o ícone de cada ite
 Adaptação da referência Rasi: removidas as alturas explícitas, a área quadrada forçada e as media queries acrescentadas anteriormente. Os imports shared/colors.rasi e shared/fonts.rasi foram substituídos pelo colors.rasi local e pela fonte DejaVu Sans 11. Os nomes background e background-alt apontam para bg; selected aponta para accent. Assim, as cores continuam dinâmicas sem novos arquivos gerados. A paleta atual não fornece um segundo fundo, portanto os dois fundos usam a mesma cor. Essa mudança reproduz a estrutura fornecida; não comprova que a variação entre aberturas esteja resolvida.
 
 Abertura da galeria: `-sync` faz o Rofi consumir toda a lista enviada pelo Python antes de exibir o menu, evitando construir o layout com uma lista parcial. Isso não torna a decodificação das miniaturas síncrona. A validação automatizada confere o argumento e o protocolo; a estabilidade visual em aberturas repetidas precisa ser confirmada na sessão real.
+
+## Menu de aplicativos com wallpaper no topo
+
+Super+R continua abrindo `rofi -show drun`. `rofi/config.rasi` agora usa `launcher.rasi`: três colunas de aplicativos, cinco linhas, ícones e busca sobre uma faixa da imagem atual, conforme reference_rofi.png. O tema mantém as cores dinâmicas de colors.rasi. A estrutura segue a captura; a imagem e as cores variam com a escolha do usuário. O antigo oni.rasi foi preservado.
+
+`update_rofi_wallpaper()` em wallpaper.py cria atomicamente `rofi/current-wallpaper`, um link para a imagem selecionada, e gera `rofi/header-image.rasi` com o caminho absoluto desse link. Assim, nomes de imagens com espaços ou aspas não entram no código Rasi e a abertura não depende do diretório atual. Não há cópia da imagem. Os dois arquivos são locais, ignorados pelo Git e recriados a cada aplicação/restauração de wallpaper, inclusive sem gerar uma nova paleta. A inicialização desta mudança usa a seleção já salva, sem reaplicar o wallpaper.
+
+O tema é compartilhado por chamadas que usam a configuração padrão do Rofi, incluindo o botão de aplicativos da Waybar e o seletor de modelos. A galeria Super+W usa seu tema independente com -no-config. A mudança não transforma Super+R em gerenciador de arquivos: ele continua sendo o launcher de aplicativos, como na referência.
+
+Testes verificam a substituição do link, caminhos especiais, preservação da imagem e atualização durante apply sem paleta. O parser real do Rofi valida o tema. A renderização e a decodificação da imagem precisam ser conferidas na sessão gráfica.

@@ -78,6 +78,19 @@ def atomic(path, text):
     os.replace(temp, path)
 
 
+
+def update_rofi_wallpaper(image):
+    """Link estável para o cabeçalho do Rofi, sem copiar a imagem."""
+    folder = CONFIG / 'rofi'
+    folder.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='.wallpaper-', dir=folder) as temporary:
+        link = Path(temporary) / 'image'
+        link.symlink_to(image.resolve())
+        os.replace(link, folder / 'current-wallpaper')
+    path = json.dumps(str((folder / 'current-wallpaper').absolute()), ensure_ascii=False)
+    atomic(folder / 'header-image.rasi', 'header { background-image: url(' + path + ', width); }\n')
+
+
 def apply(image, colors):
     if not image.is_file():
         raise ValueError('Imagem não encontrada: ' + str(image))
@@ -102,6 +115,7 @@ def apply(image, colors):
             for key, value in colors.items():
                 text = text.replace('@' + key + '@', value).replace('@' + key + '_rgb@', value[1:])
             atomic(CONFIG / dest, text)
+    update_rofi_wallpaper(image)
     atomic(STATE / 'selection.json', json.dumps({'image': str(image), 'colors': colors}))
     for command in [('hyprctl', 'reload'), ('pkill', '-USR2', '-u', str(os.getuid()), '-x', 'waybar'), ('makoctl', 'reload')]:
         result = sp.run(command, capture_output=True, text=True)
