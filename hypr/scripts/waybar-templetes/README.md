@@ -38,6 +38,6 @@ Modelos também podem conter `assets/`: o seletor copia essa pasta para a Waybar
 ## Graphite e Sora
 
 - [Graphite](graphite/README.md): nova `reference_waybar.png`, painel centralizado com workspaces quadrados, espectro CAVA real de 20 bandas e data/hora central. Altura de 38px.
-- [Sora](sora/README.md): composição geométrica com abas em kanji, mídia separada, relógio/data central e indicadores segmentados. Ícones vetoriais e temperatura visível; altura de 44px.
+- [Sora](sora/README.md): baseada em `reference.png`: cápsula única com temperatura/hora/mídia à esquerda, dez workspaces em kanji e ícones compactos à direita; altura de 38px.
 
 Ambos usam cores dinâmicas separadas e aparecem automaticamente em Super+Shift+R. Sua barra atual não é substituída ao adicionar os modelos.

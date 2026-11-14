@@ -1,35 +1,32 @@
-# Sora
+# Sora — referência
 
-CSS reescrito com uma composição geométrica e altura de 44px. Superfícies planas, cantos de 2–3px e bordas finas substituem os painéis arredondados e gradientes anteriores.
+Reconstruída a partir de `reference.png` na raiz do repositório. Uma cápsula escura única, com altura de 38px e largura de 1280px, centralizada no topo. Sem os painéis separados, abas retas e selo Arch das versões anteriores.
 
-- **Esquerda:** marca Arch separada, navegação em abas com numerais japoneses (一 二 三 四 五) e bloco de mídia. O workspace ativo tem preenchimento sólido.
-- **Centro:** hora em 20px e data em um campo separado, unidos pela borda inferior.
-- **Direita:** segmentos contíguos para temperatura, rede, volume, perfil e bateria; bandeja em um bloco separado. A temperatura recebe uma borda lateral de destaque.
+A ordem acompanha a captura:
 
-Os ícones de status foram desenhados para este modelo, em SVG de 24px com traço uniforme. São exibidos em 18px e recoloridos pelo GTK conforme a propriedade `color` do módulo. A nota do Spotify foi substituída por um ícone vetorial; o Arch continua usando o asset do Akai deste repositório. Não precisa de Nerd Fonts.
+1. Temperatura, ponto separador, hora em destaque e data discreta em uma linha.
+2. Mídia sobre uma pequena cápsula interna; sem player aparece “Nothing playing right now”.
+3. Dez workspaces, com apenas o ativo preenchido e circular.
+4. Fones, bateria, CPU, Bluetooth, brilho, perfil de energia, faixa anterior e menu de sessão.
 
-## Cores e instalação
+## Adaptações mantidas para suas dotfiles
 
-`colors.css` continua separado, apontando para a paleta compartilhada da Waybar. Fundo, textos, ícones simbólicos e workspace ativo acompanham o wallpaper. A marca do Arch mantém o desenho escuro sobre a cor principal.
-
-Selecione **sora** em Super+Shift+R. O seletor copia também os arquivos `assets/sora-*.svg`. Não copie apenas o CSS: os ícones precisam acompanhar o modelo.
+- Os workspaces usam 一 二 三 四 五 六 七 八 九 十, conforme solicitado. Os atalhos seguem numéricos.
+- O destaque alaranjado da foto é substituído pela cor do wallpaper; `colors.css` permanece separado.
+- No lugar da temperatura do clima, exibimos a temperatura real da CPU Ryzen. Não há consulta de clima nem valor fictício.
+- Ícones são SVGs próprios, recoloridos pelo GTK. Dados e módulos disponíveis dependem do hardware/serviços; Bluetooth e brilho podem ficar ausentes em outros sistemas.
+- Altura e fonte foram adaptadas para legibilidade; a fidelidade visual final precisa ser conferida na sessão gráfica.
 
 ## Controles
 
-- Arch: abre Rofi.
-- Spotify: abre `spotify-launcher`.
-- Música: clique pausa/continua; botão direito abre Spotify.
-- Volume: clique alterna mudo; botão direito abre pavucontrol.
-- Rede: abre as configurações de rede do KDE.
-- Relógio: alterna exibição dos segundos.
-- Perfil de energia: alterna os perfis disponíveis.
+- Mídia: clique para pausar/continuar; botão direito abre `spotify-launcher`.
+- Fones: clique alterna mudo; botão direito abre pavucontrol.
+- Bluetooth: abre `kcmshell6 kcm_bluetooth`.
+- Brilho: rolagem ajusta com brightnessctl.
+- Chama: alterna os perfis de energia disponíveis.
+- «: faixa anterior no player.
+- Energia: abre menu no Rofi. Só executa bloquear, suspender, reiniciar ou desligar depois de selecionar a opção. Escape cancela.
 
-Temperatura usa k10temp do Ryzen deste computador. O título musical depende de um player MPRIS ativo, e a bandeja depende dos aplicativos abertos.
+A mídia usa `playerctl` com timeout, JSON e escape de markup. O menu de sessão recebe somente opções predefinidas e não executa conteúdo arbitrário do Rofi.
 
-## Validação
-
-Testes conferem JSON, referências de módulos, link da paleta e sintaxe CSS GTK. Os SVG são renderizados pelo librsvg; uma cópia temporária verifica o CSS com os assets fora do repositório. Isso não substitui a avaliação da aparência na sessão gráfica.
-
-A implementação de recoloração segue a [documentação CSS do GTK 3](https://docs.gtk.org/gtk3/css-overview). O código deste modelo foi escrito para as dotfiles; não foram copiados estilos de outros autores.
-
-Os workspaces de 1 a 10 usam 一 二 三 四 五 六 七 八 九 十. Apenas o rótulo visual muda; atalhos e IDs permanecem numéricos. O texto usa Noto Sans CJK JP (presente neste sistema), com fallback do sistema. As superfícies são planas; a cor do texto é derivada da paleta com maior luminosidade.
+Selecione **sora** em Super+Shift+R; o seletor copia config, CSS e assets. Testes validam CSS/JSON, renderização dos SVG, cópia dos assets, estado vazio da mídia, escape de títulos e seleção/cancelamento do menu de sessão. Não comparam screenshots.

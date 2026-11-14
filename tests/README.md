@@ -88,3 +88,5 @@ Fastfetch: `test_fastfetch.py` gera duas paletas em uma pasta temporária, confe
 `test_graphite_sora.py`: valida JSON, referências de módulos/grupos, links da paleta compartilhada e CSS GTK dos dois modelos. Testa o espectro de 20 bandas do Graphite com silêncio, pico e entradas inválidas, sem acessar o áudio ou iniciar a Waybar. Não mede fidelidade visual.
 
 A cobertura de Sora também copia o template para uma pasta temporária, preserva a paleta, renderiza os SVG com librsvg e valida o CSS com os ícones no destino. Requer Gtk/PyGObject e Rsvg; sem essas bibliotecas, essa verificação é ignorada. Não compara screenshots.
+
+`test_sora_controls.py`: simula playerctl ausente/sem mídia/timeout, confere escape de markup nos títulos e testa cancelamento/seleção do menu da sessão sem bloquear, suspender ou desligar o sistema.

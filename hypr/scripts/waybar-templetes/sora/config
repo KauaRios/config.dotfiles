@@ -11,7 +11,12 @@
         2,
         3,
         4,
-        5
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
       ]
     },
     "format-icons": {
@@ -29,8 +34,8 @@
     }
   },
   "wireplumber": {
-    "format": "{volume}%",
-    "format-muted": "—",
+    "format": "​",
+    "format-muted": "​",
     "format-icons": [
       "♩",
       "♪",
@@ -40,21 +45,12 @@
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "on-click-right": "pavucontrol"
   },
-  "network": {
-    "format-wifi": "​",
-    "format-ethernet": "​",
-    "format-disconnected": "​",
-    "tooltip-format": "{ifname} via {gwaddr}",
-    "tooltip-format-wifi": "{essid} · {signalStrength}%\nClique para configurar o Wi-Fi",
-    "tooltip-format-disconnected": "Sem conexão · clique para configurar a rede",
-    "on-click": "kcmshell6 kcm_networkmanagement"
-  },
   "temperature": {
     "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
     "input-filename": "temp1_input",
     "interval": 5,
     "critical-threshold": 85,
-    "format": "{temperatureC}°C",
+    "format": "{temperatureC}°",
     "tooltip-format": "Temperatura da CPU Ryzen: {temperatureC}°C"
   },
   "battery": {
@@ -62,16 +58,17 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{capacity}%",
-    "format-charging": "{capacity}%",
-    "format-plugged": "{capacity}%",
+    "format": "​",
+    "format-charging": "​",
+    "format-plugged": "​",
     "format-icons": [
       "▱",
       "▱",
       "▰",
       "▰",
       "▰"
-    ]
+    ],
+    "tooltip-format": "Bateria: {capacity}% · {timeTo}"
   },
   "power-profiles-daemon": {
     "format": "​",
@@ -83,61 +80,86 @@
     },
     "tooltip-format": "Perfil de energia: {profile}\nClique para alternar entre os perfis disponíveis"
   },
-  "layer": "top",
-  "position": "top",
-  "height": 44,
-  "spacing": 0,
-  "custom/launcher": {
-    "format": "​",
-    "on-click": "rofi -show drun",
-    "tooltip-format": "Abrir aplicativos"
-  },
-  "custom/spotify": {
-    "format": "​",
-    "on-click": "spotify-launcher",
-    "tooltip-format": "Abrir Spotify"
-  },
   "clock": {
     "format": "{:%H:%M}",
     "format-alt": "{:%H:%M:%S}",
     "tooltip-format": "<big>{:%A, %d de %B}</big>\n<tt>{calendar}</tt>"
   },
-  "tray": {
-    "icon-size": 16,
-    "spacing": 8
-  },
   "name": "sora",
+  "layer": "top",
+  "position": "top",
+  "height": 38,
+  "width": 1280,
   "margin-top": 12,
-  "margin-left": 20,
-  "margin-right": 20,
+  "spacing": 0,
   "modules-left": [
-    "custom/launcher",
-    "hyprland/workspaces",
-    "custom/spotify",
-    "mpris"
+    "temperature",
+    "custom/dot",
+    "clock",
+    "clock#date",
+    "custom/dot#media",
+    "custom/sora-media"
   ],
   "modules-center": [
-    "clock",
-    "clock#date"
+    "hyprland/workspaces"
   ],
   "modules-right": [
-    "temperature",
-    "network",
     "wireplumber",
-    "power-profiles-daemon",
     "battery",
-    "tray"
+    "cpu",
+    "bluetooth",
+    "backlight",
+    "power-profiles-daemon",
+    "custom/previous",
+    "custom/session"
   ],
-  "mpris": {
-    "format": "{title}",
-    "format-paused": "Ⅱ  {title}",
-    "max-length": 20,
-    "on-click": "playerctl play-pause",
-    "on-click-right": "spotify-launcher",
-    "tooltip-format": "{artist} — {title}"
+  "custom/dot": {
+    "format": "·",
+    "tooltip": false
+  },
+  "custom/dot#media": {
+    "format": "·",
+    "tooltip": false
   },
   "clock#date": {
-    "format": "{:%a\n%d %b}",
+    "format": "{:%a, %b %d}",
     "tooltip": false
-  }
+  },
+  "custom/sora-media": {
+    "exec": "python3 \"${XDG_CONFIG_HOME:-$HOME/.config}/waybar/assets/sora-media.py\"",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "spotify-launcher"
+  },
+  "cpu": {
+    "format": "​",
+    "interval": 5,
+    "tooltip-format": "CPU: {usage}%"
+  },
+  "bluetooth": {
+    "format": "{num_connections}",
+    "format-disabled": "​",
+    "format-off": "​",
+    "tooltip-format": "Bluetooth: {status}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "on-click": "kcmshell6 kcm_bluetooth"
+  },
+  "backlight": {
+    "format": "​",
+    "tooltip-format": "Brilho: {percent}%",
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-"
+  },
+  "custom/previous": {
+    "format": "«",
+    "tooltip-format": "Faixa anterior",
+    "on-click": "playerctl previous"
+  },
+  "custom/session": {
+    "format": "​",
+    "tooltip-format": "Menu da sessão",
+    "on-click": "python3 \"${XDG_CONFIG_HOME:-$HOME/.config}/waybar/assets/sora-session.py\""
+  },
+  "fixed-center": false
 }

@@ -1,12 +1,8 @@
 @import "colors.css";
-
-/* Sora / sumi: superfícies planas, recortes retos e navegação em kanji. */
-@define-color sora_ink mix(@purple, #ffffff, 0.56);
-@define-color sora_edge alpha(@muted, 0.3);
-@define-color sora_hover mix(@panel, @blue, 0.14);
-
+/* reference.png: uma única cápsula, com mídia e workspaces no mesmo eixo. */
+@define-color sora_text mix(@purple, #ffffff, 0.32);
 * {
-    font-family: "Noto Sans", "DejaVu Sans", sans-serif;
+    font-family: "DejaVu Sans Mono", "Noto Sans CJK JP", monospace;
     font-size: 13px;
     font-weight: 500;
     min-height: 0;
@@ -17,196 +13,76 @@
     box-shadow: none;
     text-shadow: none;
 }
-
 window#waybar {
-    background: transparent;
-    color: @sora_ink;
-}
-
-.modules-left, .modules-center, .modules-right {
-    background: transparent;
-    padding: 0;
-}
-
-/* Marca separada da navegação, como um selo. */
-#custom-launcher {
-    min-width: 40px;
-    margin: 2px 8px 2px 0;
-    border-radius: 3px;
-    background-color: @purple;
-    background-image: url("assets/sora-arch.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 22px 22px;
-}
-#custom-launcher:hover { background-color: @blue; }
-
-/* Os botões não mudam de largura ao selecionar ou passar o mouse. */
-#workspaces {
     background: @panel;
-    border: 1px solid @sora_edge;
-    border-radius: 3px;
-    padding: 3px;
-    margin: 2px 0;
+    color: @sora_text;
+    border: 1px solid alpha(@muted, 0.18);
+    border-radius: 20px;
 }
-#workspaces button {
-    font-family: "Noto Sans CJK JP", "Noto Sans", sans-serif;
-    font-size: 17px;
-    font-weight: 500;
-    min-width: 32px;
-    margin: 0 2px;
-    border-radius: 2px;
-    border-bottom: 2px solid transparent;
-    color: @muted;
-    background: transparent;
-}
-#workspaces button:hover {
-    color: @sora_ink;
-    background: @sora_hover;
-    border-bottom-color: @muted;
-}
-#workspaces button.active {
-    color: @panel;
-    background: @blue;
-    border-bottom-color: @purple;
-    font-weight: bold;
-}
-#workspaces button.active:hover { background: @purple; }
-#workspaces button.urgent {
-    color: @panel;
-    background: @purple;
-    border-bottom-color: @blue;
-}
-
-/* Mídia em um bloco próprio; só o atalho permanece sem player aberto. */
-#custom-spotify {
-    min-width: 38px;
-    margin: 2px 0 2px 9px;
-    border: 1px solid @sora_edge;
-    border-radius: 3px 0 0 3px;
-    background-color: @panel;
-    background-image: -gtk-recolor(url("assets/sora-music-symbolic.svg"));
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 19px 19px;
-    color: @blue;
-}
-#custom-spotify:hover { background-color: @sora_hover; }
-#mpris {
-    margin: 2px 0;
-    padding: 0 14px 0 10px;
-    border: 1px solid @sora_edge;
-    border-left: none;
-    border-radius: 0 3px 3px 0;
-    background: @panel;
-    color: @sora_ink;
-    font-size: 13px;
-}
-#mpris.paused { color: @muted; }
-
-/* Hora e data são dois campos do mesmo relógio, com uma borda inferior fina. */
-#clock {
-    font-family: "DejaVu Sans Mono", monospace;
-    font-size: 20px;
-    font-weight: bold;
-    color: @sora_ink;
-    background: @panel;
-    padding: 0 17px;
-    margin: 2px 0;
-    border: 1px solid @sora_edge;
-    border-right: none;
-    border-bottom-color: @blue;
-    border-radius: 3px 0 0 3px;
-}
-#clock:hover { background: @sora_hover; }
-#clock.date {
-    font-family: "Noto Sans", sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    color: @purple;
-    padding: 0 11px;
-    margin: 2px 0;
-    border: 1px solid @sora_edge;
-    border-bottom-color: @blue;
-    border-radius: 0 3px 3px 0;
-    background: mix(@panel, @purple, 0.07);
-}
-
-/* Segmentos contíguos, sem cápsulas e sem mudanças de tamanho nos estados. */
-#temperature, #network, #wireplumber, #power-profiles-daemon, #battery {
-    color: @sora_ink;
-    background-color: @panel;
-    background-size: 18px 18px;
-    background-repeat: no-repeat;
-    background-position: 10px center;
-    padding: 0 12px 0 35px;
-    margin: 2px 0;
-    border-top: 1px solid @sora_edge;
-    border-bottom: 1px solid @sora_edge;
-    border-right: 1px solid @sora_edge;
-    font-family: "DejaVu Sans Mono", monospace;
-    font-size: 12px;
-}
+.modules-left { padding-left: 11px; }
+.modules-center { padding: 0 8px; }
+.modules-right { padding: 0 10px 0 5px; }
 #temperature {
     background-image: -gtk-recolor(url("assets/sora-heat-symbolic.svg"));
-    color: @blue;
-    border-left: 2px solid @blue;
-    border-radius: 3px 0 0 3px;
-    font-weight: bold;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 14px 14px;
+    padding-left: 19px;
+    padding-right: 4px;
+    font-size: 12px;
 }
-#network {
-    min-width: 37px;
-    padding: 0;
-    background-position: center;
-    background-image: -gtk-recolor(url("assets/sora-wifi-symbolic.svg"));
-}
-#network.ethernet { background-image: -gtk-recolor(url("assets/sora-ethernet-symbolic.svg")); }
-#network.disconnected {
+#custom-dot { color: @muted; padding: 0 9px; }
+#clock { color: @blue; font-weight: bold; }
+#clock.date {
+    font-size: 11px;
+    font-style: italic;
+    font-weight: normal;
     color: @muted;
-    background-image: -gtk-recolor(url("assets/sora-offline-symbolic.svg"));
+    padding-left: 9px;
 }
-#wireplumber { background-image: -gtk-recolor(url("assets/sora-volume-symbolic.svg")); }
-#wireplumber.muted {
-    color: @muted;
-    background-image: -gtk-recolor(url("assets/sora-muted-symbolic.svg"));
+#custom-sora-media {
+    background: alpha(@purple, 0.07);
+    border-radius: 13px;
+    padding: 0 12px;
+    margin: 6px 0;
+    min-width: 235px;
+    font-size: 12px;
+    color: @sora_text;
 }
-#power-profiles-daemon {
-    min-width: 36px;
-    padding: 0;
+#custom-sora-media.idle { color: @purple; }
+#workspaces button {
+    font-family: "Noto Sans CJK JP", sans-serif;
+    min-width: 27px;
+    min-height: 26px;
+    margin: 5px 2px;
+    font-size: 14px;
+    border-radius: 50%;
+    color: alpha(@muted, 0.5);
+    background: transparent;
+}
+#workspaces button.empty { color: alpha(@muted, 0.33); }
+#workspaces button:hover { color: @purple; background: alpha(@purple, 0.12); }
+#workspaces button.active { color: @panel; background: @blue; font-weight: bold; }
+#workspaces button.urgent { color: @panel; background: @purple; }
+#wireplumber, #battery, #cpu, #bluetooth, #backlight, #power-profiles-daemon, #custom-session {
+    min-width: 24px;
+    background-repeat: no-repeat;
     background-position: center;
-    background-image: -gtk-recolor(url("assets/sora-power-symbolic.svg"));
+    background-size: 15px 15px;
+    color: @sora_text;
 }
-#power-profiles-daemon.performance { color: @blue; background-color: @sora_hover; }
-#battery {
-    background-image: -gtk-recolor(url("assets/sora-battery-symbolic.svg"));
-    border-radius: 0 3px 3px 0;
-}
-#battery.charging, #battery.plugged {
-    color: @blue;
-    background-image: -gtk-recolor(url("assets/sora-charge-symbolic.svg"));
-}
-#battery.warning { color: @blue; border-bottom-color: @blue; }
-#temperature.critical, #battery.critical {
-    color: @panel;
-    background-color: @purple;
-    border-bottom-color: @blue;
-}
-#network:hover, #wireplumber:hover, #power-profiles-daemon:hover {
-    color: @blue;
-    background-color: @sora_hover;
-}
-#tray {
-    background: @panel;
-    margin: 2px 0 2px 8px;
-    padding: 0 10px;
-    border: 1px solid @sora_edge;
-    border-radius: 3px;
-}
-
-tooltip {
-    background: @panel;
-    color: @sora_ink;
-    border: 1px solid alpha(@blue, 0.5);
-    border-radius: 3px;
-}
-tooltip label { padding: 10px; }
+#wireplumber { background-image: -gtk-recolor(url("assets/sora-headphones-symbolic.svg")); }
+#wireplumber.muted { color: @muted; }
+#battery { background-image: -gtk-recolor(url("assets/sora-battery-symbolic.svg")); }
+#battery.charging, #battery.plugged { color: @blue; }
+#cpu { background-image: -gtk-recolor(url("assets/sora-chip-symbolic.svg")); }
+#bluetooth { background-image: -gtk-recolor(url("assets/sora-bluetooth-symbolic.svg")); background-position: 4px center; padding-left: 19px; min-width: 12px; font-size: 12px; }
+#bluetooth.disabled, #bluetooth.off { color: @muted; }
+#backlight { background-image: -gtk-recolor(url("assets/sora-sun-symbolic.svg")); color: @muted; }
+#power-profiles-daemon { background-image: -gtk-recolor(url("assets/sora-flame-symbolic.svg")); color: @blue; }
+#custom-previous { color: @muted; padding: 0 8px; margin: 10px 2px; border-left: 1px solid alpha(@muted, 0.25); font-size: 17px; }
+#custom-session { background-image: -gtk-recolor(url("assets/sora-session-symbolic.svg")); color: @blue; }
+#temperature.critical, #battery.critical { color: @blue; }
+#wireplumber:hover, #bluetooth:hover, #backlight:hover, #custom-session:hover { color: @blue; }
+tooltip { background: @panel; color: @sora_text; border: 1px solid alpha(@blue, 0.4); border-radius: 8px; }
+tooltip label { padding: 8px; }
