@@ -1,15 +1,15 @@
 # Marika — Fastfetch
 
-Abra o Kitty e execute `fastfetch`. A imagem fornecida fica à esquerda; os blocos SYSTEM e HARDWARE seguem a organização da referência, com bordas finas, dados reais e temperatura da CPU. Use uma janela com aproximadamente 100 colunas para evitar quebras. Não é iniciado automaticamente a cada terminal.
+Abra o Kitty e execute `fastfetch`. O retrato da Marika fica à esquerda de uma composição compacta, com o título “MARIKA / THE ETERNAL QUEEN”, divisórias com losangos e o bloco VITALS. Os rótulos Tarnished e Realm representam usuário e sistema operacional; Heat mostra a temperatura real da CPU. Use uma janela com aproximadamente 80 colunas para evitar quebras. Não é iniciado automaticamente a cada terminal.
 
 ## Cores do wallpaper
 
 `wallpaper.py` recebe a paleta do Matugen e `apply_colors()` preenche `hypr/scripts/theme-templates/fastfetch.jsonc`. O resultado vai para `~/.config/fastfetch/config.jsonc` (ou `$XDG_CONFIG_HOME/fastfetch/config.jsonc`). O instalador vincula essa pasta ao repositório.
 
-- `primary`: rótulos e bordas.
-- `secondary`: título do usuário.
+- `primary`: rótulos, título Marika e primeiro grupo de círculos.
+- `secondary`: subtítulo, VITALS e segundo grupo de círculos.
 - `on_surface`: valores das informações.
-- Os círculos finais mostram a paleta do terminal, independente da paleta do wallpaper.
+- `outline`: divisórias e terceiro grupo de círculos. Todos os círculos acompanham o wallpaper.
 
 A imagem da Marika permanece igual. Execute `fastfetch` novamente depois de trocar o wallpaper para ver as novas cores; texto já impresso não é atualizado. A restauração do wallpaper também reaplica as cores salvas.
 
@@ -21,4 +21,4 @@ A imagem original está em `assets/Queen Marika the Eternal, Ruan Zoe.jpg`. O pr
 
 Para verificar somente os dados: `fastfetch --logo none`. Os testes validam a geração da paleta e a leitura pelo Fastfetch real, sem comprovar a aparência gráfica no terminal.
 
-O logo fica explicitamente à esquerda, com duas linhas de margem superior para equilibrar o retrato com os dois blocos. A largura continua em 28 colunas, preservando a proporção; a altura visual depende das células da fonte do Kitty. Esses ajustes estão também no template para persistirem na troca de wallpaper.
+O retrato fica explicitamente à esquerda, sem margem superior, com largura de 26 colunas e quatro colunas de espaço até o texto. A proporção original é preservada; a altura visual depende das células da fonte do Kitty. O layout também está no template para persistir na troca de wallpaper.

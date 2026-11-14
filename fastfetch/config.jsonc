@@ -3,16 +3,16 @@
   "logo": {
     "type": "kitty",
     "source": "\"${XDG_CONFIG_HOME:-$HOME/.config}/fastfetch/assets/Queen Marika the Eternal, Ruan Zoe.jpg\"",
-    "width": 28,
+    "width": 26,
     "padding": {
-      "top": 2,
+      "top": 0,
       "left": 1,
-      "right": 3
+      "right": 4
     },
     "position": "left"
   },
   "display": {
-    "separator": " : ",
+    "separator": "  ",
     "color": {
       "keys": "#9ed49d",
       "title": "#b9ccb5",
@@ -23,91 +23,80 @@
   "modules": [
     {
       "type": "custom",
-      "format": "{#38;2;158;212;157}╭─ SYSTEM ────────────────────────────────────────────────────╮{#}"
+      "format": "{#38;2;158;212;157}          M A R I K A{#}"
     },
     {
+      "type": "custom",
+      "format": "{#38;2;185;204;181}        THE ETERNAL QUEEN{#}"
+    },
+    {
+      "type": "custom",
+      "format": "{#38;2;140;147;137}  ─────────── ◇ ───────────{#}"
+    },
+    "break",
+    {
       "type": "title",
-      "key": "│ User     ",
-      "format": "{user-name}@{host-name}"
+      "key": "  Tarnished",
+      "format": "{user-name}"
     },
     {
       "type": "os",
-      "key": "│ OS       ",
+      "key": "  Realm    ",
       "format": "{pretty-name}"
     },
     {
       "type": "kernel",
-      "key": "│ Kernel   "
-    },
-    {
-      "type": "packages",
-      "key": "│ Packages "
-    },
-    {
-      "type": "display",
-      "key": "│ Display  ",
-      "format": "{width}x{height}"
-    },
-    {
-      "type": "terminal",
-      "key": "│ Terminal "
-    },
-    {
-      "type": "shell",
-      "key": "│ Shell    "
+      "key": "  Kernel   ",
+      "format": "{release}"
     },
     {
       "type": "wm",
-      "key": "│ WM       "
+      "key": "  Session  ",
+      "format": "{pretty-name}"
     },
     {
-      "type": "custom",
-      "format": "{#38;2;158;212;157}╰─────────────────────────────────────────────────────────────╯{#}"
+      "type": "terminal",
+      "key": "  Terminal "
     },
     "break",
     {
       "type": "custom",
-      "format": "{#38;2;158;212;157}╭─ HARDWARE ──────────────────────────────────────────────────╮{#}"
+      "format": "{#38;2;185;204;181}  ◇  VITALS{#}"
     },
     {
       "type": "cpu",
-      "key": "│ CPU      ",
+      "key": "  CPU      ",
       "format": "{name}"
     },
     {
       "type": "cpu",
-      "key": "│ CPU temp ",
+      "key": "  Heat     ",
       "temp": true,
       "format": "{temperature}"
     },
     {
-      "type": "gpu",
-      "key": "│ GPU      ",
-      "format": "{name}"
-    },
-    {
       "type": "memory",
-      "key": "│ Memory   ",
-      "format": "{used} / {total} ({percentage})"
+      "key": "  Memory   ",
+      "format": "{used} / {total}"
     },
     {
       "type": "disk",
-      "key": "│ Disk /   ",
+      "key": "  Storage  ",
       "folders": "/",
-      "format": "{size-used} / {size-total} ({size-percentage})"
+      "format": "{size-used} / {size-total}"
     },
     {
       "type": "uptime",
-      "key": "│ Uptime   "
+      "key": "  Awake    "
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "{#38;2;140;147;137}  ─────────── ◇ ───────────{#}"
     },
     {
       "type": "custom",
-      "format": "{#38;2;158;212;157}╰─────────────────────────────────────────────────────────────╯{#}"
-    },
-    {
-      "type": "colors",
-      "symbol": "circle",
-      "paddingLeft": 2
+      "format": "  {#38;2;158;212;157}● ● ●{#}   {#38;2;185;204;181}● ● ●{#}   {#38;2;140;147;137}● ● ●{#}"
     }
   ]
 }

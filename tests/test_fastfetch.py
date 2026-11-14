@@ -31,5 +31,5 @@ class FastfetchTests(unittest.TestCase):
                     result = subprocess.run(['fastfetch', '--config', str(path), '--logo', 'none',
                                              '--pipe', 'true'], capture_output=True, text=True, timeout=20)
                     self.assertEqual(result.returncode, 0, result.stderr)
-                    self.assertIn('SYSTEM', result.stdout)
-                    self.assertIn('HARDWARE', result.stdout)
+                    self.assertIn('M A R I K A', result.stdout)
+                    self.assertIn('VITALS', result.stdout)
