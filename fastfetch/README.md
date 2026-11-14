@@ -22,3 +22,9 @@ A imagem original está em `assets/Queen Marika the Eternal, Ruan Zoe.jpg`. O pr
 Para verificar somente os dados: `fastfetch --logo none`. Os testes validam a geração da paleta e a leitura pelo Fastfetch real, sem comprovar a aparência gráfica no terminal.
 
 O retrato fica explicitamente à esquerda, sem margem superior, com largura de 26 colunas e quatro colunas de espaço até o texto. A proporção original é preservada; a altura visual depende das células da fonte do Kitty. O layout também está no template para persistir na troca de wallpaper.
+
+## Retrato transparente
+
+O Fastfetch usa `assets/Queen Marika-transparent.png`, com transparência. O JPG original foi preservado. Edição com a ferramenta integrada image_gen; pode haver pequenas diferenças no desenho por ser uma edição generativa.
+
+Prompt: “Use case: background-extraction. Edit target: supplied Marika illustration. Remove only the dark background and floating background particles to create a clean transparent PNG cutout for a terminal Fastfetch logo. Preserve Marika's original face, anatomy, outstretched pose, hair, crown, dress, illustration style, colors and framing. Preserve the attached flowing gold ribbons. Real alpha transparency, clean fine hair edges, no checkerboard painted into the image, no new objects or text.”
