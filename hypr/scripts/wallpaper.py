@@ -91,6 +91,18 @@ def update_rofi_wallpaper(image):
     atomic(folder / 'header-image.rasi', 'header { background-image: url(' + path + ', width); }\n')
 
 
+def apply_colors(colors):
+    """Preenche os templates com a paleta e grava nas configurações ativas."""
+    template_dir = Path(__file__).resolve().parent / 'theme-templates'
+    for source, dest in [('waybar.css', 'waybar/colors.css'), ('rofi.rasi', 'rofi/colors.rasi'), ('mako.conf', 'mako/config'), ('hypr.lua', 'hypr/lua/colors.lua'), ('fastfetch.jsonc', 'fastfetch/config.jsonc')]:
+        text = (template_dir / source).read_text()
+        for key, value in colors.items():
+            text = text.replace('@' + key + '@', value).replace('@' + key + '_rgb@', value[1:])
+            ansi = ';'.join(str(int(value[i:i + 2], 16)) for i in (1, 3, 5))
+            text = text.replace('@' + key + '_ansi@', ansi)
+        atomic(CONFIG / dest, text)
+
+
 def apply(image, colors):
     if not image.is_file():
         raise ValueError('Imagem não encontrada: ' + str(image))
@@ -109,12 +121,7 @@ def apply(image, colors):
         except ProcessLookupError:
             pass
     if colors:
-        template_dir = Path(__file__).resolve().parent / 'theme-templates'
-        for source, dest in [('waybar.css', 'waybar/colors.css'), ('rofi.rasi', 'rofi/colors.rasi'), ('mako.conf', 'mako/config'), ('hypr.lua', 'hypr/lua/colors.lua')]:
-            text = (template_dir / source).read_text()
-            for key, value in colors.items():
-                text = text.replace('@' + key + '@', value).replace('@' + key + '_rgb@', value[1:])
-            atomic(CONFIG / dest, text)
+        apply_colors(colors)
     update_rofi_wallpaper(image)
     atomic(STATE / 'selection.json', json.dumps({'image': str(image), 'colors': colors}))
     for command in [('hyprctl', 'reload'), ('pkill', '-USR2', '-u', str(os.getuid()), '-x', 'waybar'), ('makoctl', 'reload')]:

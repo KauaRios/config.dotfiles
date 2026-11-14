@@ -82,3 +82,5 @@ Os testes de cancelamento existentes continuam ativos. Nenhum desses testes gara
 `test_zen_install.py` simula git, pacman e makepkg em pastas temporárias. Verifica recusa/Enter, fim da entrada, aprovação exata com exibição prévia dos arquivos, limpeza da pasta temporária e pacote já instalado. Não acessa a rede nem compila ou instala software real.
 
 O grupo de wallpaper também verifica o cabeçalho do launcher: troca do link da imagem com nomes especiais, caminho absoluto no Rasi gerado e atualização em apply sem nova paleta. Esses testes usam diretórios temporários e simulam swaybg/reloads; não comprovam a renderização gráfica.
+
+Fastfetch: `test_fastfetch.py` gera duas paletas em uma pasta temporária, confere cores HEX/ANSI e preservação da imagem, e valida a configuração no Fastfetch instalado sem logo gráfico. Os testes do instalador também cobrem os links de Kitty e Fastfetch.

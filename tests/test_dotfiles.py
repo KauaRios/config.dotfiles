@@ -9,7 +9,7 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-FOLDERS = ('hypr', 'waybar', 'rofi', 'wofi', 'mako', 'wallpapers', 'qt6ct')
+FOLDERS = ('hypr', 'waybar', 'rofi', 'wofi', 'mako', 'wallpapers', 'qt6ct', 'kitty', 'fastfetch')
 
 
 class ConfigTests(unittest.TestCase):

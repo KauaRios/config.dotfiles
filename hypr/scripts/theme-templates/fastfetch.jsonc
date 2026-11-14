@@ -1,0 +1,111 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "kitty",
+    "source": "\"${XDG_CONFIG_HOME:-$HOME/.config}/fastfetch/assets/Queen Marika the Eternal, Ruan Zoe.jpg\"",
+    "width": 28,
+    "padding": {
+      "left": 1,
+      "right": 4
+    }
+  },
+  "display": {
+    "separator": " : ",
+    "color": {
+      "keys": "@primary@",
+      "title": "@secondary@",
+      "output": "@on_surface@"
+    },
+    "showErrors": false
+  },
+  "modules": [
+    {
+      "type": "custom",
+      "format": "{#38;2;@primary_ansi@}\u256d\u2500 SYSTEM \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e{#}"
+    },
+    {
+      "type": "title",
+      "key": "\u2502 User     ",
+      "format": "{user-name}@{host-name}"
+    },
+    {
+      "type": "os",
+      "key": "\u2502 OS       ",
+      "format": "{pretty-name}"
+    },
+    {
+      "type": "kernel",
+      "key": "\u2502 Kernel   "
+    },
+    {
+      "type": "packages",
+      "key": "\u2502 Packages "
+    },
+    {
+      "type": "display",
+      "key": "\u2502 Display  ",
+      "format": "{width}x{height}"
+    },
+    {
+      "type": "terminal",
+      "key": "\u2502 Terminal "
+    },
+    {
+      "type": "shell",
+      "key": "\u2502 Shell    "
+    },
+    {
+      "type": "wm",
+      "key": "\u2502 WM       "
+    },
+    {
+      "type": "custom",
+      "format": "{#38;2;@primary_ansi@}\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f{#}"
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "{#38;2;@primary_ansi@}\u256d\u2500 HARDWARE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e{#}"
+    },
+    {
+      "type": "cpu",
+      "key": "\u2502 CPU      ",
+      "format": "{name}"
+    },
+    {
+      "type": "cpu",
+      "key": "\u2502 CPU temp ",
+      "temp": true,
+      "format": "{temperature}"
+    },
+    {
+      "type": "gpu",
+      "key": "\u2502 GPU      ",
+      "format": "{name}"
+    },
+    {
+      "type": "memory",
+      "key": "\u2502 Memory   ",
+      "format": "{used} / {total} ({percentage})"
+    },
+    {
+      "type": "disk",
+      "key": "\u2502 Disk /   ",
+      "folders": "/",
+      "format": "{size-used} / {size-total} ({size-percentage})"
+    },
+    {
+      "type": "uptime",
+      "key": "\u2502 Uptime   "
+    },
+    {
+      "type": "custom",
+      "format": "{#38;2;@primary_ansi@}\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f{#}"
+    },
+    {
+      "type": "colors",
+      "symbol": "circle",
+      "paddingLeft": 2
+    }
+  ]
+}

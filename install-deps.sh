@@ -7,7 +7,7 @@ fi
 root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 source /etc/os-release
 family=" ${ID:-} ${ID_LIKE:-} "
-common=(power-profiles-daemon hyprland waybar rofi kitty dolphin mako swaybg hyprlock grim slurp wl-clipboard brightnessctl playerctl wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent wofi qt6ct gsettings-desktop-schemas matugen cava)
+common=(power-profiles-daemon hyprland waybar rofi kitty dolphin mako swaybg hyprlock grim slurp wl-clipboard brightnessctl playerctl wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent wofi qt6ct gsettings-desktop-schemas matugen cava fastfetch)
 run=(sudo)
 case "$family" in
     *" arch "*|*" endeavouros "*|*" manjaro "*|*" garuda "*)

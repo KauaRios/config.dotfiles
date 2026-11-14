@@ -18,7 +18,7 @@ cd ~/dotfiles
 
 O instalador de dependências solicita sudo e a confirmação do gerenciador. Instala o próprio Hyprland, Matugen e Python 3 para o seletor de wallpaper e a geração da paleta. Suporta Fedora tradicional e EndeavourOS, Arch, Manjaro, Garuda e outras distribuições que declarem ID_LIKE=arch com os pacotes disponíveis nos repositórios oficiais. No Fedora habilita o COPR comunitário nett00n/hyprland mediante confirmação do DNF; no Arch/EndeavourOS usa pacman para os pacotes oficiais e revisa o PKGBUILD do AUR para instalar zen-browser-bin. Não troca o gerenciador de login. Fedora Atomic não é suportado automaticamente.
 
-O instalador dos links roda SEM sudo. Vincula somente hypr, waybar, rofi, wofi, mako, wallpapers e qt6ct dentro de `${XDG_CONFIG_HOME:-$HOME/.config}`. Não substitui a .config inteira. Configurações existentes dessas pastas são movidas para `.config/dot-backup.XXXXXXXX`; configurações do KDE permanecem no lugar. Pode executar novamente sem duplicar links. Não mova a pasta DOT depois da instalação.
+O instalador dos links roda SEM sudo. Vincula somente hypr, waybar, rofi, wofi, mako, wallpapers, qt6ct, kitty e fastfetch dentro de `${XDG_CONFIG_HOME:-$HOME/.config}`. Não substitui a .config inteira. Configurações existentes dessas pastas são movidas para `.config/dot-backup.XXXXXXXX`; configurações do KDE permanecem no lugar. Pode executar novamente sem duplicar links. Não mova a pasta DOT depois da instalação.
 
 Saia da sessão e escolha Hyprland no login. O wallpaper é restaurado pelo script Python no login e exibido com swaybg. Super+W permite escolher uma imagem e gerar cores com Matugen. Consulte [a documentação completa](WALLPAPER.md).
 
@@ -157,3 +157,7 @@ Execute `./install-deps.sh` como usuário normal. O script instala git e base-de
 A etapa do AUR baixa a receita de https://aur.archlinux.org/zen-browser-bin.git, mostra a revisão e todos os arquivos versionados, incluindo PKGBUILD e eventuais hooks .install. Nenhum makepkg é executado antes da revisão. Caracteres de controle são mostrados de forma visível. Para prosseguir é necessário digitar exatamente `CONFIO`; Enter, outra resposta ou fim de entrada abortam a instalação do Zen e encerram o instalador com erro. Os pacotes oficiais instalados anteriormente permanecem.
 
 Após aceitar, `makepkg --syncdeps --install --needed` usa a mesma cópia mostrada, como usuário normal. O pacman solicita elevação/confirmação quando necessário. A pasta temporária é removida ao sair. Não há aprovação automática nem helper AUR. A revisão é feita pelo usuário: exibir o PKGBUILD não certifica sua segurança nem a dos arquivos que ele baixa. No Fedora não existe etapa PKGBUILD, pois esse formato pertence ao Arch.
+
+### Fastfetch
+
+Execute `fastfetch` no Kitty para ver a imagem da Marika e os blocos de sistema/hardware. As cores acompanham o wallpaper nas próximas execuções. Veja [configuração e personalização](fastfetch/README.md).
