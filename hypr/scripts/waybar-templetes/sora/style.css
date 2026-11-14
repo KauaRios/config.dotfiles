@@ -1,5 +1,7 @@
 @import "colors.css";
-/* Três ilhas funcionais. Sem uma cápsula diferente para cada indicador. */
+/* Tons derivados da paleta: texto claro e superfícies com contraste suave. */
+@define-color sora_text mix(@purple, #ffffff, 0.48);
+@define-color sora_surface mix(@panel, @purple, 0.035);
 * {
     font-family: "Noto Sans", "DejaVu Sans", sans-serif;
     font-size: 13px;
@@ -10,16 +12,16 @@
     padding: 0;
     margin: 0;
 }
-window#waybar { background: transparent; color: @purple; }
+window#waybar { background: transparent; color: @sora_text; }
 .modules-left, .modules-center, .modules-right {
-    background: @panel;
-    border: 1px solid alpha(@purple, 0.18);
-    border-radius: 12px;
-    box-shadow: inset 0 1px 0 alpha(@purple, 0.04);
+    background-image: linear-gradient(180deg, @sora_surface, alpha(@panel, 0.97));
+    border: 1px solid alpha(@purple, 0.22);
+    border-radius: 14px;
+    box-shadow: inset 0 1px 0 alpha(@purple, 0.08);
 }
-.modules-left { padding: 4px 10px 4px 4px; }
-.modules-center { padding: 0 15px; }
-.modules-right { padding: 0 10px; }
+.modules-left { padding: 4px 13px 4px 4px; }
+.modules-center { padding: 0 19px; border-bottom-color: alpha(@blue, 0.65); }
+.modules-right { padding: 0 9px 0 5px; }
 #custom-launcher {
     background-color: @blue;
     background-image: url("assets/sora-arch.svg");
@@ -32,18 +34,20 @@ window#waybar { background: transparent; color: @purple; }
 }
 #custom-launcher:hover { background-color: @purple; }
 #workspaces button {
-    min-width: 28px;
-    margin: 4px 2px;
-    border-radius: 7px;
+    font-family: "Noto Sans CJK JP", "Noto Sans", sans-serif;
+    font-size: 16px;
+    min-width: 32px;
+    margin: 2px 2px;
+    border-radius: 9px;
     color: @muted;
     font-weight: 600;
     background: transparent;
     box-shadow: none;
     text-shadow: none;
 }
-#workspaces button.active { color: @panel; background: @blue; }
+#workspaces button.active { color: @panel; background-image: linear-gradient(135deg, @blue, mix(@blue, @purple, 0.45)); font-weight: bold; }
 #workspaces button:hover { background: alpha(@blue, 0.25); color: @purple; }
-#workspaces button.active:hover { color: @panel; background: @purple; }
+#workspaces button.active:hover { color: @panel; background-image: none; background-color: @purple; }
 #workspaces button.urgent { background: @purple; color: @panel; }
 #custom-spotify {
     background-image: -gtk-recolor(url("assets/sora-music-symbolic.svg"));
@@ -55,22 +59,22 @@ window#waybar { background: transparent; color: @purple; }
     border-left: 1px solid alpha(@muted, 0.3);
     color: @blue;
 }
-#mpris { font-size: 12px; padding-right: 5px; color: @purple; }
+#mpris { font-size: 13px; padding-right: 5px; color: @sora_text; }
 #mpris.paused { color: @muted; }
-#clock { font-family: "DejaVu Sans Mono", monospace; font-size: 18px; font-weight: bold; color: @purple; }
-#clock.date { font-family: "Noto Sans", sans-serif; font-size: 10px; font-weight: 500; color: @muted; margin: 6px 0 6px 12px; padding-left: 12px; border-left: 1px solid alpha(@muted, 0.35); }
+#clock { font-family: "DejaVu Sans Mono", monospace; font-size: 20px; font-weight: bold; color: @sora_text; }
+#clock.date { font-family: "Noto Sans", sans-serif; font-size: 11px; font-weight: 500; color: @purple; margin: 4px 0 4px 13px; padding-left: 12px; border-left: 1px solid alpha(@muted, 0.35); }
 /* SVG simbólico segue a propriedade color, sem fontes de ícones extras. */
 #temperature, #network, #wireplumber, #power-profiles-daemon, #battery {
     background-size: 18px 18px;
     background-repeat: no-repeat;
     background-position: 8px center;
     padding: 0 10px 0 32px;
-    color: @purple;
+    color: @sora_text;
     font-size: 13px;
     border-radius: 7px;
     margin: 5px 0;
 }
-#temperature { background-image: -gtk-recolor(url("assets/sora-heat-symbolic.svg")); color: @blue; font-weight: 600; }
+#temperature { background-image: -gtk-recolor(url("assets/sora-heat-symbolic.svg")); color: @blue; font-weight: 600; background-color: alpha(@blue, 0.10); margin: 5px 5px 5px 0; border-radius: 9px; }
 #network { background-image: -gtk-recolor(url("assets/sora-wifi-symbolic.svg")); min-width: 18px; padding: 0 8px; background-position: center; }
 #network.ethernet { background-image: -gtk-recolor(url("assets/sora-ethernet-symbolic.svg")); }
 #network.disconnected { background-image: -gtk-recolor(url("assets/sora-offline-symbolic.svg")); color: @muted; }

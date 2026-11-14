@@ -1,9 +1,9 @@
 # Sora
 
-Três blocos flutuantes com altura de 44px e cantos de 12px. A composição organiza as funções, sem criar uma cápsula por indicador:
+Três blocos flutuantes com altura de 44px e cantos de 14px. A composição organiza as funções, sem criar uma cápsula por indicador:
 
-- **Esquerda:** Arch, cinco workspaces e música com título limitado. O workspace ativo recebe preenchimento sólido da cor principal.
-- **Centro:** hora em 18px e dia/data em duas linhas, sobre fundo escuro.
+- **Esquerda:** Arch, cinco workspaces com numerais japoneses (一 二 三 四 五) e música com título limitado. O workspace ativo recebe preenchimento da cor principal com uma variação suave até a cor secundária.
+- **Centro:** hora em 20px e dia/data em duas linhas, sobre fundo escuro.
 - **Direita:** temperatura da CPU, rede, volume, perfil de energia, bateria e bandeja. Memória foi retirada para reduzir informação.
 
 Os ícones de status foram desenhados para este modelo, em SVG de 24px com traço uniforme. São exibidos em 18px e recoloridos pelo GTK conforme a propriedade `color` do módulo. A nota do Spotify foi substituída por um ícone vetorial; o Arch continua usando o asset do Akai deste repositório. Não precisa de Nerd Fonts.
@@ -31,3 +31,5 @@ Temperatura usa k10temp do Ryzen deste computador. O título musical depende de 
 Testes conferem JSON, referências de módulos, link da paleta e sintaxe CSS GTK. Os SVG são renderizados pelo librsvg; uma cópia temporária verifica o CSS com os assets fora do repositório. Isso não substitui a avaliação da aparência na sessão gráfica.
 
 A implementação de recoloração segue a [documentação CSS do GTK 3](https://docs.gtk.org/gtk3/css-overview). O código deste modelo foi escrito para as dotfiles; não foram copiados estilos de outros autores.
+
+Os workspaces de 1 a 10 usam 一 二 三 四 五 六 七 八 九 十. Apenas o rótulo visual muda; atalhos e IDs permanecem numéricos. O texto usa Noto Sans CJK JP (presente neste sistema), com fallback do sistema. As superfícies têm gradiente discreto, e a cor de texto é derivada da paleta com maior luminosidade.
