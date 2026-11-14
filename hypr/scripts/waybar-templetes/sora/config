@@ -152,8 +152,8 @@
     "on-scroll-down": "brightnessctl set 5%-"
   },
   "custom/previous": {
-    "format": "«",
-    "tooltip-format": "Faixa anterior",
+    "format": "​",
+    "tooltip-format": "Música anterior · player ativo",
     "on-click": "playerctl previous"
   },
   "custom/session": {

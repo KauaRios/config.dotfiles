@@ -24,9 +24,11 @@ A ordem acompanha a captura:
 - Bluetooth: abre `kcmshell6 kcm_bluetooth`.
 - Brilho: rolagem ajusta com brightnessctl.
 - Chama: alterna os perfis de energia disponíveis.
-- «: faixa anterior no player.
+- Ícone de música anterior (barra + triângulo): executa `playerctl previous` no player ativo; não altera workspaces.
 - Energia: abre menu no Rofi. Só executa bloquear, suspender, reiniciar ou desligar depois de selecionar a opção. Escape cancela.
 
 A mídia usa `playerctl` com timeout, JSON e escape de markup. O menu de sessão recebe somente opções predefinidas e não executa conteúdo arbitrário do Rofi.
 
 Selecione **sora** em Super+Shift+R; o seletor copia config, CSS e assets. Testes validam CSS/JSON, renderização dos SVG, cópia dos assets, estado vazio da mídia, escape de títulos e seleção/cancelamento do menu de sessão. Não comparam screenshots.
+
+Os ícones de status usam uma grade de 24px, traço de 2px e exibição em 18px. Bluetooth tem espaço separado para a contagem; volume mudo e bateria carregando/baixa têm desenhos próprios. O botão de música anterior também é SVG, sem depender da aparência de um caractere da fonte.

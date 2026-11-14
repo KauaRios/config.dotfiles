@@ -26,8 +26,8 @@ window#waybar {
     background-image: -gtk-recolor(url("assets/sora-heat-symbolic.svg"));
     background-repeat: no-repeat;
     background-position: left center;
-    background-size: 14px 14px;
-    padding-left: 19px;
+    background-size: 16px 16px;
+    padding-left: 21px;
     padding-right: 4px;
     font-size: 12px;
 }
@@ -64,25 +64,28 @@ window#waybar {
 #workspaces button:hover { color: @purple; background: alpha(@purple, 0.12); }
 #workspaces button.active { color: @panel; background: @blue; font-weight: bold; }
 #workspaces button.urgent { color: @panel; background: @purple; }
-#wireplumber, #battery, #cpu, #bluetooth, #backlight, #power-profiles-daemon, #custom-session {
-    min-width: 24px;
+#wireplumber, #battery, #cpu, #bluetooth, #backlight, #power-profiles-daemon, #custom-previous, #custom-session {
+    min-width: 28px;
+    min-height: 24px;
+    margin: 6px 0;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 15px 15px;
+    background-size: 18px 18px;
     color: @sora_text;
 }
 #wireplumber { background-image: -gtk-recolor(url("assets/sora-headphones-symbolic.svg")); }
-#wireplumber.muted { color: @muted; }
+#wireplumber.muted { color: @muted; background-image: -gtk-recolor(url("assets/sora-headphones-muted-symbolic.svg")); }
 #battery { background-image: -gtk-recolor(url("assets/sora-battery-symbolic.svg")); }
-#battery.charging, #battery.plugged { color: @blue; }
+#battery.charging, #battery.plugged { color: @blue; background-image: -gtk-recolor(url("assets/sora-battery-charge-symbolic.svg")); }
+#battery.warning:not(.charging):not(.plugged), #battery.critical:not(.charging):not(.plugged) { background-image: -gtk-recolor(url("assets/sora-battery-low-symbolic.svg")); }
 #cpu { background-image: -gtk-recolor(url("assets/sora-chip-symbolic.svg")); }
-#bluetooth { background-image: -gtk-recolor(url("assets/sora-bluetooth-symbolic.svg")); background-position: 4px center; padding-left: 19px; min-width: 12px; font-size: 12px; }
+#bluetooth { background-image: -gtk-recolor(url("assets/sora-bluetooth-symbolic.svg")); background-position: 4px center; padding-left: 25px; padding-right: 5px; min-width: 10px; font-size: 12px; }
 #bluetooth.disabled, #bluetooth.off { color: @muted; }
 #backlight { background-image: -gtk-recolor(url("assets/sora-sun-symbolic.svg")); color: @muted; }
 #power-profiles-daemon { background-image: -gtk-recolor(url("assets/sora-flame-symbolic.svg")); color: @blue; }
-#custom-previous { color: @muted; padding: 0 8px; margin: 10px 2px; border-left: 1px solid alpha(@muted, 0.25); font-size: 17px; }
+#custom-previous { background-image: -gtk-recolor(url("assets/sora-previous-symbolic.svg")); color: @muted; margin-left: 7px; border-left: 1px solid alpha(@muted, 0.25); }
 #custom-session { background-image: -gtk-recolor(url("assets/sora-session-symbolic.svg")); color: @blue; }
 #temperature.critical, #battery.critical { color: @blue; }
-#wireplumber:hover, #bluetooth:hover, #backlight:hover, #custom-session:hover { color: @blue; }
+#wireplumber:hover, #bluetooth:hover, #backlight:hover, #custom-previous:hover, #custom-session:hover { color: @blue; }
 tooltip { background: @panel; color: @sora_text; border: 1px solid alpha(@blue, 0.4); border-radius: 8px; }
 tooltip label { padding: 8px; }
