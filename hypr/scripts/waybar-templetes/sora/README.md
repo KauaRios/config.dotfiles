@@ -1,10 +1,10 @@
 # Sora
 
-Três blocos flutuantes com altura de 44px e cantos de 14px. A composição organiza as funções, sem criar uma cápsula por indicador:
+CSS reescrito com uma composição geométrica e altura de 44px. Superfícies planas, cantos de 2–3px e bordas finas substituem os painéis arredondados e gradientes anteriores.
 
-- **Esquerda:** Arch, cinco workspaces com numerais japoneses (一 二 三 四 五) e música com título limitado. O workspace ativo recebe preenchimento da cor principal com uma variação suave até a cor secundária.
-- **Centro:** hora em 20px e dia/data em duas linhas, sobre fundo escuro.
-- **Direita:** temperatura da CPU, rede, volume, perfil de energia, bateria e bandeja. Memória foi retirada para reduzir informação.
+- **Esquerda:** marca Arch separada, navegação em abas com numerais japoneses (一 二 三 四 五) e bloco de mídia. O workspace ativo tem preenchimento sólido.
+- **Centro:** hora em 20px e data em um campo separado, unidos pela borda inferior.
+- **Direita:** segmentos contíguos para temperatura, rede, volume, perfil e bateria; bandeja em um bloco separado. A temperatura recebe uma borda lateral de destaque.
 
 Os ícones de status foram desenhados para este modelo, em SVG de 24px com traço uniforme. São exibidos em 18px e recoloridos pelo GTK conforme a propriedade `color` do módulo. A nota do Spotify foi substituída por um ícone vetorial; o Arch continua usando o asset do Akai deste repositório. Não precisa de Nerd Fonts.
 
@@ -32,4 +32,4 @@ Testes conferem JSON, referências de módulos, link da paleta e sintaxe CSS GTK
 
 A implementação de recoloração segue a [documentação CSS do GTK 3](https://docs.gtk.org/gtk3/css-overview). O código deste modelo foi escrito para as dotfiles; não foram copiados estilos de outros autores.
 
-Os workspaces de 1 a 10 usam 一 二 三 四 五 六 七 八 九 十. Apenas o rótulo visual muda; atalhos e IDs permanecem numéricos. O texto usa Noto Sans CJK JP (presente neste sistema), com fallback do sistema. As superfícies têm gradiente discreto, e a cor de texto é derivada da paleta com maior luminosidade.
+Os workspaces de 1 a 10 usam 一 二 三 四 五 六 七 八 九 十. Apenas o rótulo visual muda; atalhos e IDs permanecem numéricos. O texto usa Noto Sans CJK JP (presente neste sistema), com fallback do sistema. As superfícies são planas; a cor do texto é derivada da paleta com maior luminosidade.
