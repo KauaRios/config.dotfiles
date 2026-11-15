@@ -44,4 +44,4 @@ Ambos usam cores dinâmicas separadas e aparecem automaticamente em Super+Shift+
 
 - **Pacman**: Pac-Man pequeno em SVG no workspace ativo, fantasmas nos demais, título musical e espectro CAVA reais, temperatura da CPU Ryzen. Altura de 36px e paleta dinâmica. Veja [controles e dependências](pacman/README.md).
 
-- **Ronin**: nova referência com faixa fina, workspaces em traços/pontos e hora/data à direita. Mantém a paleta dinâmica e acompanha o novo Fastfetch textual.
+- **Ronin**: barra contínua de 40px, navegação em traços/pontos à esquerda, título da janela central e temperatura/controles à direita. Mantém a paleta dinâmica e acompanha o Fastfetch textual.

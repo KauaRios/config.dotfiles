@@ -1,12 +1,14 @@
 @import "colors.css";
 
-@define-color ronin_text mix(@purple, #ffffff, 0.25);
-@define-color ronin_line alpha(@muted, 0.24);
+/* Superfície, texto e foco derivados da mesma paleta do wallpaper. */
+@define-color ronin_surface mix(@panel, @purple, 0.025);
+@define-color ronin_text mix(@purple, #ffffff, 0.4);
+@define-color ronin_line alpha(@muted, 0.22);
 
 * {
-    font-family: "DejaVu Sans Mono", "Noto Sans Symbols 2", monospace;
-    font-size: 12px;
-    font-weight: normal;
+    font-family: "Noto Sans", "DejaVu Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
     min-height: 0;
     padding: 0;
     margin: 0;
@@ -16,101 +18,129 @@
     text-shadow: none;
 }
 
-/* Faixa fina e contínua, com a cor principal concentrada na navegação. */
 window#waybar {
-    background: alpha(@panel, 0.97);
     color: @ronin_text;
+    background: @ronin_surface;
     border: 1px solid @ronin_line;
-    border-bottom-color: alpha(@blue, 0.4);
-    border-radius: 5px;
+    border-radius: 9px;
+    box-shadow: inset 0 1px 0 alpha(@purple, 0.035);
 }
-.modules-left { padding-left: 3px; }
-.modules-right { padding-right: 7px; }
-#custom-menu {
-    color: @blue;
-    font-weight: bold;
-    padding: 0 12px;
-    margin: 4px 6px 4px 0;
-    border-right: 1px solid @ronin_line;
-}
-#custom-menu:hover { color: @purple; }
+.modules-left { padding-left: 6px; }
+.modules-right { padding-right: 8px; }
 
-/* Fundo centralizado: o desenho não depende das dimensões do texto invisível. */
-#workspaces {
-    margin: 8px 2px;
-    padding: 0 3px;
-    border: 1px solid alpha(@blue, 0.38);
-    border-radius: 4px;
+/* Navegação: o menu é separado; as duas setas pertencem ao grupo de workspaces. */
+#custom-menu {
+    font-weight: 600;
+    color: @blue;
+    background: alpha(@blue, 0.07);
+    border-radius: 5px;
+    padding: 0 13px;
+    margin: 6px 9px 6px 0;
 }
+#custom-menu:hover { background: alpha(@blue, 0.16); }
+#navigation {
+    background: alpha(@panel, 0.5);
+    border: 1px solid alpha(@muted, 0.15);
+    border-radius: 6px;
+    margin: 6px 0;
+    padding: 0 2px;
+}
+#workspaces { padding: 0 2px; }
 #workspaces button {
-    min-width: 26px;
-    margin: 0 2px;
+    min-width: 30px;
+    margin: 2px 1px;
+    border-radius: 4px;
     background-color: transparent;
-    background-image: linear-gradient(alpha(@blue, 0.55), alpha(@blue, 0.55));
+    background-image: linear-gradient(alpha(@purple, 0.75), alpha(@purple, 0.75));
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 15px 3px;
-    border-radius: 2px;
+    background-size: 12px 4px;
 }
 #workspaces button label { font-size: 1px; color: transparent; }
 #workspaces button.empty {
-    background-image: radial-gradient(circle closest-side, alpha(@muted, 0.8) 90%, transparent 100%);
+    background-image: radial-gradient(circle closest-side, alpha(@muted, 0.75) 90%, transparent 100%);
     background-size: 4px 4px;
 }
 #workspaces button.active {
+    background-color: alpha(@blue, 0.09);
     background-image: linear-gradient(@blue, @blue);
-    background-size: 23px 3px;
+    background-size: 24px 6px;
 }
-#workspaces button:hover { background-color: alpha(@blue, 0.1); }
-#workspaces button.urgent { background-image: linear-gradient(@purple, @purple); background-size: 15px 4px; }
-
-/* Setas vetoriais na mesma grade dos controles, com área de clique de 28px. */
-#custom-next, #custom-previous, #idle_inhibitor {
-    min-width: 28px;
-    margin: 5px 0;
+#workspaces button:hover { background-color: alpha(@blue, 0.16); }
+#workspaces button.urgent { background-image: linear-gradient(@purple, @purple); background-size: 18px 6px; }
+#custom-next, #custom-previous {
+    min-width: 24px;
+    margin: 3px 0;
+    border-radius: 4px;
+    color: @muted;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 15px 15px;
-    border-radius: 3px;
-    color: @muted;
+    background-size: 13px 13px;
 }
-#custom-next { background-image: -gtk-recolor(url("assets/ronin-next-symbolic.svg")); color: @blue; }
+#custom-next { background-image: -gtk-recolor(url("assets/ronin-next-symbolic.svg")); }
 #custom-previous { background-image: -gtk-recolor(url("assets/ronin-previous-symbolic.svg")); }
+#custom-next:hover, #custom-previous:hover { color: @blue; background-color: alpha(@blue, 0.12); }
+
+/* O título identifica a janela; a largura limitada preserva a navegação. */
+#window { color: @muted; font-size: 12px; padding: 0 18px; }
+
+/* Uma área de status, com ícones na mesma escala e sem bordas entre cada módulo. */
+#status { margin: 7px 0; padding-right: 9px; border-right: 1px solid @ronin_line; }
+#temperature {
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 11px;
+    color: @purple;
+    padding: 0 11px;
+    border-radius: 4px;
+}
+#temperature.critical { color: @panel; background: @blue; }
 #idle_inhibitor {
+    min-width: 30px;
+    border-radius: 4px;
+    color: @muted;
     background-image: -gtk-recolor(url("assets/ronin-monitor-symbolic.svg"));
-    margin-right: 7px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
 }
 #idle_inhibitor.activated { color: @blue; background-color: alpha(@blue, 0.12); }
-#custom-next:hover, #custom-previous:hover, #idle_inhibitor:hover { color: @blue; background-color: alpha(@blue, 0.1); }
-
+#idle_inhibitor:hover { color: @blue; }
 #wireplumber {
-    padding: 0 10px 0 29px;
-    margin: 8px 0;
-    border-left: 1px solid @ronin_line;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 12px;
+    color: @ronin_text;
+    padding: 0 9px 0 28px;
+    margin-left: 3px;
+    border-radius: 4px;
     background-image: -gtk-recolor(url("assets/ronin-speaker-symbolic.svg"));
     background-repeat: no-repeat;
-    background-position: 9px center;
-    background-size: 15px 15px;
-    color: @purple;
-    font-size: 11px;
+    background-position: 6px center;
+    background-size: 16px 16px;
 }
-#wireplumber.muted { color: @muted; }
+#wireplumber:hover { background-color: alpha(@blue, 0.08); }
+#wireplumber.muted {
+    color: @muted;
+    background-image: -gtk-recolor(url("assets/ronin-muted-symbolic.svg"));
+}
 #clock {
-    color: @blue;
-    font-size: 13px;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 15px;
     font-weight: bold;
-    padding: 0 11px;
-    margin: 8px 0;
-    border-left: 1px solid @ronin_line;
+    color: @blue;
+    padding: 0 11px 0 15px;
 }
-#custom-divider { color: @muted; padding: 0 2px; }
 #clock.date {
-    color: @purple;
-    font-size: 11px;
-    font-weight: normal;
-    border: none;
-    padding: 0 9px;
+    font-family: "Noto Sans", "DejaVu Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: @muted;
+    padding: 0 8px 0 0;
 }
 
-tooltip { color: @ronin_text; background: @panel; border: 1px solid alpha(@blue, 0.4); border-radius: 5px; }
-tooltip label { padding: 8px; }
+tooltip {
+    color: @ronin_text;
+    background: @ronin_surface;
+    border: 1px solid alpha(@blue, 0.3);
+    border-radius: 7px;
+}
+tooltip label { padding: 9px; }

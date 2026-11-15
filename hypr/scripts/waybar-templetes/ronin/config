@@ -2,23 +2,21 @@
   "name": "ronin",
   "layer": "top",
   "position": "top",
-  "height": 34,
-  "margin-top": 6,
-  "margin-left": 14,
-  "margin-right": 14,
+  "height": 40,
+  "margin-top": 10,
+  "margin-left": 18,
+  "margin-right": 18,
   "spacing": 0,
   "modules-left": [
     "custom/menu",
-    "hyprland/workspaces",
-    "custom/next"
+    "group/navigation"
   ],
-  "modules-center": [],
+  "modules-center": [
+    "hyprland/window"
+  ],
   "modules-right": [
-    "custom/previous",
-    "idle_inhibitor",
-    "wireplumber",
+    "group/status",
     "clock",
-    "custom/divider",
     "clock#date"
   ],
   "custom/menu": {
@@ -58,22 +56,49 @@
   },
   "wireplumber": {
     "format": "{volume}%",
-    "format-muted": "×",
+    "format-muted": "Mudo",
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "on-click-right": "pavucontrol",
-    "tooltip-format": "Volume: {volume}%"
+    "tooltip-format": "Volume: {volume}%\nClique: mudo · botão direito: controle de volume"
   },
   "clock": {
     "format": "{:%H:%M}",
     "format-alt": "{:%H:%M:%S}",
     "tooltip-format": "{calendar}"
   },
-  "custom/divider": {
-    "format": "·",
+  "clock#date": {
+    "format": "{:%d %b}",
     "tooltip": false
   },
-  "clock#date": {
-    "format": "{:%a, %d %b}",
-    "tooltip": false
+  "group/navigation": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/previous",
+      "hyprland/workspaces",
+      "custom/next"
+    ]
+  },
+  "group/status": {
+    "orientation": "horizontal",
+    "modules": [
+      "temperature",
+      "idle_inhibitor",
+      "wireplumber"
+    ]
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 32,
+    "separate-outputs": true,
+    "fallback": "Ronin",
+    "tooltip-format": "{title}"
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "interval": 5,
+    "critical-threshold": 85,
+    "format": "CPU {temperatureC}°",
+    "tooltip-format": "CPU Ryzen · Tctl: {temperatureC}°C"
   }
 }
