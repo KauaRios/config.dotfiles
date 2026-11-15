@@ -2,10 +2,10 @@
   "name": "ronin",
   "layer": "top",
   "position": "top",
-  "height": 32,
-  "margin-top": 0,
-  "margin-left": 12,
-  "margin-right": 12,
+  "height": 34,
+  "margin-top": 6,
+  "margin-left": 14,
+  "margin-right": 14,
   "spacing": 0,
   "modules-left": [
     "custom/menu",
@@ -43,12 +43,12 @@
     "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'"
   },
   "custom/next": {
-    "format": "›",
+    "format": "​",
     "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
     "tooltip-format": "Próximo workspace"
   },
   "custom/previous": {
-    "format": "‹",
+    "format": "​",
     "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
     "tooltip-format": "Workspace anterior"
   },
@@ -69,11 +69,11 @@
     "tooltip-format": "{calendar}"
   },
   "custom/divider": {
-    "format": "↟",
+    "format": "·",
     "tooltip": false
   },
   "clock#date": {
-    "format": "{:%B %d}",
+    "format": "{:%a, %d %b}",
     "tooltip": false
   }
 }

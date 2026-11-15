@@ -1,45 +1,116 @@
 @import "colors.css";
+
+@define-color ronin_text mix(@purple, #ffffff, 0.25);
+@define-color ronin_line alpha(@muted, 0.24);
+
 * {
     font-family: "DejaVu Sans Mono", "Noto Sans Symbols 2", monospace;
     font-size: 12px;
+    font-weight: normal;
     min-height: 0;
-    border: none;
-    border-radius: 0;
     padding: 0;
     margin: 0;
+    border: none;
+    border-radius: 0;
     box-shadow: none;
     text-shadow: none;
 }
-window#waybar { color: @blue; background: alpha(@panel, 0.96); border-bottom: 1px solid alpha(@muted, 0.3); border-radius: 0 0 5px 5px; }
-#custom-menu { padding: 0 13px; }
+
+/* Faixa fina e contínua, com a cor principal concentrada na navegação. */
+window#waybar {
+    background: alpha(@panel, 0.97);
+    color: @ronin_text;
+    border: 1px solid @ronin_line;
+    border-bottom-color: alpha(@blue, 0.4);
+    border-radius: 5px;
+}
+.modules-left { padding-left: 3px; }
+.modules-right { padding-right: 7px; }
+#custom-menu {
+    color: @blue;
+    font-weight: bold;
+    padding: 0 12px;
+    margin: 4px 6px 4px 0;
+    border-right: 1px solid @ronin_line;
+}
 #custom-menu:hover { color: @purple; }
-#workspaces { margin: 7px 0; padding: 0 4px; border: 1px solid alpha(@blue, 0.7); border-radius: 5px; }
-#workspaces button { min-width: 18px; padding: 0 3px; background: transparent; }
-#workspaces button label { font-size: 1px; min-height: 3px; min-width: 14px; margin: 5px 0; background: alpha(@blue, 0.65); border-radius: 2px; }
-#workspaces button.empty { min-width: 9px; }
-#workspaces button.empty label { min-width: 3px; margin-left: 3px; margin-right: 3px; background: alpha(@blue, 0.45); }
-#workspaces button.active { min-width: 36px; }
-#workspaces button.active label { min-width: 32px; margin-left: 0; margin-right: 0; background: @blue; }
-#workspaces button:hover label, #workspaces button.urgent label { background: @purple; }
-#custom-next, #custom-previous { font-size: 23px; padding: 0 11px; }
-#idle_inhibitor {
+
+/* Fundo centralizado: o desenho não depende das dimensões do texto invisível. */
+#workspaces {
+    margin: 8px 2px;
+    padding: 0 3px;
+    border: 1px solid alpha(@blue, 0.38);
+    border-radius: 4px;
+}
+#workspaces button {
     min-width: 26px;
-    background-image: -gtk-recolor(url("assets/ronin-monitor-symbolic.svg"));
+    margin: 0 2px;
+    background-color: transparent;
+    background-image: linear-gradient(alpha(@blue, 0.55), alpha(@blue, 0.55));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15px 3px;
+    border-radius: 2px;
+}
+#workspaces button label { font-size: 1px; color: transparent; }
+#workspaces button.empty {
+    background-image: radial-gradient(circle closest-side, alpha(@muted, 0.8) 90%, transparent 100%);
+    background-size: 4px 4px;
+}
+#workspaces button.active {
+    background-image: linear-gradient(@blue, @blue);
+    background-size: 23px 3px;
+}
+#workspaces button:hover { background-color: alpha(@blue, 0.1); }
+#workspaces button.urgent { background-image: linear-gradient(@purple, @purple); background-size: 15px 4px; }
+
+/* Setas vetoriais na mesma grade dos controles, com área de clique de 28px. */
+#custom-next, #custom-previous, #idle_inhibitor {
+    min-width: 28px;
+    margin: 5px 0;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 15px 15px;
+    border-radius: 3px;
+    color: @muted;
 }
-#idle_inhibitor.activated { color: @purple; }
+#custom-next { background-image: -gtk-recolor(url("assets/ronin-next-symbolic.svg")); color: @blue; }
+#custom-previous { background-image: -gtk-recolor(url("assets/ronin-previous-symbolic.svg")); }
+#idle_inhibitor {
+    background-image: -gtk-recolor(url("assets/ronin-monitor-symbolic.svg"));
+    margin-right: 7px;
+}
+#idle_inhibitor.activated { color: @blue; background-color: alpha(@blue, 0.12); }
+#custom-next:hover, #custom-previous:hover, #idle_inhibitor:hover { color: @blue; background-color: alpha(@blue, 0.1); }
+
 #wireplumber {
-    padding: 0 23px 0 8px;
+    padding: 0 10px 0 29px;
+    margin: 8px 0;
+    border-left: 1px solid @ronin_line;
     background-image: -gtk-recolor(url("assets/ronin-speaker-symbolic.svg"));
     background-repeat: no-repeat;
-    background-position: right center;
+    background-position: 9px center;
     background-size: 15px 15px;
+    color: @purple;
+    font-size: 11px;
 }
 #wireplumber.muted { color: @muted; }
-#clock { font-weight: bold; padding: 0 10px; }
-#clock.date { padding: 0 14px 0 7px; }
-#custom-divider { color: @purple; padding: 0 1px; }
-tooltip { color: @purple; background: @panel; border: 1px solid @muted; border-radius: 4px; }
-tooltip label { padding: 7px; }
+#clock {
+    color: @blue;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0 11px;
+    margin: 8px 0;
+    border-left: 1px solid @ronin_line;
+}
+#custom-divider { color: @muted; padding: 0 2px; }
+#clock.date {
+    color: @purple;
+    font-size: 11px;
+    font-weight: normal;
+    border: none;
+    padding: 0 9px;
+}
+
+tooltip { color: @ronin_text; background: @panel; border: 1px solid alpha(@blue, 0.4); border-radius: 5px; }
+tooltip label { padding: 8px; }
