@@ -1,102 +1,115 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "type": "kitty",
-    "source": "\"${XDG_CONFIG_HOME:-$HOME/.config}/fastfetch/assets/Queen Marika-transparent.png\"",
-    "width": 26,
+    "type": "file",
+    "source": "\"${XDG_CONFIG_HOME:-$HOME/.config}/fastfetch/assets/ronin.txt\"",
+    "color": {
+      "1": "@primary@"
+    },
     "padding": {
-      "top": 0,
+      "top": 2,
       "left": 1,
-      "right": 4
+      "right": 3
     },
     "position": "left"
   },
   "display": {
     "separator": "  ",
     "color": {
-      "keys": "@primary@",
-      "title": "@secondary@",
+      "keys": "48;2;@outline_ansi@;38;2;@surface_ansi@",
+      "title": "@primary@",
       "output": "@on_surface@"
     },
     "showErrors": false
   },
   "modules": [
     {
-      "type": "custom",
-      "format": "{#38;2;@primary_ansi@}          M A R I K A{#}"
+      "type": "os",
+      "key": "  ",
+      "format": "{pretty-name}"
     },
     {
       "type": "custom",
-      "format": "{#38;2;@secondary_ansi@}        THE ETERNAL QUEEN{#}"
-    },
-    {
-      "type": "custom",
-      "format": "{#38;2;@outline_ansi@}  ─────────── ◇ ───────────{#}"
-    },
-    "break",
-    {
-      "type": "title",
-      "key": "  Tarnished",
-      "format": "{user-name}"
+      "format": "{#48;2;@outline_ansi@}{#38;2;@surface_ansi@} SYSTEM    {#}"
     },
     {
       "type": "os",
-      "key": "  Realm    ",
+      "key": " OS ",
       "format": "{pretty-name}"
     },
     {
       "type": "kernel",
-      "key": "  Kernel   ",
+      "key": " KE ",
       "format": "{release}"
     },
     {
+      "type": "uptime",
+      "key": " UP "
+    },
+    {
+      "type": "packages",
+      "key": " PK "
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "{#48;2;@outline_ansi@}{#38;2;@surface_ansi@} SOFTWARE  {#}"
+    },
+    {
       "type": "wm",
-      "key": "  Session  ",
+      "key": " WM ",
+      "format": "{pretty-name}"
+    },
+    {
+      "type": "shell",
+      "key": " SH ",
       "format": "{pretty-name}"
     },
     {
       "type": "terminal",
-      "key": "  Terminal "
+      "key": " TR ",
+      "format": "{pretty-name}"
+    },
+    {
+      "type": "font",
+      "key": " FT "
     },
     "break",
     {
       "type": "custom",
-      "format": "{#38;2;@secondary_ansi@}  ◇  VITALS{#}"
+      "format": "{#48;2;@outline_ansi@}{#38;2;@surface_ansi@} HARDWARE  {#}"
     },
     {
       "type": "cpu",
-      "key": "  CPU      ",
+      "key": " CP ",
       "format": "{name}"
     },
     {
-      "type": "cpu",
-      "key": "  Heat     ",
-      "temp": true,
-      "format": "{temperature}"
+      "type": "gpu",
+      "key": " GP ",
+      "format": "{name}"
     },
     {
       "type": "memory",
-      "key": "  Memory   ",
+      "key": " RA ",
       "format": "{used} / {total}"
     },
     {
       "type": "disk",
-      "key": "  Storage  ",
+      "key": " DI ",
       "folders": "/",
-      "format": "{size-used} / {size-total}"
+      "format": "{size-used} / {size-total} ({filesystem})"
     },
     {
-      "type": "uptime",
-      "key": "  Awake    "
+      "type": "cpu",
+      "key": " CT ",
+      "temp": true,
+      "format": "{temperature}"
     },
     "break",
     {
       "type": "custom",
-      "format": "{#38;2;@outline_ansi@}  ─────────── ◇ ───────────{#}"
-    },
-    {
-      "type": "custom",
-      "format": "  {#38;2;@primary_ansi@}● ● ●{#}   {#38;2;@secondary_ansi@}● ● ●{#}   {#38;2;@outline_ansi@}● ● ●{#}"
+      "format": "{#38;2;@on_surface_ansi@}▪ ▪ {#38;2;@outline_ansi@}▪ ▪ {#38;2;@secondary_ansi@}▪ ▪ {#38;2;@primary_ansi@}▪ ▪{#}"
     }
   ]
 }

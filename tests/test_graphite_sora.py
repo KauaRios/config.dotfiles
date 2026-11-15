@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1] / 'hypr/scripts/waybar-templetes'
 class NewWaybarTests(unittest.TestCase):
     def test_configs_and_palette_links(self):
         """Módulos exibidos têm configuração e a paleta aponta para a Waybar compartilhada."""
-        for name in ('graphite', 'sora'):
+        for name in ('graphite', 'sora', 'ronin'):
             with self.subTest(model=name):
                 folder = ROOT / name
                 data = json.loads((folder / 'config').read_text())
@@ -29,7 +29,7 @@ class NewWaybarTests(unittest.TestCase):
             from gi.repository import Gtk
         except (ImportError, ValueError):
             self.skipTest('GTK/PyGObject indisponível')
-        for name in ('graphite', 'sora'):
+        for name in ('graphite', 'sora', 'ronin'):
             with self.subTest(model=name):
                 Gtk.CssProvider().load_from_path(str(ROOT / name / 'style.css'))
 

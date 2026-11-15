@@ -1,26 +1,25 @@
-# Marika — Fastfetch
+# Ronin — Fastfetch
 
-Abra o Kitty e execute `fastfetch`. O retrato da Marika fica à esquerda de uma composição compacta, com o título “MARIKA / THE ETERNAL QUEEN”, divisórias com losangos e o bloco VITALS. Os rótulos Tarnished e Realm representam usuário e sistema operacional; Heat mostra a temperatura real da CPU. Use uma janela com aproximadamente 80 colunas para evitar quebras. Não é iniciado automaticamente a cada terminal.
+Layout baseado na captura `reference.png`: máscara em texto à esquerda, três blocos SYSTEM / SOFTWARE / HARDWARE à direita, etiquetas curtas com fundo e uma linha de amostras de cores no rodapé.
 
-## Cores do wallpaper
+A máscara em `assets/ronin.txt` foi transcrita dos pontos Braille visíveis na referência fornecida. É texto Unicode, não imagem; não precisa do protocolo gráfico Kitty. Os dados são coletados pelo Fastfetch: a distribuição aparece como EndeavourOS neste computador, junto com seu hardware real. O CT mostra a temperatura da CPU. Não há números fixos copiados da captura.
 
-`wallpaper.py` recebe a paleta do Matugen e `apply_colors()` preenche `hypr/scripts/theme-templates/fastfetch.jsonc`. O resultado vai para `~/.config/fastfetch/config.jsonc` (ou `$XDG_CONFIG_HOME/fastfetch/config.jsonc`). O instalador vincula essa pasta ao repositório.
+Execute `fastfetch`. Recomenda-se uma janela de pelo menos 100 colunas para os nomes das GPUs; fontes ou terminais diferentes podem mudar as proporções do desenho. O terminal controla o fundo da janela, não o Fastfetch.
 
-- `primary`: rótulos, título Marika e primeiro grupo de círculos.
-- `secondary`: subtítulo, VITALS e segundo grupo de círculos.
-- `on_surface`: valores das informações.
-- `outline`: divisórias e terceiro grupo de círculos. Todos os círculos acompanham o wallpaper.
+## Paleta dinâmica
 
-A imagem da Marika permanece igual. Execute `fastfetch` novamente depois de trocar o wallpaper para ver as novas cores; texto já impresso não é atualizado. A restauração do wallpaper também reaplica as cores salvas.
+`wallpaper.py` preenche `hypr/scripts/theme-templates/fastfetch.jsonc` e grava em `${XDG_CONFIG_HOME:-~/.config}/fastfetch/config.jsonc`. Edite o **template** para mudanças permanentes de layout.
 
-Para mudar o layout permanentemente, edite o **template**: a configuração gerada será sobrescrita na próxima troca. Sem troca de wallpaper, a configuração incluída funciona normalmente.
+- `primary`: máscara e destaques.
+- `outline`: fundo das etiquetas/blocos.
+- `surface`: texto sobre essas etiquetas.
+- `on_surface`: dados do sistema.
+- `secondary`: amostras de cor.
 
-## Imagem e instalação
+O laranja da captura é substituído pela paleta do wallpaper. Execute Fastfetch de novo após trocar o tema: a saída já impressa não é redesenhada.
 
-A imagem original está em `assets/Queen Marika the Eternal, Ruan Zoe.jpg`. O protocolo gráfico Kitty exibe a imagem preservando a proporção; outros terminais podem não suportar esse protocolo. O caminho suporta espaços e XDG_CONFIG_HOME. O pacote `fastfetch` foi incluído nas dependências. `install.sh` instala os links de Kitty/Fastfetch com backup das pastas anteriores.
+## Substituição e validação
 
-Para verificar somente os dados: `fastfetch --logo none`. Os testes validam a geração da paleta e a leitura pelo Fastfetch real, sem comprovar a aparência gráfica no terminal.
+A configuração e o PNG da Marika foram retirados. Antes da troca, a pasta Fastfetch foi copiada para `~/.local/state/fastfetch-before-ronin-*`.
 
-O retrato fica explicitamente à esquerda, sem margem superior, com largura de 26 colunas e quatro colunas de espaço até o texto. A proporção original é preservada; a altura visual depende das células da fonte do Kitty. O layout também está no template para persistir na troca de wallpaper.
-
-
+Os testes geram duas paletas e executam o Fastfetch instalado sem logo gráfico. A leitura da máscara e o alinhamento textual também foram verificados com a CLI. A aparência da fonte no terminal precisa de conferência visual.

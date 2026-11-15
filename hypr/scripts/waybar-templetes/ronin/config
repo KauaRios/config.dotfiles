@@ -1,0 +1,79 @@
+{
+  "name": "ronin",
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "margin-top": 0,
+  "margin-left": 12,
+  "margin-right": 12,
+  "spacing": 0,
+  "modules-left": [
+    "custom/menu",
+    "hyprland/workspaces",
+    "custom/next"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "custom/previous",
+    "idle_inhibitor",
+    "wireplumber",
+    "clock",
+    "custom/divider",
+    "clock#date"
+  ],
+  "custom/menu": {
+    "format": "menu",
+    "on-click": "rofi -show drun",
+    "tooltip-format": "Abrir aplicativos"
+  },
+  "hyprland/workspaces": {
+    "all-outputs": false,
+    "format": "​",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'"
+  },
+  "custom/next": {
+    "format": "›",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+    "tooltip-format": "Próximo workspace"
+  },
+  "custom/previous": {
+    "format": "‹",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+    "tooltip-format": "Workspace anterior"
+  },
+  "idle_inhibitor": {
+    "format": "​",
+    "tooltip-format": "Inibir suspensão: {status}"
+  },
+  "wireplumber": {
+    "format": "{volume}%",
+    "format-muted": "×",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "tooltip-format": "Volume: {volume}%"
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%H:%M:%S}",
+    "tooltip-format": "{calendar}"
+  },
+  "custom/divider": {
+    "format": "↟",
+    "tooltip": false
+  },
+  "clock#date": {
+    "format": "{:%B %d}",
+    "tooltip": false
+  }
+}

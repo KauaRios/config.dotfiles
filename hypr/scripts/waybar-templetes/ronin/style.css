@@ -1,0 +1,45 @@
+@import "colors.css";
+* {
+    font-family: "DejaVu Sans Mono", "Noto Sans Symbols 2", monospace;
+    font-size: 12px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+window#waybar { color: @blue; background: alpha(@panel, 0.96); border-bottom: 1px solid alpha(@muted, 0.3); border-radius: 0 0 5px 5px; }
+#custom-menu { padding: 0 13px; }
+#custom-menu:hover { color: @purple; }
+#workspaces { margin: 7px 0; padding: 0 4px; border: 1px solid alpha(@blue, 0.7); border-radius: 5px; }
+#workspaces button { min-width: 18px; padding: 0 3px; background: transparent; }
+#workspaces button label { font-size: 1px; min-height: 3px; min-width: 14px; margin: 5px 0; background: alpha(@blue, 0.65); border-radius: 2px; }
+#workspaces button.empty { min-width: 9px; }
+#workspaces button.empty label { min-width: 3px; margin-left: 3px; margin-right: 3px; background: alpha(@blue, 0.45); }
+#workspaces button.active { min-width: 36px; }
+#workspaces button.active label { min-width: 32px; margin-left: 0; margin-right: 0; background: @blue; }
+#workspaces button:hover label, #workspaces button.urgent label { background: @purple; }
+#custom-next, #custom-previous { font-size: 23px; padding: 0 11px; }
+#idle_inhibitor {
+    min-width: 26px;
+    background-image: -gtk-recolor(url("assets/ronin-monitor-symbolic.svg"));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15px 15px;
+}
+#idle_inhibitor.activated { color: @purple; }
+#wireplumber {
+    padding: 0 23px 0 8px;
+    background-image: -gtk-recolor(url("assets/ronin-speaker-symbolic.svg"));
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 15px 15px;
+}
+#wireplumber.muted { color: @muted; }
+#clock { font-weight: bold; padding: 0 10px; }
+#clock.date { padding: 0 14px 0 7px; }
+#custom-divider { color: @purple; padding: 0 1px; }
+tooltip { color: @purple; background: @panel; border: 1px solid @muted; border-radius: 4px; }
+tooltip label { padding: 7px; }

@@ -2,7 +2,7 @@
 
 ![Área de trabalho com Hyprland, Waybar e cores integradas ao wallpaper](assets/visual_areatrabalho.png)
 
-Configurações de Hyprland com escolha manual de wallpaper, cores dinâmicas geradas pelo Matugen e modelos de Waybar. O Rofi usa a imagem atual no cabeçalho, e o Fastfetch traz a Marika com detalhes que acompanham a paleta do sistema.
+Configurações de Hyprland com escolha manual de wallpaper, cores dinâmicas geradas pelo Matugen e modelos de Waybar. O Rofi usa a imagem atual no cabeçalho, e o Fastfetch Ronin usa uma máscara em arte de texto e blocos que acompanham a paleta do sistema.
 
 Requer Hyprland 0.55 ou superior, com configuração exclusivamente Lua.
 
@@ -181,4 +181,4 @@ Após aceitar, `makepkg --syncdeps --install --needed` usa a mesma cópia mostra
 
 ### Fastfetch
 
-Execute `fastfetch` no Kitty para ver a imagem da Marika e os blocos de sistema/hardware. As cores acompanham o wallpaper nas próximas execuções. Veja [configuração e personalização](fastfetch/README.md).
+Execute `fastfetch` para ver a máscara textual Ronin e os blocos SYSTEM, SOFTWARE e HARDWARE. As cores acompanham o wallpaper nas próximas execuções. Veja [configuração e personalização](fastfetch/README.md).
