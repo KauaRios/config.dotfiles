@@ -42,4 +42,4 @@ Modelos também podem conter `assets/`: o seletor copia essa pasta para a Waybar
 
 Ambos usam cores dinâmicas separadas e aparecem automaticamente em Super+Shift+R. Sua barra atual não é substituída ao adicionar os modelos.
 
-- **Pacman**: Pac-Man em SVG no workspace ativo, bolinhas nos demais, título musical e espectro CAVA reais, temperatura da CPU Ryzen. Altura de 36px e paleta dinâmica. Veja [controles e dependências](pacman/README.md).
+- **Pacman**: Pac-Man pequeno em SVG no workspace ativo, fantasmas nos demais, título musical e espectro CAVA reais, temperatura da CPU Ryzen. Altura de 36px e paleta dinâmica. Veja [controles e dependências](pacman/README.md).

@@ -18,33 +18,34 @@ window#waybar {
     border-radius: 7px;
 }
 
-/* Percurso central: o Pac-Man substitui a bolinha do workspace ativo. */
+/* reference_pacman.png: personagens pequenos, sem cápsula ou fundo no ativo. */
 #workspaces {
-    background: alpha(@blue, 0.07);
-    border-radius: 6px;
-    margin: 2px 0;
-    padding: 0 8px;
+    background: transparent;
+    padding: 0 4px;
 }
 #workspaces button {
-    min-width: 34px;
+    min-width: 26px;
     padding: 0;
-    margin: 0 2px;
-    font-size: 17px;
+    margin: 0;
     color: @purple;
-    background: transparent;
-    border-radius: 5px;
-}
-#workspaces button.empty, #workspaces button.persistent { color: @muted; }
-#workspaces button:hover { color: @blue; background-color: alpha(@blue, 0.12); }
-#workspaces button.active {
-    color: @blue;
-    background-color: alpha(@blue, 0.15);
-    background-image: -gtk-recolor(url("assets/pacman-active-symbolic.svg"));
+    background-color: transparent;
+    background-image: -gtk-recolor(url("assets/pacman-ghost-symbolic.svg"));
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 27px 27px;
+    background-size: 13px 13px;
 }
-#workspaces button.urgent { color: @panel; background-color: @purple; }
+#workspaces button.empty {
+    color: @muted;
+    background-image: -gtk-recolor(url("assets/pacman-ghost-outline-symbolic.svg"));
+}
+#workspaces button:hover { color: @blue; }
+#workspaces button.active {
+    color: @blue;
+    background-color: transparent;
+    background-image: -gtk-recolor(url("assets/pacman-active-symbolic.svg"));
+    background-size: 14px 14px;
+}
+#workspaces button.urgent { color: @blue; }
 
 #custom-brand { color: @purple; font-size: 17px; padding: 0 10px; }
 #clock { font-size: 12px; padding: 0 7px; }

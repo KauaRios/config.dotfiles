@@ -1,6 +1,6 @@
 # Pacman
 
-Barra superior de 36px com relógio/mídia à esquerda, workspaces centrais e indicadores à direita. O Pac-Man ativo é um SVG de 27px, com boca e olho vazados, sobre fundo de destaque. Os demais workspaces são bolinhas, formando o percurso. Cliques e rolagem mantêm o comportamento anterior.
+Barra superior de 36px com relógio/mídia à esquerda, workspaces centrais e indicadores à direita. O Pac-Man ativo é um SVG de 14px, com boca e olho vazados, sem fundo de destaque. Seguindo `reference_pacman.png`, os outros cinco workspaces são fantasmas de 13px: preenchidos quando ocupados e em contorno quando vazios. Os botões mantêm 26px de área clicável. Cliques e rolagem mantêm o comportamento anterior.
 
 ## Música e temperatura
 
