@@ -41,3 +41,5 @@ Modelos também podem conter `assets/`: o seletor copia essa pasta para a Waybar
 - [Sora](sora/README.md): baseada em `reference.png`: cápsula única com temperatura/hora/mídia à esquerda, dez workspaces em kanji e ícones compactos à direita; altura de 38px.
 
 Ambos usam cores dinâmicas separadas e aparecem automaticamente em Super+Shift+R. Sua barra atual não é substituída ao adicionar os modelos.
+
+- **Pacman**: Pac-Man em SVG no workspace ativo, bolinhas nos demais, título musical e espectro CAVA reais, temperatura da CPU Ryzen. Altura de 36px e paleta dinâmica. Veja [controles e dependências](pacman/README.md).

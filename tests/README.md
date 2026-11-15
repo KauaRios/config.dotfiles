@@ -90,3 +90,5 @@ Fastfetch: `test_fastfetch.py` gera duas paletas em uma pasta temporária, confe
 A cobertura de Sora também copia o template para uma pasta temporária, preserva a paleta, renderiza os SVG com librsvg e valida o CSS com os ícones no destino. Requer Gtk/PyGObject e Rsvg; sem essas bibliotecas, essa verificação é ignorada. Não compara screenshots.
 
 `test_sora_controls.py`: simula playerctl ausente/sem mídia/timeout, confere escape de markup nos títulos e testa cancelamento/seleção do menu da sessão sem bloquear, suspender ou desligar o sistema.
+
+`test_pacman.py`: copia o modelo para uma pasta temporária e valida CSS/SVG, preservação da paleta e presença de mídia/temperatura. Executa o adaptador com um CAVA falso que confere o arquivo de configuração e emite silêncio/som; não captura áudio da sessão nem avalia a aparência na tela.

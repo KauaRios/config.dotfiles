@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- A boca e o olho são recortes transparentes, não cores fixas. -->
+  <path fill="#bebebe" fill-rule="evenodd" d="M16 16L28.12 9A14 14 0 1 0 28.12 23Z M17 7a1.8 1.8 0 1 0 0 3.6a1.8 1.8 0 1 0 0-3.6Z"/>
+</svg>

@@ -1,0 +1,78 @@
+@import "colors.css";
+
+* {
+    font-family: "DejaVu Sans Mono", "Noto Sans Symbols 2", monospace;
+    font-size: 12px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+window#waybar {
+    background: alpha(@panel, 0.98);
+    color: @purple;
+    border: 1px solid alpha(@muted, 0.25);
+    border-radius: 7px;
+}
+
+/* Percurso central: o Pac-Man substitui a bolinha do workspace ativo. */
+#workspaces {
+    background: alpha(@blue, 0.07);
+    border-radius: 6px;
+    margin: 2px 0;
+    padding: 0 8px;
+}
+#workspaces button {
+    min-width: 34px;
+    padding: 0;
+    margin: 0 2px;
+    font-size: 17px;
+    color: @purple;
+    background: transparent;
+    border-radius: 5px;
+}
+#workspaces button.empty, #workspaces button.persistent { color: @muted; }
+#workspaces button:hover { color: @blue; background-color: alpha(@blue, 0.12); }
+#workspaces button.active {
+    color: @blue;
+    background-color: alpha(@blue, 0.15);
+    background-image: -gtk-recolor(url("assets/pacman-active-symbolic.svg"));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 27px 27px;
+}
+#workspaces button.urgent { color: @panel; background-color: @purple; }
+
+#custom-brand { color: @purple; font-size: 17px; padding: 0 10px; }
+#clock { font-size: 12px; padding: 0 7px; }
+#custom-lock { color: @blue; padding: 0 8px; }
+
+/* CAVA usa o monitor da saída: as barras não são uma animação decorativa. */
+#music { margin: 5px 0 5px 10px; border-left: 1px solid alpha(@muted, 0.35); padding-left: 12px; }
+#custom-pacman-cava {
+    color: @blue;
+    font-size: 18px;
+    min-width: 48px;
+    padding-right: 9px;
+}
+#custom-pacman-cava.silent, #mpris.paused { color: @muted; }
+#custom-pacman-cava.error { color: @purple; }
+#mpris { color: @purple; font-size: 12px; padding-right: 8px; }
+
+#wireplumber, #network, #cpu, #memory, #battery, #tray, #power-profiles-daemon { padding: 0 7px; }
+#temperature {
+    color: @blue;
+    background: alpha(@blue, 0.10);
+    font-weight: bold;
+    margin: 5px 3px;
+    padding: 0 8px;
+    border-radius: 4px;
+}
+#wireplumber.muted, #network.disconnected { color: @muted; }
+#battery.warning { color: @purple; }
+#temperature.critical, #battery.critical { color: @panel; background: @purple; }
+tooltip { color: @purple; background: @panel; border: 1px solid @muted; border-radius: 6px; }
+tooltip label { padding: 8px; }
