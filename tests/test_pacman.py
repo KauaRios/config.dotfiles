@@ -37,14 +37,26 @@ class PacmanTests(unittest.TestCase):
             self.assertIn('temperature', data['modules-right'])
 
     def test_audio_stream_uses_existing_config(self):
-        """Executável falso confere -p e envia quadros; o adaptador gera JSON real."""
+        """Confere espelhamento, queda suave, silêncio e rejeição de quadros inválidos."""
+        import configparser
+        config = configparser.ConfigParser()
+        config.read(MODEL / 'assets/pacman-cava.conf')
+        self.assertEqual(config.getint('general', 'bars'), 6)
         with tempfile.TemporaryDirectory() as folder:
             executable = Path(folder) / 'cava'
-            executable.write_text('#!/bin/sh\n[ "$1" = "-p" ] && [ -f "$2" ] || exit 1\nprintf "0;0;0;0;\\n0;2;4;7;\\n"\n')
+            samples = ['0;0;0;0;0;0;', '0;1;2;3;5;7;', 'erro', '-1;0;0;0;0;0;', '1;2;']
+            samples += ['0;0;0;0;0;0;'] * 7
+            executable.write_text('#!/bin/sh\n[ "$1" = "-p" ] && [ -f "$2" ] || exit 1\n' +
+                                  "printf '%s\\n' '" + "' '".join(samples) + "'\n")
             executable.chmod(0o755)
             result = subprocess.run([os.sys.executable, str(MODEL / 'assets/pacman-cava.py')],
                                     env={**os.environ, 'PATH': folder}, capture_output=True,
                                     text=True, check=True, timeout=5)
             frames = [json.loads(line) for line in result.stdout.splitlines()]
-            self.assertEqual([f['text'] for f in frames], ['▁▁▁▁', '▁▃▅█'])
-            self.assertEqual([f['class'] for f in frames], ['silent', 'playing'])
+            self.assertEqual(len(frames), 9)  # Os três quadros inválidos foram ignorados.
+            self.assertEqual(frames[0]['text'], '·' * 12)
+            self.assertEqual(frames[1]['text'], '█▆▄▃▂▁▁▂▃▄▆█')
+            self.assertEqual(frames[2]['text'], '▇▅▃▂▁▁▁▁▂▃▅▇')
+            self.assertEqual(frames[2]['class'], 'playing')
+            self.assertEqual(frames[-1]['text'], '·' * 12)
+            self.assertEqual(frames[-1]['class'], 'silent')

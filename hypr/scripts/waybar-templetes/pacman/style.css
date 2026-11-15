@@ -55,11 +55,12 @@ window#waybar {
 #music { margin: 5px 0 5px 10px; border-left: 1px solid alpha(@muted, 0.35); padding-left: 12px; }
 #custom-pacman-cava {
     color: @blue;
-    font-size: 18px;
-    min-width: 48px;
+    font-size: 14px;
+    min-width: 102px;
     padding-right: 9px;
 }
-#custom-pacman-cava.silent, #mpris.paused { color: @muted; }
+#custom-pacman-cava.silent { color: alpha(@muted, 0.55); }
+#mpris.paused { color: @muted; }
 #custom-pacman-cava.error { color: @purple; }
 #mpris { color: @purple; font-size: 12px; padding-right: 8px; }
 
