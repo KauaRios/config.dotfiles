@@ -22,7 +22,9 @@
     "tray",
     "network",
     "wireplumber",
+    "custom/cava",
     "cpu",
+    "temperature",
     "battery"
   ],
   "hyprland/workspaces": {
@@ -123,5 +125,19 @@
     "format-no-controller": "",
     "tooltip-format": "Bluetooth: {status}",
     "tooltip-format-connected": "Bluetooth: {device_alias}"
+  },
+  "custom/cava": {
+    "exec": "exec python3 -u \"${XDG_CONFIG_HOME:-$HOME/.config}/waybar/assets/astral-cava.py\"",
+    "return-type": "json",
+    "restart-interval": 5,
+    "tooltip": true
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "interval": 5,
+    "critical-threshold": 85,
+    "format": "{temperatureC}°C",
+    "tooltip-format": "CPU Ryzen · Tctl: {temperatureC}°C"
   }
 }

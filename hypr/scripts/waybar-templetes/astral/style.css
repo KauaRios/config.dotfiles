@@ -38,3 +38,10 @@ window#waybar { background: alpha(@panel, 0.97); color: @purple; border-top: 1px
 #battery.warning { border-color: @purple; color: @purple; }
 #battery.critical { color: @panel; background: @purple; }
 #network.disconnected, #wireplumber.muted { color: @muted; }
+
+/* Espectro compacto ao lado do volume; frequência baixa à esquerda. */
+#custom-cava { font-family: "DejaVu Sans Mono", monospace; font-size: 14px; letter-spacing: 1px; min-width: 80px; padding: 0 9px 0 5px; color: @blue; }
+#custom-cava.silent { color: alpha(@muted, 0.55); }
+#custom-cava.error { color: @purple; }
+#temperature { color: @blue; font-size: 11px; min-width: 38px; padding: 0 8px 0 0; }
+#temperature.critical { color: @panel; background: @purple; border-radius: 4px; padding: 0 6px; margin: 5px 0; }
