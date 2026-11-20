@@ -39,6 +39,16 @@ cd ~/dotfiles
 
 O instalador de dependências solicita sudo e a confirmação do gerenciador. Instala o próprio Hyprland, Matugen e Python 3 para o seletor de wallpaper e a geração da paleta. Suporta Fedora tradicional e EndeavourOS, Arch, Manjaro, Garuda e outras distribuições que declarem ID_LIKE=arch com os pacotes disponíveis nos repositórios oficiais. No Fedora habilita o COPR comunitário nett00n/hyprland mediante confirmação do DNF; no Arch/EndeavourOS usa pacman para os pacotes oficiais e revisa o PKGBUILD do AUR para instalar zen-browser-bin. Não troca o gerenciador de login. Fedora Atomic não é suportado automaticamente.
 
+### Ferramentas pessoais de desenvolvimento
+
+Algumas dependências são ferramentas que uso no dia a dia, além das necessárias para o visual e funcionamento das dotfiles. O instalador inclui Clang/clangd, Node.js, npm, TypeScript, o LSP `typescript-language-server`, Pyright e `live-server` (servidor local com recarregamento do navegador).
+
+No Arch, `npm`, `node-gyp`, `nodejs-nopt` (nopt), `semver` e `pyright` vêm do pacman, como neste computador. TypeScript, seu LSP e live-server são instalados pelo npm. No Fedora, Node.js/npm vêm do DNF e Pyright, node-gyp, nopt e semver também são instalados pelo npm; make, GCC C++ e Python atendem à compilação de módulos nativos.
+
+Os pacotes instalados pelo npm ficam em `~/.local`, sem sudo e sem sobrescrever arquivos de `/usr` gerenciados pela distribuição. Garanta `~/.local/bin` no PATH: no Fish, execute `fish_add_path ~/.local/bin`; no Bash/Zsh, adicione `export PATH="$HOME/.local/bin:$PATH"` ao seu `.bashrc`/`.zshrc` e reabra o terminal. Essa etapa do npm usa as versões publicadas no registro configurado, sem fixar versões.
+
+O LSP precisa ser habilitado na configuração do editor. Meu Neovim fica em um repositório separado, [config.nvim](https://github.com/KauaRios/config.nvim); o instalador destas dotfiles não copia sua configuração. Para usar o servidor de desenvolvimento, entre na pasta do projeto e execute `live-server`.
+
 O instalador dos links roda SEM sudo. Vincula somente hypr, waybar, rofi, wofi, mako, wallpapers, qt6ct, kitty e fastfetch dentro de `${XDG_CONFIG_HOME:-$HOME/.config}`. Não substitui a .config inteira. Configurações existentes dessas pastas são movidas para `.config/dot-backup.XXXXXXXX`; configurações do KDE permanecem no lugar. Pode executar novamente sem duplicar links. Não mova a pasta DOT depois da instalação.
 
 Saia da sessão e escolha Hyprland no login. O wallpaper é restaurado pelo script Python no login e exibido com swaybg. Super+W permite escolher uma imagem e gerar cores com Matugen. Consulte [a documentação completa](WALLPAPER.md).
