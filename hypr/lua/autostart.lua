@@ -1,5 +1,8 @@
 -- Iniciar apenas depois que o compositor e seus sockets estiverem prontos.
 hl.on("hyprland.start", function()
+    hl.exec_cmd("hyprctl setcursor breeze_cursors 24")
+    hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme breeze_cursors")
+    hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size 24")
     hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme prefer-dark")
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE QT_QPA_PLATFORMTHEME GTK_THEME; systemctl --user start hyprpolkitagent.service")
     hl.exec_cmd("waybar")
