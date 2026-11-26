@@ -1,0 +1,195 @@
+@import "colors.css";
+
+/* Superfície escura em blocos independentes, derivada da paleta dinâmica. */
+@define-color cinder_surface alpha(@panel, 0.96);
+@define-color cinder_border alpha(@muted, 0.18);
+@define-color cinder_text mix(@purple, #ffffff, 0.58);
+@define-color cinder_active_bg mix(@purple, #ffffff, 0.72);
+@define-color cinder_muted alpha(@muted, 0.72);
+
+* {
+    font-family: "DejaVu Sans Mono", "Noto Sans", monospace;
+    font-size: 12px;
+    font-weight: 500;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+window#waybar {
+    background: transparent;
+    color: @cinder_text;
+}
+
+/* Bloco esquerdo único: hora/data, temperatura/tray e janela ativa em duas linhas. */
+.modules-left {
+    background: @cinder_surface;
+    border: 1px solid @cinder_border;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+#clock {
+    color: @cinder_text;
+    font-size: 12px;
+    padding: 0 2px;
+}
+
+#custom-sep {
+    color: alpha(@muted, 0.42);
+    padding: 0 8px;
+}
+
+#temperature {
+    color: @cinder_text;
+    font-size: 12px;
+    padding-right: 6px;
+}
+
+#temperature.critical {
+    color: @blue;
+    font-weight: bold;
+}
+
+#tray {
+    padding: 0 2px;
+}
+
+#active-window {
+    padding: 2px 4px 2px 2px;
+    min-width: 140px;
+}
+
+#window.class {
+    color: @blue;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+#window.title {
+    color: @cinder_text;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* Bloco central: workspaces em algarismos romanos I..VI com destaque sólido. */
+.modules-center {
+    background: @cinder_surface;
+    border: 1px solid @cinder_border;
+    border-radius: 5px;
+    padding: 0 2px;
+}
+
+#workspaces button {
+    min-width: 30px;
+    margin: 2px 1px;
+    padding: 0 4px;
+    border-radius: 4px;
+    color: @cinder_muted;
+    background: transparent;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#workspaces button.empty {
+    color: alpha(@muted, 0.5);
+}
+
+#workspaces button:hover {
+    color: @cinder_text;
+    background: alpha(@muted, 0.16);
+}
+
+#workspaces button.active {
+    background: @cinder_active_bg;
+    color: @panel;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    background: @blue;
+    color: @panel;
+    font-weight: bold;
+}
+
+/* Bloco direito: 7 cartões individuais com rótulo em destaque e valor claro. */
+#bl,
+#bt,
+#net,
+#vol,
+#mem,
+#cpu-card,
+#bat {
+    background: @cinder_surface;
+    border: 1px solid @cinder_border;
+    border-radius: 5px;
+    padding: 0 9px;
+    margin-left: 4px;
+}
+
+#custom-bl-label,
+#custom-bt-label,
+#custom-net-label,
+#custom-vol-label,
+#custom-mem-label,
+#custom-cpu-label,
+#custom-bat-label {
+    color: @blue;
+    font-size: 10px;
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+#backlight,
+#bluetooth,
+#network,
+#wireplumber,
+#memory,
+#cpu,
+#battery {
+    color: @cinder_text;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#bluetooth.off,
+#bluetooth.disabled,
+#network.disconnected,
+#wireplumber.muted {
+    color: @cinder_muted;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @blue;
+}
+
+#battery.warning:not(.charging):not(.plugged) {
+    color: @purple;
+}
+
+#battery.critical:not(.charging):not(.plugged) {
+    color: @blue;
+    font-weight: bold;
+}
+
+#bt:hover,
+#net:hover,
+#vol:hover {
+    border-color: alpha(@blue, 0.45);
+}
+
+tooltip {
+    background: @cinder_surface;
+    color: @cinder_text;
+    border: 1px solid alpha(@blue, 0.35);
+    border-radius: 6px;
+}
+
+tooltip label {
+    padding: 8px;
+}
