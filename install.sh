@@ -4,16 +4,24 @@ set -euo pipefail
 root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 config=${XDG_CONFIG_HOME:-$HOME/.config}
 [[ $config = /* ]] || { echo 'XDG_CONFIG_HOME precisa ser absoluto.' >&2; exit 1; }
+data=${XDG_DATA_HOME:-$HOME/.local/share}
+[[ $data = /* ]] || { echo 'XDG_DATA_HOME precisa ser absoluto.' >&2; exit 1; }
 # Evita mover a própria origem para o backup e criar um link circular.
 config=$(realpath -m -- "$config")
+data=$(realpath -m -- "$data")
 case "$root/" in "$config/"*)
     echo 'Mantenha o repositório fora da pasta de destino .config.' >&2
+    exit 1
+esac
+case "$root/" in "$data/"*)
+    echo 'Mantenha o repositório fora da pasta de destino de dados.' >&2
     exit 1
 esac
 mode=${1:-}
 [[ $# -le 1 && ( -z $mode || $mode = --dry-run ) ]] || { echo 'Uso: ./install.sh [--dry-run]'; exit 1; }
 folders=(hypr waybar rofi wofi mako wallpapers qt6ct kitty fastfetch)
 for name in "${folders[@]}"; do [[ -d $root/$name ]] || exit 1; done
+[[ -d $root/icons ]] || exit 1
 backup=
 for name in "${folders[@]}"; do
     src=$root/$name; dst=$config/$name
@@ -29,4 +37,23 @@ for name in "${folders[@]}"; do
     fi
     ln -s -- "$src" "$dst"
     echo "Instalado: $name"
+done
+shopt -s nullglob
+for src in "$root/icons"/*/; do
+    src=${src%/}
+    theme=$(basename -- "$src")
+    dst=$data/icons/$theme
+    if [[ -L $dst && $(readlink -f -- "$dst") = "$src" ]]; then
+        echo "Já instalado: icons/$theme"; continue
+    fi
+    if [[ $mode = --dry-run ]]; then echo "Link: $dst -> $src (backup se existir)"; continue; fi
+    mkdir -p -- "$data/icons"
+    if [[ -e $dst || -L $dst ]]; then
+        if [[ -z $backup ]]; then backup=$(mktemp -d "$config/dot-backup.XXXXXXXX"); fi
+        mkdir -p -- "$backup/icons"
+        mv -- "$dst" "$backup/icons/$theme"
+        echo "Backup: $backup/icons/$theme"
+    fi
+    ln -s -- "$src" "$dst"
+    echo "Instalado: icons/$theme"
 done

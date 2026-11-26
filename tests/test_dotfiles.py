@@ -135,7 +135,11 @@ class InstallTests(unittest.TestCase):
         shutil.copy2(ROOT / 'install.sh', self.repo / 'install.sh')
         for folder in FOLDERS:
             (self.repo / folder).mkdir()
-        self.env = dict(os.environ, HOME=str(self.config.parent), XDG_CONFIG_HOME=str(self.config))
+        (self.repo / 'icons/Kitty').mkdir(parents=True)
+        self.data = self.base / 'home/.local/share'
+        self.env = dict(os.environ, HOME=str(self.config.parent),
+                        XDG_CONFIG_HOME=str(self.config),
+                        XDG_DATA_HOME=str(self.data))
 
     def install(self, *args, ok=True):
         result = subprocess.run(['bash', str(self.repo / 'install.sh'), *args],
@@ -152,6 +156,8 @@ class InstallTests(unittest.TestCase):
         for folder in FOLDERS:
             self.assertTrue((self.config / folder).is_symlink())
             self.assertEqual((self.config / folder).resolve(), self.repo / folder)
+        self.assertTrue((self.data / 'icons/Kitty').is_symlink())
+        self.assertEqual((self.data / 'icons/Kitty').resolve(), self.repo / 'icons/Kitty')
 
     def test_existing_config_backed_up(self):
         (self.config / 'hypr').mkdir()
