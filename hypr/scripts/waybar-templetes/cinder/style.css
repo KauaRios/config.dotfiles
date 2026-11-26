@@ -9,7 +9,7 @@
 
 * {
     font-family: "DejaVu Sans Mono", "Noto Sans", monospace;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     min-height: 0;
     padding: 0;
@@ -30,24 +30,24 @@ window#waybar {
     background: @cinder_surface;
     border: 1px solid @cinder_border;
     border-radius: 5px;
-    padding: 0 10px;
+    padding: 0 8px;
 }
 
 #clock {
     color: @cinder_text;
-    font-size: 12px;
+    font-size: 11px;
     padding: 0 2px;
 }
 
 #custom-sep {
     color: alpha(@muted, 0.42);
-    padding: 0 8px;
+    padding: 0 6px;
 }
 
 #temperature {
     color: @cinder_text;
-    font-size: 12px;
-    padding-right: 6px;
+    font-size: 11px;
+    padding-right: 5px;
 }
 
 #temperature.critical {
@@ -60,19 +60,19 @@ window#waybar {
 }
 
 #active-window {
-    padding: 2px 4px 2px 2px;
-    min-width: 140px;
+    padding: 1px 4px 1px 2px;
+    min-width: 120px;
 }
 
 #window.class {
     color: @blue;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: bold;
 }
 
 #window.title {
     color: @cinder_text;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
 }
 
@@ -85,13 +85,13 @@ window#waybar {
 }
 
 #workspaces button {
-    min-width: 30px;
+    min-width: 26px;
     margin: 2px 1px;
-    padding: 0 4px;
+    padding: 0 3px;
     border-radius: 4px;
     color: @cinder_muted;
     background: transparent;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
 }
 
@@ -127,7 +127,7 @@ window#waybar {
     background: @cinder_surface;
     border: 1px solid @cinder_border;
     border-radius: 5px;
-    padding: 0 9px;
+    padding: 0 7px;
     margin-left: 4px;
 }
 
@@ -139,9 +139,9 @@ window#waybar {
 #custom-cpu-label,
 #custom-bat-label {
     color: @blue;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: bold;
-    padding-right: 5px;
+    padding-right: 4px;
 }
 
 #backlight,
@@ -152,7 +152,7 @@ window#waybar {
 #cpu,
 #battery {
     color: @cinder_text;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
 }
 

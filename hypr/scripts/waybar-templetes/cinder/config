@@ -2,10 +2,10 @@
   "name": "cinder",
   "layer": "top",
   "position": "top",
-  "height": 36,
-  "margin-top": 6,
-  "margin-left": 8,
-  "margin-right": 8,
+  "height": 30,
+  "margin-top": 5,
+  "margin-left": 6,
+  "margin-right": 6,
   "margin-bottom": 0,
   "spacing": 0,
   "modules-left": [
@@ -50,8 +50,8 @@
     "tooltip-format": "CPU Ryzen · Tctl: {temperatureC}°C"
   },
   "tray": {
-    "icon-size": 14,
-    "spacing": 6
+    "icon-size": 13,
+    "spacing": 5
   },
   "group/active-window": {
     "orientation": "vertical",
